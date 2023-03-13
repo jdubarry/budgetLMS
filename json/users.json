@@ -1,0 +1,13 @@
+[
+  {
+  	"id":1,
+  	"firstName":"Jordan",
+  	"lastName":"Dubarry",
+    "email":"jdub@gmail.com",
+    "phone":"803-565-4433",
+    "DateOfBirth": "03/01/2003",
+    "userName": "jdub44",
+    "password": "animeIsCool44"
+
+  }
+]

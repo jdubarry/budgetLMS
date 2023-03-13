@@ -1,0 +1,13 @@
+[
+  {
+  	"id":1,
+  	"firstName":"Jorge",
+  	"lastName":"Strawberry",
+    "email":"jStraw@gmail.com",
+    "phone":"803-564-3344",
+    "DateOfBirth": "03/02/2003",
+    "userName": "jStraw44",
+    "password": "animeIsBad44"
+
+  }
+]
