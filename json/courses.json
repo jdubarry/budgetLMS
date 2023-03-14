@@ -3,33 +3,8 @@
   	"id":"aa2a3a6e-c6d4-467d-8bc6-649e288c5ef9",
   	"courseName": "java for geniuses",
     "courseDescription": "this course is designed for really intelligent young fellows who wanna know a little bit more about java", 
-    "authorID": "bc6bed30-0ca0-4411-9a3b-81e005c2e029",
-    "module":[{"moduleName": "basics",
-    		"lessons":[{ "lessonTitle": "setting up IDE", "lessonContent": "blahblahblah", "comments":[{"userid": "c12ce24f-9bb0-479c-b734-72bc3c222d85", "commentContent": "cool beanz", 
-        "replies":[{"userid": "e9ddfa73-0616-4cdb-80a4-1800b99425a8", "commentContent": "you are a cool guy daniel", 
-        "replies":[{"userid": "c113de7c-b9f2-4879-a161-9d180f882949", "commentContent": "NO! you are cool jordan", "replies": []}]}]}]}], 
-        "quiz":[{"questionTitle": "what color is a zebra", "answerChoices":["blue", "green", "black and white", "orange"], "correctAnswer": "3"}]}],
-    "students":[
-      {"id":"c12ce24f-9bb0-479c-b734-72bc3c222d85",
-      "grades":[9.7,8.7]},
-      {"id": "e9ddfa73-0616-4cdb-80a4-1800b99425a8",
-      "grades": [9.2,8.3]},
-      {"id": "c113de7c-b9f2-4879-a161-9d180f882949",
-      "grades": [9.9,8.1]}
-    ],
-    "comments": [
-      {
-        "userid": "c12ce24f-9bb0-479c-b734-72bc3c222d85",
-        "commentContent": "very informative",
-        "replies": [
-        {
-          "userid": "e9ddfa73-0616-4cdb-80a4-1800b99425a8",
-          "commentContent": "you are an extra cool guy daniel",
-        "replies": [
-        {
-          "userid": "c113de7c-b9f2-4879-a161-9d180f882949",
-          "commentContent": "NO! you are cool jordan",
-          "replies": []
-          }]}]}]
+    "authorID": "44"
+    "modules":[{"moduleName": "basics",
+    		"Lessons":[{ "lessonTitle": "setting up IDE"}]}]
   }
 ]
