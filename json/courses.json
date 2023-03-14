@@ -3,7 +3,7 @@
   	"id":1,
   	"courseName": "java for geniuses",
     "courseDescription": "this course is designed for really intelligent young fellows who wanna know a little bit more about java", 
-    "authorID": "44"
+    "authorID": "44",
     "modules":[{"moduleName": "basics",
     		"Lessons":[{ "lessonTitle": "setting up IDE"}]}]
   }
