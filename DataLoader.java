@@ -22,7 +22,7 @@ public class DataLoader {
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
 
-                UUID uuid = (UUID) (json.get("id"));
+                UUID id = (UUID) (json.get("id"));
                 String firstName = (String) json.get("firstName");
                 String lastName = (String) json.get("lastName");
                 String email = (String) json.get("email");
@@ -51,7 +51,7 @@ public class DataLoader {
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
 
-                UUID uuid = (UUID) (json.get("id"));
+                UUID id = (UUID) (json.get("id"));
                 String firstName = (String) json.get("firstName");
                 String lastName = (String) json.get("lastName");
                 String email = (String) json.get("email");
@@ -80,14 +80,19 @@ public class DataLoader {
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
 
-                UUID uuid = (UUID) (json.get("id"));
-                String firstName = (String) json.get("firstName");
-                String lastName = (String) json.get("lastName");
-                String email = (String) json.get("email");
-                String phone = (String) json.get("phone");
-                String username = (String) json.get("userName");
-                String password = (String) json.get("password");
-                Date dateOfBirth = (Date) json.get("DateOfBirth");
+                UUID id = (UUID) (json.get("id"));
+                String courseName = (String) json.get("courseName");
+                String courseDesc = (String) json.get("courseDescription");
+                UUID authorID = (UUID) (json.get("authorID"));
+
+                JSONArray modules = (JSONArray) json.get("modules");
+
+                for (Object m : modules)
+                {
+                    JSONObject module =  (JSONObject) m;
+
+                    String moduleName = (String) module.get("moduleName");
+                }
 
             }
         } catch (FileNotFoundException e) {
