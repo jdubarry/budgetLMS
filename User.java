@@ -13,7 +13,13 @@ public class User {
     protected String password;
 
     public User(String firstName, String lastName, String userName, String password, String dateOfBirth, String phoneNumber, String emailAddress) {
-
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this. phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        //date of birth add
     }
     public void addCourse(Course course) {
 
@@ -25,7 +31,7 @@ public class User {
 
     }
     public boolean verifyLogin(String userName, String password) {
-
+       
     }
     private void addAgeRestriction() {
         

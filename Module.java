@@ -7,10 +7,10 @@ public class Module {
     private Quiz quiz;
 
     public Module(String moduleName) {
-
+        this.moduleName = moduleName;
     }
     public void addLesson(String title) {
-
+        
     }
     public void viewLessons() {
 

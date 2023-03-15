@@ -10,7 +10,8 @@ public class Course {
     private Boolean isPrivate;
 
     public Course(String courseName, Author author) {
-
+        this.courseName = courseName;
+        this.author = author;
     }
     public void addModule(int moduleIndex) {
 
@@ -22,7 +23,7 @@ public class Course {
 
     }
     public String printCertificate() {
-
+        return "return statement";
     }
     public void publish() {
         

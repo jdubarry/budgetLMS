@@ -4,7 +4,7 @@ public class LMSApplication {
     private User currentUser; 
 
     public void login(User user) {
-
+        
     }
     public void logout(User user) {
 
