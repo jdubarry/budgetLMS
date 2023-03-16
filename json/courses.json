@@ -3,7 +3,6 @@
   	"id":"aa2a3a6e-c6d4-467d-8bc6-649e288c5ef9",
   	"courseName": "java for geniuses",
     "courseDescription": "this course is designed for really intelligent young fellows who wanna know a little bit more about java", 
-<<<<<<< HEAD
     "authorID": "bc6bed30-0ca0-4411-9a3b-81e005c2e029",
     "module":[{"moduleName": "basics",
     		"lessons":[{ "lessonTitle": "setting up IDE", "lessonContent": "blahblahblah", "comments":[{"userid": "c12ce24f-9bb0-479c-b734-72bc3c222d85", "commentContent": "cool beanz", 
@@ -32,10 +31,5 @@
           "commentContent": "NO! you are cool jordan",
           "replies": []
           }]}]}]
-=======
-    "authorID": "44",
-    "modules":[{"moduleName": "basics",
-    		"Lessons":[{ "lessonTitle": "setting up IDE"}]}]
->>>>>>> dd443d875fa671bc15842cfca44c3d0e4db21c8f
   }
 ]
