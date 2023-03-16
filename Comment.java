@@ -11,9 +11,7 @@ public class Comment {
         this.commentContent = commentContent;
     }
     public void reply(String authorName, String commentContent) {
-        this.authorName = authorName;
-        this.commentContent = commentContent;
-        //check
+        
     }
     public void viewReplies() {
 
