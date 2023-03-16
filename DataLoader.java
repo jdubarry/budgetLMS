@@ -92,6 +92,23 @@ public class DataLoader {
                     JSONObject module =  (JSONObject) m;
 
                     String moduleName = (String) module.get("moduleName");
+
+                    JSONArray lessons = (JSONArray) module.get("lessons");
+
+                    for (Object l : lessons)
+                    {
+                        JSONObject lesson =  (JSONObject) l;
+
+                        String lessonTitle = (String) lesson.get("lessonTitle");
+                        String lessonContent = (String) lesson.get("lessonContent");
+
+                        JSONArray comments = (JSONArray) lesson.get("comments");
+
+                        for (Object c : comments)
+                        {
+                            
+                        }
+                    }
                 }
 
             }
@@ -103,5 +120,21 @@ public class DataLoader {
             e.printStackTrace();
         }
         return;
+    }
+
+    private Comment parseComment(Object comm) {
+        JSONObject comment =  (JSONObject) comm;
+
+        String authorName = (String) comment.get("lessonTitle");
+        String commentContent = (String) comment.get("lessonContent");
+
+        List<Comment> replies = new ArrayList<Comment>();
+
+        JSONArray comments = (JSONArray) comment.get("comments");
+
+            for (Object c : comments)
+            {
+                
+            }
     }
 }
