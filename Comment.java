@@ -18,4 +18,10 @@ public class Comment {
     public void viewReplies() {
 
     }
+    public String getName() {
+        return this.authorName;
+    }
+    public String getContent() {
+        return this.commentContent;
+    }
 }

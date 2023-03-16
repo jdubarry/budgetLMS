@@ -8,20 +8,19 @@
     		"lessons":[{ "lessonTitle": "setting up IDE", "lessonContent": "blahblahblah", "comments":[{"userid": "c12ce24f-9bb0-479c-b734-72bc3c222d85", "commentContent": "cool beanz", 
         "replies":[{"userid": "e9ddfa73-0616-4cdb-80a4-1800b99425a8", "commentContent": "you are a cool guy daniel", 
         "replies":[{"userid": "c113de7c-b9f2-4879-a161-9d180f882949", "commentContent": "NO! you are cool jordan", "replies": []}]}]}]}], 
-        "quiz":[{"questionTitle": "what color is a zebra", "answerChoices":["blue", "green", "black and white", "orange"], "correctAnswer": "3"}]}],
-    "comments": [
-      {
-        "userid": "c12ce24f-9bb0-479c-b734-72bc3c222d85",
-        "commentContent": "very informative",
-        "replies": [
-        {
-          "userid": "e9ddfa73-0616-4cdb-80a4-1800b99425a8",
-          "commentContent": "you are an extra cool guy daniel",
-        "replies": [
-        {
-          "userid": "c113de7c-b9f2-4879-a161-9d180f882949",
-          "commentContent": "NO! you are cool jordan",
-          "replies": []
-          }]}]}]
-  }
+        "quiz":[{"questions":{"questionTitle": "what color is a zebra", "answerChoices":["blue", "green", "black and white", "orange"], "correctAnswer": "3"}}]}],
+    "comments": [{
+            "userid": "c12ce24f-9bb0-479c-b734-72bc3c222d85",
+            "commentContent": "very informative",
+            "replies": [
+            {
+              "userid": "e9ddfa73-0616-4cdb-80a4-1800b99425a8",
+              "commentContent": "you are an extra cool guy daniel",
+              "replies": [
+              {
+                "userid": "c113de7c-b9f2-4879-a161-9d180f882949",
+                "commentContent": "NO! you are cool jordan",
+                "replies": []
+                }]}]}]
+    }
 ]

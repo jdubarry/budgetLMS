@@ -12,12 +12,12 @@ public class User {
     protected ArrayList<CourseProgress> courseProgress;
     protected String password;
 
-    public User(String firstName, String lastName, String userName, String password, String dateOfBirth, String phoneNumber, String emailAddress) {
+    public User(String firstName, String lastName, String userName, String password, java.util.Date dateOfBirth, String phoneNumber, String emailAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
-        this. phoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         //date of birth add
     }
