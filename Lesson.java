@@ -7,10 +7,10 @@ public class Lesson {
     private ArrayList<Comment> comments;
 
     public Lesson(String title) {
-
+        
     }
     public void addComment(String authorName, String commentContent) {
-
+        
     }
     public void viewComments() {
 
