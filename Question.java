@@ -56,4 +56,11 @@ public class Question {
     public void printCorrectAnswer() {
         
     }
+
+    /**
+     * Sets correct answer index to correctIndex
+     */
+    public void setCorrectAnswer(int correctIndex) {
+        this.correctAnswer = correctIndex;
+    }
 }

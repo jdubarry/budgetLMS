@@ -20,9 +20,9 @@ public class Module {
 
     /**
      * This will add in lessons to the modules for the user to user
-     * @param title this is going to be the title of the lesson 
+     * @param lesson Lesson to be added
      */
-    public void addLesson(String title) {
+    public void addLesson(Lesson lesson) {
         
     }
 
@@ -39,5 +39,9 @@ public class Module {
      */
     public void selectLesson(int lessonIndex) {
         
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
 }

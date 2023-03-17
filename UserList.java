@@ -4,6 +4,7 @@
  */
 package budgetLMS;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class UserList {
     private ArrayList<User> users;
@@ -16,11 +17,36 @@ public class UserList {
     }
 
     /**
+     * This is going to return a UserList
+     */
+    public static UserList getUserList() {
+
+    }
+
+    /**
      * This is going to pull the user from a list based on their name
      * @param keyword the keyword is what you are trying to pull for
-     * @return This is going to return the user's name
+     * @return This is going to return the user
      */
-    public ArrayList<Course> getUserByName(String keyword) {
+    public User getUserByName(String keyword) {
+
+    }
+
+    /**
+     * This is going to pull the user from a list based on their name
+     * @param userID UUID of the user to be returned
+     * @return This is going to return the user
+     */
+    public User getUserByID(UUID userID) {
+
+    }
+
+    /**
+     * This is going to pull the user from a list based on their name
+     * @param authorID UUID of the user to be returned
+     * @return This is going to return the user
+     */
+    public Author getAuthorByID(UUID authorID) {
 
     }
 

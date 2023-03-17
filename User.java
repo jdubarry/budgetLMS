@@ -10,15 +10,13 @@ public class User {
     protected String firstName;
     protected String lastName;
     protected String userName;
-    protected java.util.UUID UserID;
+    protected java.util.UUID userID;
     protected java.util.Date dateOfBirth;
     protected String phoneNumber;
     protected String emailAddress;
     protected ArrayList<CourseProgress> courseProgress;
     protected String password;
 
-<<<<<<< HEAD
-=======
     /**
      * This class is going to set up the user with all of their information
      * @param firstName the first name of the user
@@ -29,12 +27,33 @@ public class User {
      * @param phoneNumber the phone number for the user
      * @param emailAddress the email address for the user
      */
->>>>>>> a6e31b322e490fcbaf003698f468c678f130fdd8
     public User(String firstName, String lastName, String userName, String password, java.util.Date dateOfBirth, String phoneNumber, String emailAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    /**
+     * This class is going to set up the user with all of their information
+     * @param firstName the first name of the user
+     * @param lastName the last name of the user
+     * @param userName the username for the user
+     * @param password the password for the user
+     * @param userID the UUID of the user
+     * @param dateOfBirth the date of birth for the user
+     * @param phoneNumber the phone number for the user
+     * @param emailAddress the email address for the user
+     */
+    public User(String firstName, String lastName, String userName, String password, java.util.UUID userID, java.util.Date dateOfBirth, String phoneNumber, String emailAddress) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.userID = userID;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;
@@ -78,5 +97,9 @@ public class User {
      */
     private void addAgeRestriction() {
         
+    }
+
+    public String getUsername() {
+        return this.userName;
     }
 }

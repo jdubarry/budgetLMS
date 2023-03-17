@@ -10,7 +10,7 @@ public class Comment {
         this.authorName = authorName;
         this.commentContent = commentContent;
     }
-    public void reply(String authorName, String commentContent) {
+    public void reply(Comment replyComment) {
         
     }
     public void viewReplies() {

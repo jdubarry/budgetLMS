@@ -23,7 +23,7 @@ public class Lesson {
      * @param authorName This is going to show the name of the commenter
      * @param commentContent This is going to show the content in the comment
      */
-    public void addComment(String authorName, String commentContent) {
+    public void addComment(Comment comment) {
         
     }
 
@@ -40,5 +40,9 @@ public class Lesson {
      */
     public void viewCommentReplies(int commentIndex) {
         
+    }
+
+    public void setLessonContent(String lessonContent) {
+        this.lessonContent = lessonContent;
     }
 }

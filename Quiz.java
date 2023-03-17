@@ -15,6 +15,10 @@ public class Quiz {
 
     }
 
+    public Quiz(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
+
     /**
      * This is going to allow the user to take a quiz
      */
@@ -25,15 +29,15 @@ public class Quiz {
     /**
      * This is going to add a question to a quiz
      */
-    public void addQuestion() {
-
+    public void addQuestion(Question question) {
+        this.questions.add(question);
     }
 
     /**
      * This is going to add a question to the index and set a position for them
      * @param index this is the locations in an index of all of the questions
      */
-    public void addQuestion(int index) {
+    public void addQuestion(Question question, int index) {
 
     }
 
