@@ -7,12 +7,19 @@ public class Comment {
     private ArrayList<Comment> replies;
 
     public Comment(String authorName, String commentContent) {
-
+        this.authorName = authorName;
+        this.commentContent = commentContent;
     }
     public void reply(String authorName, String commentContent) {
-
+        
     }
     public void viewReplies() {
 
+    }
+    public String getName() {
+        return this.authorName;
+    }
+    public String getContent() {
+        return this.commentContent;
     }
 }
