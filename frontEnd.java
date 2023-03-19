@@ -204,4 +204,93 @@ public class frontEnd {
 
         return keyboard.nextInt();
     }
+
+    public int printLesson(String lessonContent){
+        return 0;
+    }
+
+    public int printQuiz(){
+        return 0;
+    }
+
+    public int printCommentsMenu(){
+        System.out.println("1. Add a Comment\n" +
+        "2. View Comments\n" +
+        "3. View replies\n" +
+        "4. Go Back\n");
+
+        return keyboard.nextInt();
+    }
+
+    /**
+     * Code needs to be added to actually send the comment somewhere
+     * @return
+     */
+    public String printCreateComment(){
+        System.out.println("********** Add a Comment **********\n" +
+        "Add your comment here: ");
+
+        String comment = keyboard.nextLine();
+
+        System.out.println("\n1. Post comment\n" +
+        "2. Go Back\n");
+
+        return null;
+    }
+
+    public int printViewComment(){
+        return 0;
+    }
+
+    public String printReplyComment(){
+        return null;
+    }
+
+    public int printViewReplies(){
+        return 0;
+    }
+
+    public int AuthorMenu(){
+        return 0;
+    }
+
+    public Module printCreateModule(){
+        return null;
+    }
+
+    public Lesson printCreateLesson(){
+        return null;
+    }
+
+    public Quiz printCreateQuiz(){
+        return null;
+    }
+
+    public int printViewCreatedCourses(){
+        return 0;
+    }
+
+    public int printEditCourse(){
+        return 0;
+    }
+
+    public int printEditCourseTitle(){
+        return 0;
+    }
+
+    public int printEditCourseModule(){
+        return 0;
+    }
+
+    public int printEditCourseLesson(){
+        return 0;
+    }
+
+    public int printEditCourseQuiz(){
+        return 0;
+    }
+
+    public int printViewCourseGrades(){
+        return 0;
+    }
 }
