@@ -8,12 +8,7 @@ public class Course {
     private Author author;
     private ArrayList<Module> modules;
     private ArrayList<Comment> comments;
-    private Boolean isPrivate;
-
-    public Course(String courseName, Author author) {
-        this.courseName = courseName;
-        this.author = author;
-    }
+    private Boolean isPrivate = true;
 
     public Course(String courseName, Author author, UUID courseID) {
         this.courseName = courseName;
@@ -22,19 +17,21 @@ public class Course {
     }
 
     public void addModule(Module module) {
-        this.modules.add(module);
+        modules.add(module);
     }
 
     public void addModule(Module module, int moduleIndex) {
-
+        modules.add(moduleIndex, module);
     }
 
     public void viewModules() {
-
+        for(Module x: modules) {
+            System.out.println(x.getModuleName() + "\n");
+        }
     }
 
     public void selectModule(int moduleIndex) {
-
+        modules.get(moduleIndex);
     }
 
     public String printCertificate() {
@@ -42,7 +39,7 @@ public class Course {
     }
 
     public void publish() {
-        
+        isPrivate = false;        
     }
 
     /**
@@ -51,7 +48,7 @@ public class Course {
      * @param commentContent This is going to show the content in the comment
      */
     public void addComment(Comment comment) {
-        
+        comments.add(comment);
     }
 
     //add in students taking actual course

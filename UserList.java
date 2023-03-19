@@ -12,15 +12,14 @@ public class UserList {
     /**
      * This is going to keep a private list of all users
      */
-    private UserList() {
-        
-    }
+    private UserList() {}
 
     /**
      * This is going to return a UserList
      */
-    public static UserList getUserList() {
-
+    public static UserList getInstance() {
+        userList = new UserList();
+        return userList;
     }
 
     /**
@@ -29,8 +28,21 @@ public class UserList {
      * @return This is going to return the user
      */
     public User getUserByName(String keyword) {
-
+        int keyIndex = null;
+        try {
+            for(User user: users) {
+                if(user.getUsername().equals(keyword)) {
+                    keyIndex = users.indexOf(user);
+                    break;
+                }            
+            }
+            return users.get(keyIndex);    
+        } catch (Exception e) {
+            System.out.println("User Not Found");
+        }
+    
     }
+    
 
     /**
      * This is going to pull the user from a list based on their name
@@ -38,6 +50,18 @@ public class UserList {
      * @return This is going to return the user
      */
     public User getUserByID(UUID userID) {
+        int keyIndex = null;
+        try {
+            for (User user : users) {
+                if (user.getId().equals(userID)) {
+                    keyIndex = users.indexOf(user);
+                    break;
+                }
+            }
+            return users.get(keyIndex);
+        } catch (Exception e) {
+            System.out.println("User Not Found");
+        }        
 
     }
 
@@ -47,7 +71,18 @@ public class UserList {
      * @return This is going to return the user
      */
     public Author getAuthorByID(UUID authorID) {
-
+        int keyIndex = null;
+        try {
+            for (Author author : users) {
+                if (author.getId().equals(userID)) {
+                    keyIndex = users.indexOf(user);
+                    break;
+                }
+            }
+            return users.get(keyIndex);
+        } catch (Exception e) {
+            System.out.println("User Not Found");
+        }
     }
 
     /**

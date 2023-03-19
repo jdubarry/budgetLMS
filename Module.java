@@ -19,7 +19,7 @@ public class Module {
     }
 
     public void addLesson(String title) {
-    lessons.add(title);
+    lessons.add(new Lesson(title));
     }
 
     /**
@@ -27,7 +27,7 @@ public class Module {
      * @param lesson Lesson to be added
      */
     public void addLesson(Lesson lesson) {
-        
+        lessons.add(lesson);        
 
     }
 
@@ -50,5 +50,9 @@ public class Module {
 
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
+    }
+
+    public String getModuleName() {
+        reutnr moduleName;
     }
 }

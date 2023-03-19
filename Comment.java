@@ -22,4 +22,10 @@ public class Comment {
     public String getContent() {
         return this.commentContent;
     }
+
+    public String toString() {
+        return this.getName() + "\n"  
+        + this.getContent() + "\n";
+    }
+    
 }

@@ -15,14 +15,14 @@ public class Lesson {
      * @param title this is going to show the title of the lesson
      */
     public Lesson(String title) {
-        
+        lessonTitle = title;
     }
 
     public String getLessonTitle() {
         return lessonTitle + "\n";
     }
     public void addComment(String authorName, String commentContent) {
-
+        comments.add(new Comment(authorName, commentContent ));
     }
     /**
      * This is going to allow users to add comments on the bottom of lessons
@@ -30,18 +30,20 @@ public class Lesson {
      * @param commentContent This is going to show the content in the comment
      */
     public void addComment(Comment comment) {
-        
+        comments.add(comment);
     }
 
     /**
      * This is going to allow the user to view other comments
      */
     public void viewComments() {
-
+        for(Comment x: comments){ 
+            x.toString();
+        }
     }
 
     /**
-     * This is going to shwo the comment replies
+     * This is going to show the comment replies
      * @param commentIndex This is the position at which the comment is in the index
      */
     public void viewCommentReplies(int commentIndex) {
