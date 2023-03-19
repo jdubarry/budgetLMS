@@ -35,7 +35,6 @@ public class Quiz {
     }
     private boolean quizPassedCheck() {
         double score = answersCorrect/questions.size();
-        
         return (score >= 0.8); 
             
     }

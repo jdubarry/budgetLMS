@@ -1,7 +1,11 @@
 package budgetLMS;
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class CourseProgress {
-    private Course course;
+    private java.util.UUID courseID;
+    private ArrayList<double> grades;
+
     
     public void updateCourseProgress() {
 
