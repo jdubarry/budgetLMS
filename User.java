@@ -22,7 +22,7 @@ public class User {
         //date of birth add
     }
     public void addCourse(Course course) {
-
+      
     }
     public void viewCourses() {
 

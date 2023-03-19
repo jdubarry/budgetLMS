@@ -9,6 +9,10 @@ public class Lesson {
     public Lesson(String title) {
         
     }
+
+    public String getLessonTitle() {
+        return lessonTitle + "\n";
+    }
     public void addComment(String authorName, String commentContent) {
         
     }
