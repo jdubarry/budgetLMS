@@ -7,6 +7,7 @@ package budgetLMS;
 import java.util.ArrayList;
 
 public class User {
+
     protected String firstName;
     protected String lastName;
     protected String userName;
@@ -99,7 +100,75 @@ public class User {
         
     }
 
-    public String getUsername() {
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserName() {
         return this.userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public java.util.UUID getUserID() {
+        return this.userID;
+    }
+
+    public void setUserID(java.util.UUID userID) {
+        this.userID = userID;
+    }
+
+    public java.util.Date getDateOfBirth() {
+        return this.dateOfBirth;
+    }
+
+    public void setDateOfBirth(java.util.Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return this.emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public ArrayList<CourseProgress> getCourseProgress() {
+        return this.courseProgress;
+    }
+
+    public void setCourseProgress(ArrayList<CourseProgress> courseProgress) {
+        this.courseProgress = courseProgress;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

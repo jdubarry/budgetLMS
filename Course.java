@@ -55,4 +55,37 @@ public class Course {
     }
 
     //add in students taking actual course
+
+
+    public String getCourseName() {
+        return this.courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public java.util.UUID getCourseID() {
+        return this.courseID;
+    }
+
+    public Author getAuthor() {
+        return this.author;
+    }
+
+    public ArrayList<Module> getModules() {
+        return this.modules;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return this.comments;
+    }
+
+    public Boolean getIsPrivate() {
+        return this.isPrivate;
+    }
+
+    public void setIsPrivate(Boolean isPrivate) {
+        this.isPrivate = isPrivate;
+    }
 }

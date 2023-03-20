@@ -49,7 +49,7 @@ public class DataLoader {
         ArrayList<Author> authors = new ArrayList<Author>();
 
         try {     
-            JSONArray arr = (JSONArray) parser.parse(new FileReader("json/users.json"));
+            JSONArray arr = (JSONArray) parser.parse(new FileReader("json/authors.json"));
             
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
@@ -80,7 +80,7 @@ public class DataLoader {
         ArrayList<Course> courses = new ArrayList<Course>();
 
         try {     
-            JSONArray arr = (JSONArray) parser.parse(new FileReader("json/users.json"));
+            JSONArray arr = (JSONArray) parser.parse(new FileReader("json/courses.json"));
 
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
@@ -174,7 +174,7 @@ public class DataLoader {
     
         UUID userID = (UUID) comment.get("userid");
         String commentContent = (String) comment.get("commentContent");
-        Comment ret = new Comment(UserList.getUserList().getUserByID(userID).getUsername(), commentContent);
+        Comment ret = new Comment(UserList.getUserList().getUserByID(userID).getUserName(), commentContent);
     
         JSONArray comments = (JSONArray) comment.get("replies");
     

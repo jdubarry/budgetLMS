@@ -57,4 +57,9 @@ public class Quiz {
     private boolean quizPassedCheck() {
         
     }
+
+    public ArrayList<Question> getQuestions() {
+        return this.questions;
+    }
+
 }

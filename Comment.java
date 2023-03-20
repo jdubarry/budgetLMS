@@ -16,10 +16,24 @@ public class Comment {
     public void viewReplies() {
 
     }
-    public String getName() {
+    
+    public String getAuthorName() {
         return this.authorName;
     }
-    public String getContent() {
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getCommentContent() {
         return this.commentContent;
+    }
+
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
+    }
+
+    public ArrayList<Comment> getReplies() {
+        return this.replies;
     }
 }

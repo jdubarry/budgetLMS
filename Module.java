@@ -41,7 +41,24 @@ public class Module {
         
     }
 
+    public String getModuleName() {
+        return this.moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
+    public ArrayList<Lesson> getLessons() {
+        return this.lessons;
+    }
+
+    public Quiz getQuiz() {
+        return this.quiz;
+    }
+
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
     }
+    
 }

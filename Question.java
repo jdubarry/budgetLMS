@@ -57,10 +57,24 @@ public class Question {
         
     }
 
-    /**
-     * Sets correct answer index to correctIndex
-     */
-    public void setCorrectAnswer(int correctIndex) {
-        this.correctAnswer = correctIndex;
+    public String getQuestionTitle() {
+        return this.questionTitle;
     }
+
+    public void setQuestionTitle(String questionTitle) {
+        this.questionTitle = questionTitle;
+    }
+
+    public ArrayList<String> getAnswerChoices() {
+        return this.answerChoices;
+    }
+
+    public int getCorrectAnswer() {
+        return this.correctAnswer;
+    }
+
+    public void setCorrectAnswer(int correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+    
 }

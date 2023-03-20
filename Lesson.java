@@ -42,7 +42,24 @@ public class Lesson {
         
     }
 
+
+    public String getLessonTitle() {
+        return this.lessonTitle;
+    }
+
+    public void setLessonTitle(String lessonTitle) {
+        this.lessonTitle = lessonTitle;
+    }
+
+    public String getLessonContent() {
+        return this.lessonContent;
+    }
+
     public void setLessonContent(String lessonContent) {
         this.lessonContent = lessonContent;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return this.comments;
     }
 }
