@@ -18,8 +18,12 @@ public class Module {
         this.moduleName = moduleName;
     }
 
+    /**
+     * This is going to add a lesson to a module
+     * @param title the title of the lesson
+     */
     public void addLesson(String title) {
-    lessons.add(new Lesson(title));
+        lessons.add(new Lesson(title));
     }
 
     /**
@@ -48,11 +52,19 @@ public class Module {
         lessons.get(lessonIndex);
     }
 
+    /**
+     * This is going to set up quizzes in modules
+     * @param quiz the quiz the user can take
+     */
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
     }
 
+    /**
+     * This is going to pull the module name
+     * @return the module name
+     */
     public String getModuleName() {
-        reutnr moduleName;
+        return moduleName;
     }
 }

@@ -99,11 +99,19 @@ public class User {
         
     }
 
+    /**
+     * This is going to get the username of the user
+     * @return This is going to return the username
+     */
     public String getUsername() {
         return this.userName;
     }
 
-    public UUID getId() {
+    /**
+     * This is going to pull the id of the user
+     * @return the users ID
+     */
+    public java.util.UUID getId() {
         return userID;
     }
 }
