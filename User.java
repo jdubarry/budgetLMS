@@ -65,7 +65,7 @@ public class User {
      * @param course the course being made
      */
     public void addCourse(Course course) {
-
+      
     }
 
     /**

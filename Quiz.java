@@ -1,61 +1,74 @@
 /**
- * This is going to push quizzes and allow changes to quizzes
+ * This is going to set up quizzes
  * @author word.exe
  */
 package budgetLMS;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Quiz {
+    Scanner input = new Scanner(System.in);
     private ArrayList<Question> questions;
+    private int answersCorrect = 0;
 
     /**
-     * This is going to display the information for the class quiz
+     * This is going to set up the array list of questions in each quiz
+     * @param listOfQuestions the list of questions made
      */
-    public Quiz() {
-
-    }
-
-    public Quiz(ArrayList<Question> questions) {
-        this.questions = questions;
+    public Quiz(ArrayList<Question> listOfQuestions) {
+        questions = listofQuestions;
     }
 
     /**
      * This is going to allow the user to take a quiz
      */
     public void takeQuiz() {
-        
+        int userAnswer;
+        for(Question x: listofQuestions) {
+            System.out.println(x.getQuestion());
+            x.printChoices();
+            userAnswer = Scanner.nextInt();
+            if(userAnswer == x.getCorrectAnswer()) {
+                System.out.println("correct");
+                answersCorrect++;
+            } else {
+                System.out.println("Incorrect");
+            }
+        }
     }
-
+    
     /**
-     * This is going to add a question to a quiz
+     * This is going to allow for a question to be added 
+     * @param question the question being added in
      */
     public void addQuestion(Question question) {
-        this.questions.add(question);
+        questions.add(question);
     }
 
     /**
-     * This is going to add a question to the index and set a position for them
-     * @param index this is the locations in an index of all of the questions
+     * This is going to add the question in to a position in the index
+     * @param index the location of the question
      */
-    public void addQuestion(Question question, int index) {
-
+    public void addQuestion(int index) {
+        questions.add(index, questions);
     }
 
     /**
-     * This is going to remove a question from the index
-     * @param index this is the locations in an index of all of the questions
+     * This is going to remove questions from the index
+     * @param index the location of the question
      */
     public void removeQuestion(int index) {
-
+        questions.remove(index);
     }
 
     /**
-     * This is going to check if the user passed the quiz based on the score inputted
-     * @return This will return true if they passed if they got over a certain score on the quiz, and
-     * it will return false if they do not get a high enough score
+     * This is going to display if the user passed the quiz
+     * @return the score higher or equal to .8 and will return true if passed and false if not passed
      */
     private boolean quizPassedCheck() {
-        
+        double score = answersCorrect/questions.size();
+        return (score >= 0.8); 
+            
     }
 
     public ArrayList<Question> getQuestions() {

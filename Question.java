@@ -15,15 +15,22 @@ public class Question {
      * @param title this is going to be the name of the question 
      */
     public Question(String title) {
+        questionTitle = title;
         
+    }
+
+    public String getQuestion() {
+        return questionTitle + "\n";
     }
 
     /**
      * This is going to remove certain answers from the questions
      * @param index this is going to set up answers at a certain index
      */
-    public void removeAnswer(int index) {
 
+    public void removeAnswer(int index) {
+        answerChoices.remove(index);
+        
     }
 
     /**
@@ -31,7 +38,7 @@ public class Question {
      * @param answer The answer that is added to the question as an option
      */
     public void addAnswer(String answer) {
-        
+        answerChoices.add(answer);
     }
 
     /**
@@ -40,21 +47,29 @@ public class Question {
      * @param answer the answer that is added to the question as an option
      */
     public void addAnswer(int index, String answer) {
-
+        answerChoices.add(index, answer);
     }
 
     /**
      * This will print the answer choices to each quiz question
      */
     public void printChoices() {
-
+        int number = 1;
+        for(String x: answerChoices) {
+            System.out.println(number + "." + x + "\n");
+            number++;
+        }
     }
 
     /**
      * This is going to print the correct answer based on the question
      */
     public void printCorrectAnswer() {
-        
+        answerChoices.get(correctAnswer);
+    }
+
+    public int getCorrectAnswer() {
+        return correctAnswer;
     }
 
     public String getQuestionTitle() {

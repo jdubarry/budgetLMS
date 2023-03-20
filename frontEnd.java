@@ -2,18 +2,40 @@ import java.util.Scanner;
 
 import javax.management.modelmbean.ModelMBean;
 
+import budgetLMS.Author;
+import budgetLMS.User;
+import budgetLMS.UserList;
+
 public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
 
     public void printMainMenu(){
         System.out.println("********** Main Menu **********\n" +
             "1. Login\n" +
-            "2. Sign up.");
+            "2. Sign up.\n");
+
+            int option;
+            boolean validChoice = true;
+
+            while(validChoice){
+                option = keyboard.nextInt();
+                switch (option) {
+                    case 1:
+                        validChoice = true;
+                        this.printLoginMenu();
+                        break;
+                    case 2:
+                        validChoice = true;
+                        this.printSignupMenu();
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Try again.");
+                        break;
+                }
+            }
     }
-    /**
-     * Returns an array of Strings, in order of username, password
-     */
-    public String[] printLoginMenu(){
+    
+    public void printLoginMenu(){
         String username;
         String password;
 
@@ -24,24 +46,37 @@ public class frontEnd {
         System.out.println("Password: ");
         password = keyboard.nextLine();
 
-        String[] ret = {username, password};
-        return ret;
+        
     }
 
-    public int printSignUpOptions(){
+    public void printSignUpOptions(){
         System.out.println("********** Sign Up **********\n" +
         "1. User\n" +
         "2. Author\n" +
         "3. Go back\n");
 
-        return keyboard.nextInt;
+        int option;
+        boolean validChoice = true;
+
+        while(validChoice)
+            switch(option){
+                case 1:
+                    validChoice = false;
+                    this.printUserSignUpOptions();
+                    break;
+                case 2:
+                    validChoice = false;
+                    this.printAuthorSignupMenu();
+                    break;
+
+            }
     }
     /**
      * Returns an array of in the order of firstName, lastName, username, email, phoneNumber, birthday, password.
      * @return
      */
-    public String[] printSignupMenu(){
-        String firstName, lastName, username, email, phoneNumber, birthday, password;
+    public String[] printUserSignupMenu(){
+        String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
 
         System.out.println("First name: ");
         firstName = keyboard.nextLine();
@@ -59,19 +94,20 @@ public class frontEnd {
         phoneNumber = keyboard.nextLine();
 
         System.out.println("Birthday: ");
-        birthday = keyboard.nextLine();
+        dateOfBirth = keyboard.nextLine();
 
         System.out.println("password: ");
         password = keyboard.nextLine();
 
-        String[] ret = {firstName, lastName, username, email, phoneNumber, birthday, password};
-        return ret;
-
-
+        User newUser = new User(firstName, lastName, username, password, dateOfBirth, phoneNumber, email);
     }
 
-    public String[] printAuthorSignupMenu(){
-        String firstName, lastName, username, email, phoneNumber, birthday, password;
+    /**
+     * Current has blank UUID issues 
+     * Are users supposed to make their own UUID?
+     */
+    public void printAuthorSignupMenu(){
+        String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
 
         System.out.println("First name: ");
         firstName = keyboard.nextLine();
@@ -89,20 +125,17 @@ public class frontEnd {
         phoneNumber = keyboard.nextLine();
 
         System.out.println("Birthday: ");
-        birthday = keyboard.nextLine();
+        dateOfBirth = keyboard.nextLine();
 
         System.out.println("password: ");
         password = keyboard.nextLine();
+
+        Author newAuthor = new Author(firstName, lastName, username, password, null, dateOfBirth, phoneNumber, email);
 
 
         System.out.println("**************************************************"+
                            "*             Submitted for review               *"+
                            "**************************************************");
-
-        String[] ret = {firstName, lastName, username, email, phoneNumber, birthday, password};
-        return ret;
-
-
     }
 
     public int printUserMenu(){
@@ -203,5 +236,94 @@ public class frontEnd {
         (i+2) + ". Go Back\n");
 
         return keyboard.nextInt();
+    }
+
+    public int printLesson(String lessonContent){
+        return 0;
+    }
+
+    public int printQuiz(){
+        return 0;
+    }
+
+    public int printCommentsMenu(){
+        System.out.println("1. Add a Comment\n" +
+        "2. View Comments\n" +
+        "3. View replies\n" +
+        "4. Go Back\n");
+
+        return keyboard.nextInt();
+    }
+
+    /**
+     * Code needs to be added to actually send the comment somewhere
+     * @return
+     */
+    public String printCreateComment(){
+        System.out.println("********** Add a Comment **********\n" +
+        "Add your comment here: ");
+
+        String comment = keyboard.nextLine();
+
+        System.out.println("\n1. Post comment\n" +
+        "2. Go Back\n");
+
+        return null;
+    }
+
+    public int printViewComment(){
+        return 0;
+    }
+
+    public String printReplyComment(){
+        return null;
+    }
+
+    public int printViewReplies(){
+        return 0;
+    }
+
+    public int AuthorMenu(){
+        return 0;
+    }
+
+    public Module printCreateModule(){
+        return null;
+    }
+
+    public Lesson printCreateLesson(){
+        return null;
+    }
+
+    public Quiz printCreateQuiz(){
+        return null;
+    }
+
+    public int printViewCreatedCourses(){
+        return 0;
+    }
+
+    public int printEditCourse(){
+        return 0;
+    }
+
+    public int printEditCourseTitle(){
+        return 0;
+    }
+
+    public int printEditCourseModule(){
+        return 0;
+    }
+
+    public int printEditCourseLesson(){
+        return 0;
+    }
+
+    public int printEditCourseQuiz(){
+        return 0;
+    }
+
+    public int printViewCourseGrades(){
+        return 0;
     }
 }
