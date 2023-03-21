@@ -26,7 +26,8 @@ public class Quiz {
         for(Question x: questions) {
             System.out.println(x.getQuestion());
             x.printChoices();
-            userAnswer = Scanner.nextInt();
+            Scanner scan = new Scanner(System.in);
+            userAnswer = scan.nextInt();
             if(userAnswer == x.getCorrectAnswer()) {
                 System.out.println("correct");
                 answersCorrect++;
@@ -48,8 +49,8 @@ public class Quiz {
      * This is going to add the question in to a position in the index
      * @param index the location of the question
      */
-    public void addQuestion(int index) {
-        questions.add(index, questions);
+    public void addQuestion(Question question, int index) {
+        questions.add(index, question);
     }
 
     /**
@@ -66,8 +67,7 @@ public class Quiz {
      */
     private boolean quizPassedCheck() {
         double score = answersCorrect/questions.size();
-        return (score >= 0.8); 
-            
+        return (score >= 0.8);   
     }
 
     /**
