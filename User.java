@@ -35,6 +35,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;
+        this.courseProgress = new ArrayList<CourseProgress>();
     }
 
     /**
@@ -57,6 +58,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;
+        this.courseProgress = new ArrayList<CourseProgress>();
     }
 
     /**
@@ -64,7 +66,15 @@ public class User {
      * @param course the course being made
      */
     public void addCourse(Course course) {
-      
+        this.courseProgress.add(new CourseProgress(course));
+    }
+
+    /**
+     * This is going to add courses from the dataLoader
+     * @param course the course being added
+     */
+    public void addCourse(Course course, ArrayList<Double> grades) {
+        this.courseProgress.add(new CourseProgress(course, grades));
     }
 
     /**

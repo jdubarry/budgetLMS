@@ -2,13 +2,22 @@
  * This is going to show the user their course progress
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class CourseProgress {
-    private java.util.UUID courseID;
+    private Course course;
     private ArrayList<Double> grades;
+
+    public CourseProgress(Course course) {
+        this.course = course;
+        this.grades = new ArrayList<Double>();
+    }
+
+    public CourseProgress(Course course, ArrayList<Double> grades) {
+        this.course = course;
+        this.grades = grades;
+    }
 
     /**
      * This is going to update the course progress for the user based on their completetion

@@ -119,4 +119,8 @@ public class UserList {
     public void writeUsersJSON() {
         
     }
+
+    public ArrayList<User> getUserList() {
+        return users;
+    }
 }
