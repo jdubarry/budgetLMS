@@ -10,6 +10,11 @@ public class Quiz {
     private ArrayList<Question> questions;
     private int answersCorrect = 0;
 
+
+    public Quiz() {
+        this.questions = new ArrayList<Question>();
+    }
+
     /**
      * This is going to set up the array list of questions in each quiz
      * @param listOfQuestions the list of questions made

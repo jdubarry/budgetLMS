@@ -89,7 +89,7 @@ public class DataLoader {
                 String courseName = (String) json.get("courseName");
                 UUID authorID = (UUID) (json.get("authorID"));
 
-                Course courseToAdd = new Course(courseName, UserList.getUserList().getAuthorByID(authorID), id);
+                Course courseToAdd = new Course(courseName, UserList.getInstance().getAuthorByID(authorID), id);
 
                 JSONArray modules = (JSONArray) json.get("modules");
 
@@ -174,7 +174,7 @@ public class DataLoader {
     
         UUID userID = (UUID) comment.get("userid");
         String commentContent = (String) comment.get("commentContent");
-        Comment ret = new Comment(UserList.getUserList().getUserByID(userID).getUserName(), commentContent);
+        Comment ret = new Comment(UserList.getInstance().getUserByID(userID).getUserName(), commentContent);
     
         JSONArray comments = (JSONArray) comment.get("replies");
     

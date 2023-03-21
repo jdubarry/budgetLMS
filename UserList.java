@@ -29,14 +29,13 @@ public class UserList {
      * @return This is going to return the user
      */
     public User getUserByName(String keyword) {
-        User temp = new User();
         for(User user: users) {
-            if(user.getUsername().equals(keyword)) {
-                temp = user;
+            if(user.getUserName().equals(keyword)) {
+                return user;
                 break;
             }
         }
-        return temp;        
+        return null;        
     }
     
 
