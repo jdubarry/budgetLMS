@@ -54,10 +54,18 @@ public class Lesson {
         return this.lessonTitle;
     }
 
+    /**
+     * This is going to set the lesson title
+     * @param lessonTitle the lesson title in the lesson
+     */
     public void setLessonTitle(String lessonTitle) {
         this.lessonTitle = lessonTitle;
     }
 
+    /**
+     * This is going to get the lesson content
+     * @return this will return the lesson content
+     */
     public String getLessonContent() {
         return this.lessonContent;
     }
