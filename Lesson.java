@@ -46,23 +46,42 @@ public class Lesson {
         
     }
 
-
+    /**
+     * This is going to get the lesson title
+     * @return the lesson title
+     */
     public String getLessonTitle() {
         return this.lessonTitle;
     }
 
+    /**
+     * This is going to set the lesson title
+     * @param lessonTitle the lesson title in the lesson
+     */
     public void setLessonTitle(String lessonTitle) {
         this.lessonTitle = lessonTitle;
     }
 
+    /**
+     * This is going to get the lesson content
+     * @return this will return the lesson content
+     */
     public String getLessonContent() {
         return this.lessonContent;
     }
 
+    /**
+     * This is going to set the lesson content
+     * @param lessonContent this is the lesson content 
+     */
     public void setLessonContent(String lessonContent) {
         this.lessonContent = lessonContent;
     }
 
+    /**
+     * This is going to get the comments
+     * @return this will return the comments in the lesson 
+     */
     public ArrayList<Comment> getComments() {
         return this.comments;
     }

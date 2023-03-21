@@ -118,73 +118,137 @@ public class User {
     }
 
     /**
-     * This is going 
-     * @param firstName
+     * This is going to set the first name to the user
+     * @param firstName the users first name
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * This is going to get the user's last name
+     * @return the last name of the user
+     */
     public String getLastName() {
         return this.lastName;
     }
 
+    /**
+     * This is going to set the user's last name
+     * @param lastName the last name of the user
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * This is going to get the user name
+     * @return the user name
+     */
     public String getUserName() {
         return this.userName;
     }
 
+    /**
+     * This is going to set the user name
+     * @param userName the username of the user
+     */
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    /**
+     * This is going to get the ID of the user
+     * @return the user ID is returned
+     */
     public java.util.UUID getUserID() {
         return this.userID;
     }
 
+    /**
+     * This is going to set the user's ID
+     * @param userID this is going to be the user's ID
+     */
     public void setUserID(java.util.UUID userID) {
         this.userID = userID;
     }
 
+    /**
+     * This is going to get the date of birth of the user
+     * @return the date of birth 
+     */
     public java.util.Date getDateOfBirth() {
         return this.dateOfBirth;
     }
 
+    /**
+     * This is going to set the date of birth of the user
+     * @param dateOfBirth this is the date of birth of the user
+     */
     public void setDateOfBirth(java.util.Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
+    /**
+     * This is going to get the phone number of the user
+     * @return the phone number of the user
+     */
     public String getPhoneNumber() {
         return this.phoneNumber;
     }
 
+    /**
+     * This is going to set the phone number of the user
+     * @param phoneNumber
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * This is going to get the email of the user
+     * @return this is going to return the email address
+     */
     public String getEmailAddress() {
         return this.emailAddress;
     }
 
+    /**
+     * This is going to set the email address
+     * @param emailAddress The email address of the user
+     */
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
+    /**
+     * This is going to get the course progress
+     * @return The course progress of the user
+     */
     public ArrayList<CourseProgress> getCourseProgress() {
         return this.courseProgress;
     }
 
+    /**
+     * This is going to set the course progress
+     * @param courseProgress this is the course progress
+     */
     public void setCourseProgress(ArrayList<CourseProgress> courseProgress) {
         this.courseProgress = courseProgress;
     }
 
+    /**
+     * This is going to get the password of the user
+     * @return the password of the user
+     */
     public String getPassword() {
         return this.password;
     }
 
+    /**
+     * This is going to set the password of the user
+     * @param password the password of the user
+     */
     public void setPassword(String password) {
         this.password = password;
     }

@@ -7,6 +7,7 @@ import java.util.UUID;
 
 public class UserList {
     private ArrayList<User> users;
+    private ArrayLIst<Author> authors;
 
     /**
      * This is going to keep a private list of all users
@@ -21,24 +22,21 @@ public class UserList {
         return userList;
     }
 
+
     /**
      * This is going to pull the user from a list based on their name
      * @param keyword the keyword is what you are trying to pull for
      * @return This is going to return the user
      */
     public User getUserByName(String keyword) {
-        int keyIndex = null;
-        try {
-            for(User user: users) {
-                if(user.getUserName().equals(keyword)) {
-                    keyIndex = users.indexOf(user);
-                    break;
-                }            
+        User temp = new User();
+        for(User user: users) {
+            if(user.getUsername().equals(keyword)) {
+                temp = user;
+                break;
             }
-            return users.get(keyIndex);    
-        } catch (Exception e) {
-            System.out.println("User Not Found");
         }
+        return temp;        
     }
     
 
@@ -48,18 +46,14 @@ public class UserList {
      * @return This is going to return the user
      */
     public User getUserByID(UUID userID) {
-        int keyIndex = null;
-        try {
-            for (User user : users) {
-                if (user.getId().equals(userID)) {
-                    keyIndex = users.indexOf(user);
-                    break;
-                }
+        User temp = new User();
+        for (User user : users) {
+            if (user.getUserID().equals(userID)) {
+                temp = user;
+                break;
             }
-            return users.get(keyIndex);
-        } catch (Exception e) {
-            System.out.println("User Not Found");
-        }        
+        }
+        return temp;      
 
     }
 
@@ -69,18 +63,14 @@ public class UserList {
      * @return This is going to return the user
      */
     public Author getAuthorByID(UUID authorID) {
-        int keyIndex = null;
-        try {
-            for (Author author : users) {
-                if (author.getId().equals(userID)) {
-                    keyIndex = users.indexOf(user);
-                    break;
-                }
+        User temp = new User();
+        for (User user : authors) {
+            if (user.getUserID().equals(userID)) {
+                temp = user;
+                break;
             }
-            return users.get(keyIndex);
-        } catch (Exception e) {
-            System.out.println("User Not Found");
         }
+        return temp;
     }
 
     /**
@@ -88,7 +78,11 @@ public class UserList {
      * @param user This is going to have the user's details
      */
     public void addUser(User user) {
+        users.add(user);
+    }
 
+    public void addAuthor(Author author) {
+        authors.add(author);
     }
 
     /**
@@ -96,31 +90,33 @@ public class UserList {
      * @param user This is going to have the user's details
      */
     public void deleteUser(User user) {
+        users.remove(user);
+    }
 
+    public void deleteAuthor(Author author) {
+        authors.remove(author);
     }
 
     /**
      * This is going to save the list
      */
-    public void save() {
+    public void saveUsers() {
+        DataWriter.writeUsers(users);
+    }
 
+    public void saveAuthors() {
+        DataWriter.WriteAuthors(authors);
     }
 
     /**
      * This is going to read the users from the json file
      */
     public void readUsersJSON() {
-
+        DataLoader.loadUsers(users);
     }
 
-    /**
-     * This is going to write in users to the json file
-     */
-    public void writeUsersJSON() {
-        
+    public void readUsersJson() {
+        DataLoader.loadAuthors(authors);
     }
 
-    public ArrayList<User> getUserList() {
-        return users;
-    }
 }
