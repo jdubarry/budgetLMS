@@ -16,13 +16,22 @@ public class Author extends User{
      */
     public Author(String firstName, String lastName, String userName, String password, java.util.UUID userID, java.util.Date dateOfBirth, String phoneNumber, String emailAddress) {
         super(firstName, lastName, userName, password, userID, dateOfBirth, phoneNumber, emailAddress);
-
     }
+    
+    /**
+     * This is going to add in the course
+     */
     public void addCourse(Course course) {
         
-    }    
+    }  
+    
+    /**
+     * This is going to create a course
+     * @param CourseName this will be the name of the course
+     * @param authorID this will be the author ID
+     */
     public void createCourse(String CourseName,  String authorID) {
-        Course temp =  new Course(CourseName, authorid);
+        Course temp =  new Course(CourseName, authorID);
         courseList.addCourse(temp);
     }
 
