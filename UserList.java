@@ -18,7 +18,7 @@ public class UserList {
      * This is going to return a UserList
      */
     public static UserList getInstance() {
-        userList = new UserList();
+        UserList userList = new UserList();
         return userList;
     }
 
@@ -32,7 +32,6 @@ public class UserList {
         for(User user: users) {
             if(user.getUserName().equals(keyword)) {
                 return user;
-                break;
             }
         }
         return null;        
@@ -45,14 +44,12 @@ public class UserList {
      * @return This is going to return the user
      */
     public User getUserByID(UUID userID) {
-        User temp = new User();
         for (User user : users) {
             if (user.getUserID().equals(userID)) {
-                temp = user;
-                break;
+                return user;
             }
         }
-        return temp;      
+        return null;      
     }
 
     /**
@@ -61,14 +58,12 @@ public class UserList {
      * @return This is going to return the user
      */
     public Author getAuthorByID(UUID authorID) {
-        User temp = new User();
-        for (User user : authors) {
-            if (user.getUserID().equals(userID)) {
-                temp = user;
-                break;
+        for (Author user : authors) {
+            if (user.getUserID().equals(authorID)) {
+                return user;
             }
         }
-        return temp;
+        return null;
     }
 
     /**
@@ -103,17 +98,17 @@ public class UserList {
     }
 
     public void saveAuthors() {
-        DataWriter.WriteAuthors(authors);
+        DataWriter.writeAuthors(authors);
     }
 
     /**
      * This is going to read the users from the json file
      */
     public void readUsersJSON() {
-        DataLoader.loadUsers(users);
+        this.users = DataLoader.loadUsers();
     }
 
     public void readUsersJson() {
-        DataLoader.loadAuthors(authors);
+        this.authors = DataLoader.loadAuthors();
     }
 }
