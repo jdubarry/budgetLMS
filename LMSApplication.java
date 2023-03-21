@@ -2,7 +2,6 @@
  * This is going to be the main page for the program of the LMS application
  * @author word.exe
  */
-package budgetLMS;
 
 public class LMSApplication {
     private User currentUser; 

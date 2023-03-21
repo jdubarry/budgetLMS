@@ -2,7 +2,6 @@
  * This class is going to display the list of users
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 import java.util.UUID;
 

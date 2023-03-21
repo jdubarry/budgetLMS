@@ -2,7 +2,6 @@
  * This is going to set up the lessons used in the modules
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 
 public class Lesson {
@@ -18,9 +17,6 @@ public class Lesson {
         lessonTitle = title;
     }
 
-    public String getLessonTitle() {
-        return lessonTitle + "\n";
-    }
     public void addComment(String authorName, String commentContent) {
         comments.add(new Comment(authorName, commentContent ));
     }
@@ -50,15 +46,26 @@ public class Lesson {
         
     }
 
-
+    /**
+     * This is going to get the lesson title
+     * @return the lesson title
+     */
     public String getLessonTitle() {
         return this.lessonTitle;
     }
 
+    /**
+     * This is going to set the lesson title
+     * @param lessonTitle the lesson title in the lesson
+     */
     public void setLessonTitle(String lessonTitle) {
         this.lessonTitle = lessonTitle;
     }
 
+    /**
+     * This is going to get the lesson content
+     * @return this will return the lesson content
+     */
     public String getLessonContent() {
         return this.lessonContent;
     }

@@ -2,7 +2,6 @@
  * This is going to set up modules to be accessed by the user
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 
 public class Module {
@@ -32,7 +31,6 @@ public class Module {
      */
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);        
-
     }
 
     /**
@@ -52,24 +50,43 @@ public class Module {
         lessons.get(lessonIndex);
     }
 
+    /**
+     * This is going to get the name of the module
+     * @return the module name is returned
+     */
     public String getModuleName() {
         return this.moduleName;
     }
 
+    /**
+     * This is going to set the module name
+     * @param moduleName the name of the module
+     */
     public void setModuleName(String moduleName) {
         this.moduleName = moduleName;
     }
 
+    /**
+     * This is going to get the lesson for the module
+     * @return this is going to return the lesson
+     */
     public ArrayList<Lesson> getLessons() {
         return this.lessons;
     }
 
+    /**
+     * This is going to get the quiz for the module
+     * @return This is going to return the quiz
+     */
     public Quiz getQuiz() {
         return this.quiz;
     }
 
+    /**
+     * This is going to set the quiz to the module
+     * @param quiz the quiz in the module
+     */
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
-    }
-    
+    }   
 }

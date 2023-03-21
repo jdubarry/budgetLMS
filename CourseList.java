@@ -1,4 +1,3 @@
-package budgetLMS;
 import java.util.ArrayList;
 
 public class CourseList {

@@ -2,7 +2,6 @@
  * This is going to create the questions for the quiz
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 
 public class Question {
@@ -16,7 +15,6 @@ public class Question {
      */
     public Question(String title) {
         questionTitle = title;
-        
     }
 
     public String getQuestion() {
@@ -30,7 +28,6 @@ public class Question {
 
     public void removeAnswer(int index) {
         answerChoices.remove(index);
-        
     }
 
     /**
@@ -68,26 +65,42 @@ public class Question {
         answerChoices.get(correctAnswer);
     }
 
-    public int getCorrectAnswer() {
-        return correctAnswer;
-    }
-
+    /**
+     * This is going to get the question title
+     * @return the question title
+     */
     public String getQuestionTitle() {
         return this.questionTitle;
     }
 
+    /**
+     * This is going to set the question title 
+     * @param questionTitle the question title that was named
+     */
     public void setQuestionTitle(String questionTitle) {
         this.questionTitle = questionTitle;
     }
 
+    /**
+     * This is going to get the answer choices for the questions
+     * @return This is going to return the answer choices
+     */
     public ArrayList<String> getAnswerChoices() {
         return this.answerChoices;
     }
 
+    /**
+     * This is going to get the correct answer for the question
+     * @return the correct answer is returned
+     */
     public int getCorrectAnswer() {
         return this.correctAnswer;
     }
 
+    /**
+     * This is going to set the correct answer
+     * @param correctAnswer the correct answer for the quiz
+     */
     public void setCorrectAnswer(int correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
