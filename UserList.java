@@ -74,6 +74,10 @@ public class UserList {
         users.add(user);
     }
 
+    /**
+     * This adds in the author into a list
+     * @param author is the author which is a user
+     */
     public void addAuthor(Author author) {
         authors.add(author);
     }
@@ -86,17 +90,24 @@ public class UserList {
         users.remove(user);
     }
 
+    /**
+     * This is going to allow the list to delete authors
+     * @param author the writer or courses
+     */
     public void deleteAuthor(Author author) {
         authors.remove(author);
     }
 
     /**
-     * This is going to save the list
+     * This is going to save the list of users
      */
     public void saveUsers() {
         DataWriter.writeUsers(users);
     }
 
+    /**
+     * This is going to allow the authors to save to be able to write
+     */
     public void saveAuthors() {
         DataWriter.writeAuthors(authors);
     }
@@ -108,6 +119,9 @@ public class UserList {
         this.users = DataLoader.loadUsers();
     }
 
+    /**
+     * This is going to read the users from the json file
+     */
     public void readUsersJson() {
         this.authors = DataLoader.loadAuthors();
     }

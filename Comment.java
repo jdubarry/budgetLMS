@@ -34,29 +34,49 @@ public class Comment {
 
     }
     
+    /**
+     * This is going to pull the authors name of the comment
+     * @return the authors name is returned
+     */
     public String getAuthorName() {
         return this.authorName;
     }
 
+    /**
+     * This is going to set the authors name 
+     * @param authorName the name of the author as a string
+     */
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
 
+    /**
+     * This is going to get the content of the comment
+     * @return the comment content
+     */
     public String getCommentContent() {
         return this.commentContent;
     }
 
+    /**
+     * This is going to set the comment content
+     * @param commentContent the content of the comment
+     */
     public void setCommentContent(String commentContent) {
         this.commentContent = commentContent;
     }
 
+    /**
+     * This is going to get the replies to the comment as a list
+     * @return the replies
+     */
     public ArrayList<Comment> getReplies() {
         return this.replies;
     }
 
     /**
      * This is going to create a string to return the comment
-     * @reutrn the name and the comment content
+     * @return the name and the comment content
      */
     public String toString() {
         return this.getAuthorName() + "\n"  
