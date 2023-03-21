@@ -70,10 +70,18 @@ public class Lesson {
         return this.lessonContent;
     }
 
+    /**
+     * This is going to set the lesson content
+     * @param lessonContent this is the lesson content 
+     */
     public void setLessonContent(String lessonContent) {
         this.lessonContent = lessonContent;
     }
 
+    /**
+     * This is going to get the comments
+     * @return this will return the comments in the lesson 
+     */
     public ArrayList<Comment> getComments() {
         return this.comments;
     }
