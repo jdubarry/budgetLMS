@@ -2,7 +2,6 @@
  * This class is going to allow for commenting and assign users to comments
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 
 public class Comment {

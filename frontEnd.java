@@ -2,10 +2,6 @@ import java.util.Scanner;
 
 import javax.management.modelmbean.ModelMBean;
 
-import budgetLMS.Author;
-import budgetLMS.User;
-import budgetLMS.UserList;
-
 public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
 

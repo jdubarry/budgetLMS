@@ -2,7 +2,6 @@
  * This class is going to set up the courses
  * @author word.exe
  */
-
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -84,25 +83,42 @@ public class Course {
         comments.add(comment);
     }
 
-    //add in students taking actual course
-
-
+    /**
+     * This is going to get the course name
+     * @return the course name
+     */
     public String getCourseName() {
         return this.courseName;
     }
 
+    /**
+     * This is going to set the course name
+     * @param courseName the name of the course
+     */
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
+    /**
+     * This is going to get the course ID
+     * @return the course ID
+     */
     public java.util.UUID getCourseID() {
         return this.courseID;
     }
-
+    
+    /**
+     * This is going to get the author
+     * @return the author
+     */
     public Author getAuthor() {
         return this.author;
     }
 
+    /**
+     * This is going to get the modules
+     * @return the modules 
+     */
     public ArrayList<Module> getModules() {
         return this.modules;
     }

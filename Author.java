@@ -1,6 +1,7 @@
-package budgetLMS;
-
-
+/**
+ * This is going to be the author class to show what a user can do
+ * @author word.exe
+ */
 public class Author extends User{
 
     /**

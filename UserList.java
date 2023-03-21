@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class UserList {
     private ArrayList<User> users;
-    private ArrayLIst<Author> authors;
+    private ArrayList<Author> authors;
 
     /**
      * This is going to keep a private list of all users
@@ -54,7 +54,6 @@ public class UserList {
             }
         }
         return temp;      
-
     }
 
     /**
@@ -118,5 +117,4 @@ public class UserList {
     public void readUsersJson() {
         DataLoader.loadAuthors(authors);
     }
-
 }
