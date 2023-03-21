@@ -13,7 +13,7 @@ import org.json.simple.parser.ParseException;
  */
 public class DataLoader {
 
-    public static ArrayList<User> LoadUsers() {
+    public static ArrayList<User> loadUsers() {
         JSONParser parser = new JSONParser();
         ArrayList<User> users = new ArrayList<User>();
 
@@ -44,7 +44,7 @@ public class DataLoader {
         return users;
     }
 
-    public static ArrayList<Author> LoadAuthors() {
+    public static ArrayList<Author> loadAuthors() {
         JSONParser parser = new JSONParser();
         ArrayList<Author> authors = new ArrayList<Author>();
 
@@ -75,7 +75,7 @@ public class DataLoader {
         return authors;
     }
 
-    public static ArrayList<Course> LoadCourses() {
+    public static ArrayList<Course> loadCourses() {
         JSONParser parser = new JSONParser();
         ArrayList<Course> courses = new ArrayList<Course>();
 
