@@ -5,15 +5,13 @@ import java.util.Date;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  * Jordan's super swaggin Data Writer class
  */
 public class DataWriter {
 
-    public static void WriteUsers(ArrayList<User> users) {
+    public static void writeUsers(ArrayList<User> users) {
         try {     
             JSONArray allUsers = new JSONArray();
             for(User user : users) {
@@ -38,7 +36,7 @@ public class DataWriter {
         }
     }
 
-    public static void WriteAuthors(ArrayList<Author> authors) {
+    public static void writeAuthors(ArrayList<Author> authors) {
         try {     
             JSONArray allAuthors = new JSONArray();
             for(Author author : authors) {
@@ -63,7 +61,7 @@ public class DataWriter {
         }
     }
 
-    public static void WriteCourses(ArrayList<Course> courses) {
+    public static void writeCourses(ArrayList<Course> courses) {
         try {     
             JSONArray allCourses = new JSONArray();
             for(Course course : courses) {
