@@ -123,14 +123,26 @@ public class Course {
         return this.modules;
     }
 
+    /**
+     * This is going get the comments in the courses
+     * @return the comments made
+     */
     public ArrayList<Comment> getComments() {
         return this.comments;
     }
 
+    /**
+     * This is going to check if the course is private by true or false
+     * @return true or false based on if it is private
+     */
     public Boolean getIsPrivate() {
         return this.isPrivate;
     }
 
+    /**
+     * This is going to set if it is private
+     * @param isPrivate true or false value on if it is private or not in the course
+     */
     public void setIsPrivate(Boolean isPrivate) {
         this.isPrivate = isPrivate;
     }
