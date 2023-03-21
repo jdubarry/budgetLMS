@@ -46,7 +46,10 @@ public class Lesson {
         
     }
 
-
+    /**
+     * This is going to get the lesson title
+     * @return the lesson title
+     */
     public String getLessonTitle() {
         return this.lessonTitle;
     }
