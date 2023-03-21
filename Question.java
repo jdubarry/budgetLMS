@@ -2,7 +2,6 @@
  * This is going to create the questions for the quiz
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 
 public class Question {
@@ -66,10 +65,6 @@ public class Question {
      */
     public void printCorrectAnswer() {
         answerChoices.get(correctAnswer);
-    }
-
-    public int getCorrectAnswer() {
-        return correctAnswer;
     }
 
     public String getQuestionTitle() {

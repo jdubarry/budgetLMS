@@ -2,7 +2,6 @@
  * This class is going to display the list of users
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -31,7 +30,7 @@ public class UserList {
         int keyIndex = null;
         try {
             for(User user: users) {
-                if(user.getUsername().equals(keyword)) {
+                if(user.getUserName().equals(keyword)) {
                     keyIndex = users.indexOf(user);
                     break;
                 }            
@@ -40,7 +39,6 @@ public class UserList {
         } catch (Exception e) {
             System.out.println("User Not Found");
         }
-    
     }
     
 

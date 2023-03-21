@@ -2,7 +2,6 @@
  * This is going to set up quizzes
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,8 +14,8 @@ public class Quiz {
      * This is going to set up the array list of questions in each quiz
      * @param listOfQuestions the list of questions made
      */
-    public Quiz(ArrayList<Question> listOfQuestions) {
-        questions = listofQuestions;
+    public Quiz(ArrayList<Question> questions) {
+        this.questions = questions;
     }
 
     /**
@@ -24,7 +23,7 @@ public class Quiz {
      */
     public void takeQuiz() {
         int userAnswer;
-        for(Question x: listofQuestions) {
+        for(Question x: questions) {
             System.out.println(x.getQuestion());
             x.printChoices();
             userAnswer = Scanner.nextInt();
@@ -71,6 +70,10 @@ public class Quiz {
             
     }
 
+    /**
+     * This is going to pull the questions 
+     * @return the question is returned
+     */
     public ArrayList<Question> getQuestions() {
         return this.questions;
     }
