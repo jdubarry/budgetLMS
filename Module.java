@@ -2,7 +2,6 @@
  * This is going to set up modules to be accessed by the user
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 
 public class Module {

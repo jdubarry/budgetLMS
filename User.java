@@ -3,7 +3,6 @@
  * they are working online they can be identified
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 
 public class User {
@@ -100,10 +99,18 @@ public class User {
         
     }
 
+    /**
+     * This is going to get the users first name
+     * @return the users first name
+     */
     public String getFirstName() {
         return this.firstName;
     }
 
+    /**
+     * This is going 
+     * @param firstName
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

@@ -2,7 +2,7 @@
  * This class is going to set up the courses
  * @author word.exe
  */
-package budgetLMS;
+
 import java.util.ArrayList;
 import java.util.UUID;
 

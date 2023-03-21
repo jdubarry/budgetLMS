@@ -2,7 +2,6 @@
  * This is going to set up the lessons used in the modules
  * @author word.exe
  */
-package budgetLMS;
 import java.util.ArrayList;
 
 public class Lesson {
