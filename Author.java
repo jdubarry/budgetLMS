@@ -1,3 +1,5 @@
+import java.util.UUID;
+
 /**
  * This is going to be the author class to show what a user can do
  * @author word.exe
@@ -31,9 +33,9 @@ public class Author extends User{
      * @param CourseName this will be the name of the course
      * @param authorID this will be the author ID
      */
-    public void createCourse(String CourseName,  String authorID) {
-        Course temp =  new Course(CourseName, authorID);
-        courseList.addCourse(temp);
+    public void createCourse(String CourseName) {
+        Course temp =  new Course(CourseName, this);
+        CourseList.getInstance().addCourse(temp);
     }
 
     

@@ -10,8 +10,8 @@ public class CourseList {
     private ArrayList<Course> courses;
 
     private CourseList() {}
-    
-    public CourseList getInstance() {
+
+    public static CourseList getInstance() {
         if(courseList == null) {
             courseList = new CourseList();
         }

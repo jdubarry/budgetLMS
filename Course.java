@@ -13,6 +13,18 @@ public class Course {
     private ArrayList<Comment> comments;
     private Boolean isPrivate = true;
 
+
+    /**
+     * This is going to set up a new course
+     * @param courseName This is going to be the name of the course
+     * @param author This is going to be the author of the course
+     */
+    public Course(String courseName, Author author) {
+        this.courseName = courseName;
+        this.author = author;
+        this.courseID = UUID.randomUUID();
+    }
+
     /**
      * This is going to set up a specific course with the name author and id
      * @param courseName This is going to be the name of the course

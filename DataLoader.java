@@ -44,6 +44,47 @@ public class DataLoader {
         return users;
     }
 
+    public static ArrayList<User> loadUsersCourseProgress(UserList users) {
+        JSONParser parser = new JSONParser();
+
+        try {     
+            JSONArray arr = (JSONArray) parser.parse(new FileReader("json/users.json"));
+            
+            for(Object obj : arr) {
+                JSONObject json =  (JSONObject) obj;
+
+                UUID id = (UUID) (json.get("id"));
+                
+                JSONArray courses = (JSONArray) json.get("courses");
+                ArrayList<CourseProgress> coursesToAdd = new ArrayList<CourseProgress>();
+
+                for (Object c : courses)
+                {
+                    JSONObject course =  (JSONObject) c;
+
+                    UUID courseID = (UUID) (course.get("courseID"));
+                    JSONArray grades = (JSONArray) course.get("grades");
+                    ArrayList<Double> gradesToAdd = new ArrayList<Double>();
+
+                        for (Object g : grades)
+                        {
+                            gradesToAdd.add((Double) g);
+                        }
+                    coursesToAdd.add(new CourseProgress(CourseList.getInstance().getCourseByID(courseID), gradesToAdd));
+                }
+                users.getUserByID(id).setCourseProgress(coursesToAdd);
+            }
+            return users.getUsers();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static ArrayList<Author> loadAuthors() {
         JSONParser parser = new JSONParser();
         ArrayList<Author> authors = new ArrayList<Author>();
@@ -73,6 +114,47 @@ public class DataLoader {
             e.printStackTrace();
         }
         return authors;
+    }
+
+    public static ArrayList<Author> loadAuthorsCourseProgress(UserList authors) {
+        JSONParser parser = new JSONParser();
+
+        try {     
+            JSONArray arr = (JSONArray) parser.parse(new FileReader("json/authors.json"));
+            
+            for(Object obj : arr) {
+                JSONObject json =  (JSONObject) obj;
+
+                UUID id = (UUID) (json.get("id"));
+                
+                JSONArray courses = (JSONArray) json.get("courses");
+                ArrayList<CourseProgress> coursesToAdd = new ArrayList<CourseProgress>();
+
+                for (Object c : courses)
+                {
+                    JSONObject course =  (JSONObject) c;
+
+                    UUID courseID = (UUID) (course.get("courseID"));
+                    JSONArray grades = (JSONArray) course.get("grades");
+                    ArrayList<Double> gradesToAdd = new ArrayList<Double>();
+
+                        for (Object g : grades)
+                        {
+                            gradesToAdd.add((Double) g);
+                        }
+                    coursesToAdd.add(new CourseProgress(CourseList.getInstance().getCourseByID(courseID), gradesToAdd));
+                }
+                authors.getAuthorByID(id).setCourseProgress(coursesToAdd);
+            }
+            return authors.getAuthors();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static ArrayList<Course> loadCourses() {

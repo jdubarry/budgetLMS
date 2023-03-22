@@ -108,7 +108,23 @@ public class UserList {
         this.users = DataLoader.loadUsers();
     }
 
-    public void readUsersJson() {
+    public void readAuthorsJson() {
         this.authors = DataLoader.loadAuthors();
+    }
+
+    public void readUsersCoursesJSON() {
+        this.users = DataLoader.loadUsersCourseProgress(getInstance());
+    }
+
+    public void readAuthorsCoursesJSON() {
+        this.authors = DataLoader.loadAuthorsCourseProgress(getInstance());
+    }
+
+    public ArrayList<User> getUsers() {
+        return this.users;
+    }
+
+    public ArrayList<Author> getAuthors() {
+        return this.authors;
     }
 }

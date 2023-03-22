@@ -24,6 +24,13 @@ public class DataWriter {
                 userToAdd.put("dateOfBirth", user.getDateOfBirth());
                 userToAdd.put("username", user.getUserName());
                 userToAdd.put("password", user.getPassword());
+                JSONArray courses = new JSONArray();
+                for (CourseProgress course : user.getCourseProgress()) {
+                    JSONObject courseToAdd = new JSONObject();
+                    courseToAdd.put("moduleName", course.getCourse().getCourseID());
+                    courseToAdd.put("grades", course.getGrades());
+                }
+                userToAdd.put("courses", courses);
 
                 allUsers.add(userToAdd);
             }
@@ -49,6 +56,13 @@ public class DataWriter {
                 authorToAdd.put("dateOfBirth", author.getDateOfBirth());
                 authorToAdd.put("username", author.getUserName());
                 authorToAdd.put("password", author.getPassword());
+                JSONArray courses = new JSONArray();
+                for (CourseProgress course : author.getCourseProgress()) {
+                    JSONObject courseToAdd = new JSONObject();
+                    courseToAdd.put("moduleName", course.getCourse().getCourseID());
+                    courseToAdd.put("grades", course.getGrades());
+                }
+                authorToAdd.put("courses", courses);
 
                 allAuthors.add(authorToAdd);
             }

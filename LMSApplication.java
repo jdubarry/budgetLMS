@@ -4,8 +4,15 @@
  */
 
 public class LMSApplication {
-    private User currentUser; 
+    private User currentUser;
+    private UserList userList;
+    private CourseList courseList;
 
+    public LMSApplication() {
+        this.currentUser = null;
+        this.userList = UserList.getInstance();
+        this.courseList = CourseList.getInstance();
+    }
     /**
      * This is the login the user is going to input
      * @param user the user information, password, username
@@ -36,7 +43,7 @@ public class LMSApplication {
      * @return will return the course the user is currently in 
      */
     public Course currentCourse() {
-
+        return null;
     }
 
     /**
@@ -51,5 +58,13 @@ public class LMSApplication {
      */
     public void takeQuiz() {
 
+    }
+
+    public void loadJSONS() {
+        userList.readUsersJSON();
+        userList.readAuthorsJson();
+        courseList.readCoursesJSON();
+        userList.readUsersCoursesJSON();
+        userList.readAuthorsCoursesJSON();
     }
 }

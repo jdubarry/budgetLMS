@@ -31,6 +31,16 @@ public class CourseProgress {
      * @return the grade of their modules
      */
     public double[] gradesPerModule() {
-        
+        return null;
     }
+
+
+    public Course getCourse() {
+        return this.course;
+    }
+
+    public ArrayList<Double> getGrades() {
+        return this.grades;
+    }
+
 }

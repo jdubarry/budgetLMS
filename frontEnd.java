@@ -1,9 +1,13 @@
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.management.modelmbean.ModelMBean;
 
 public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     public void printMainMenu(){
         System.out.println("********** Main Menu **********\n" +
@@ -91,11 +95,17 @@ public class frontEnd {
 
         System.out.println("Birthday: ");
         dateOfBirth = keyboard.nextLine();
+        Date dob = new Date();
+        try{
+            dob = dateFormat.parse(dateOfBirth);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.println("password: ");
         password = keyboard.nextLine();
 
-        User newUser = new User(firstName, lastName, username, password, dateOfBirth, phoneNumber, email);
+        User newUser = new User(firstName, lastName, username, password, dob, phoneNumber, email);
     }
 
     /**
@@ -122,11 +132,17 @@ public class frontEnd {
 
         System.out.println("Birthday: ");
         dateOfBirth = keyboard.nextLine();
+        Date dob = new Date();
+        try{
+            dob = dateFormat.parse(dateOfBirth);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.println("password: ");
         password = keyboard.nextLine();
 
-        Author newAuthor = new Author(firstName, lastName, username, password, null, dateOfBirth, phoneNumber, email);
+        Author newAuthor = new Author(firstName, lastName, username, password, null, dob, phoneNumber, email);
 
 
         System.out.println("**************************************************"+
@@ -140,7 +156,7 @@ public class frontEnd {
         "3. General Settings\n" +
         "4. Logout");
 
-        return keyboard.nextInt;
+        return keyboard.nextInt();
     }
 
     public int printGeneralSettings(){
@@ -219,7 +235,7 @@ public class frontEnd {
         return keyboard.nextInt();
     }
 
-    public int printModuleContent(String mdouleName, String[] lessons){
+    public int printModuleContent(String moduleName, String[] lessons){
         System.out.println("******** Module 1: " + moduleName + "********\n" +
         "******** Choose a Lesson ********");
 
