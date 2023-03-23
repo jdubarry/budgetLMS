@@ -15,6 +15,7 @@ public class Question {
      */
     public Question(String title) {
         questionTitle = title;
+        this.answerChoices = new ArrayList<String>();
     }
 
     public String getQuestion() {

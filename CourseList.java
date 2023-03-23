@@ -9,7 +9,9 @@ public class CourseList {
     private static CourseList courseList;
     private ArrayList<Course> courses;
 
-    private CourseList() {}
+    private CourseList() {
+        this.courses = new ArrayList<Course>();
+    }
 
     public static CourseList getInstance() {
         if(courseList == null) {
@@ -89,5 +91,21 @@ public class CourseList {
      */
     public void save() {
         DataWriter.writeCourses(courses);
+    }
+
+
+    public ArrayList<Course> getCourses() {
+        return this.courses;
+    }
+
+    public String toString() {
+        if(this.courses.isEmpty()) {
+            return "NO COURSES";
+        }
+        String ret = "";
+        for(Course course : courses) {
+            ret += course.toString() + '\n';
+        }
+        return ret;
     }
 }

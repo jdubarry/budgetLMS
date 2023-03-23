@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,6 +17,7 @@ public class DataLoader {
 
     public static ArrayList<User> loadUsers() {
         JSONParser parser = new JSONParser();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         ArrayList<User> users = new ArrayList<User>();
 
         try {     
@@ -23,14 +26,19 @@ public class DataLoader {
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
 
-                UUID id = (UUID) (json.get("id"));
+                UUID id = UUID.fromString(json.get("id").toString());
                 String firstName = (String) json.get("firstName");
                 String lastName = (String) json.get("lastName");
                 String email = (String) json.get("email");
                 String phone = (String) json.get("phone");
                 String username = (String) json.get("userName");
                 String password = (String) json.get("password");
-                Date dateOfBirth = (Date) json.get("DateOfBirth");
+                Date dateOfBirth = null;
+                try {
+                    dateOfBirth = dateFormat.parse((String) json.get("dateOfBirth"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 users.add(new User(firstName, lastName, username, password, id, dateOfBirth, phone, email));
             }
@@ -53,7 +61,7 @@ public class DataLoader {
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
 
-                UUID id = (UUID) (json.get("id"));
+                UUID id = UUID.fromString(json.get("id").toString());
                 
                 JSONArray courses = (JSONArray) json.get("courses");
                 ArrayList<CourseProgress> coursesToAdd = new ArrayList<CourseProgress>();
@@ -62,13 +70,13 @@ public class DataLoader {
                 {
                     JSONObject course =  (JSONObject) c;
 
-                    UUID courseID = (UUID) (course.get("courseID"));
+                    UUID courseID = UUID.fromString(course.get("courseID").toString());
                     JSONArray grades = (JSONArray) course.get("grades");
                     ArrayList<Double> gradesToAdd = new ArrayList<Double>();
 
                         for (Object g : grades)
                         {
-                            gradesToAdd.add((Double) g);
+                            gradesToAdd.add(Double.parseDouble((String) g));
                         }
                     coursesToAdd.add(new CourseProgress(CourseList.getInstance().getCourseByID(courseID), gradesToAdd));
                 }
@@ -87,6 +95,7 @@ public class DataLoader {
 
     public static ArrayList<Author> loadAuthors() {
         JSONParser parser = new JSONParser();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         ArrayList<Author> authors = new ArrayList<Author>();
 
         try {     
@@ -95,14 +104,19 @@ public class DataLoader {
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
 
-                UUID id = (UUID) (json.get("id"));
+                UUID id = UUID.fromString(json.get("id").toString());
                 String firstName = (String) json.get("firstName");
                 String lastName = (String) json.get("lastName");
                 String email = (String) json.get("email");
                 String phone = (String) json.get("phone");
                 String username = (String) json.get("userName");
                 String password = (String) json.get("password");
-                Date dateOfBirth = (Date) json.get("DateOfBirth");
+                Date dateOfBirth = null;
+                try {
+                    dateOfBirth = dateFormat.parse((String) json.get("DateOfBirth"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 authors.add(new Author(firstName, lastName, username, password, id, dateOfBirth, phone, email));
             }
@@ -125,7 +139,7 @@ public class DataLoader {
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
 
-                UUID id = (UUID) (json.get("id"));
+                UUID id = UUID.fromString(json.get("id").toString());
                 
                 JSONArray courses = (JSONArray) json.get("courses");
                 ArrayList<CourseProgress> coursesToAdd = new ArrayList<CourseProgress>();
@@ -134,13 +148,13 @@ public class DataLoader {
                 {
                     JSONObject course =  (JSONObject) c;
 
-                    UUID courseID = (UUID) (course.get("courseID"));
+                    UUID courseID = UUID.fromString(course.get("courseID").toString());
                     JSONArray grades = (JSONArray) course.get("grades");
                     ArrayList<Double> gradesToAdd = new ArrayList<Double>();
 
                         for (Object g : grades)
                         {
-                            gradesToAdd.add((Double) g);
+                            gradesToAdd.add(Double.parseDouble((String) g));
                         }
                     coursesToAdd.add(new CourseProgress(CourseList.getInstance().getCourseByID(courseID), gradesToAdd));
                 }
@@ -167,9 +181,9 @@ public class DataLoader {
             for(Object obj : arr) {
                 JSONObject json =  (JSONObject) obj;
 
-                UUID id = (UUID) (json.get("id"));
+                UUID id = UUID.fromString(json.get("id").toString());
                 String courseName = (String) json.get("courseName");
-                UUID authorID = (UUID) (json.get("authorID"));
+                UUID authorID = UUID.fromString(json.get("authorID").toString());
 
                 Course courseToAdd = new Course(courseName, UserList.getInstance().getAuthorByID(authorID), id);
 
@@ -203,7 +217,7 @@ public class DataLoader {
                         moduleToAdd.addLesson(lessonToAdd);
                     }
 
-                    JSONObject quiz =  (JSONObject) module.get("quiz");
+                    JSONObject quiz = (JSONObject) module.get("quiz");
                     Quiz quizToAdd = new Quiz();
                     JSONArray questions = (JSONArray) quiz.get("questions");
                     for (Object q : questions)
@@ -219,7 +233,7 @@ public class DataLoader {
                         {
                             questionToAdd.addAnswer((String) a);
                         }
-                        int correctAnswer = (int) question.get("correctAnswer");
+                        int correctAnswer = Integer.parseInt((String) question.get("correctAnswer"));
                         questionToAdd.setCorrectAnswer(correctAnswer);
                         
                         quizToAdd.addQuestion(questionToAdd);
@@ -234,6 +248,8 @@ public class DataLoader {
                 {
                     courseToAdd.addComment(parseComment(c));
                 }
+
+                courses.add(courseToAdd);
             }
         } 
         catch (FileNotFoundException e) {
@@ -254,7 +270,7 @@ public class DataLoader {
         
         JSONObject comment =  (JSONObject) comm;
     
-        UUID userID = (UUID) comment.get("userid");
+        UUID userID = UUID.fromString(comment.get("userid").toString());
         String commentContent = (String) comment.get("commentContent");
         Comment ret = new Comment(UserList.getInstance().getUserByID(userID).getUserName(), commentContent);
     

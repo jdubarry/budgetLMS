@@ -15,6 +15,7 @@ public class Lesson {
      */
     public Lesson(String title) {
         lessonTitle = title;
+        comments = new ArrayList<Comment>();
     }
 
     public void addComment(String authorName, String commentContent) {
