@@ -22,18 +22,9 @@ public class CourseProgress {
     /**
      * This is going to update the course progress for the user based on their completetion
      */
-    public void updateCourseProgress() {
-
+    public void updateCourseProgress(Double grade) {
+        grades.add(grade);
     }
-
-    /**
-     * This is going to set up grades per each module completetion
-     * @return the grade of their modules
-     */
-    public double[] gradesPerModule() {
-        return null;
-    }
-
 
     public Course getCourse() {
         return this.course;

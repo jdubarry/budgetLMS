@@ -25,7 +25,7 @@ public class Author extends User{
      * This is going to add in the course
      */
     public void addCourse(Course course) {
-        
+        courseProgress.add(new CourseProgress(course));
     }  
     
     /**
@@ -34,8 +34,7 @@ public class Author extends User{
      * @param authorID this will be the author ID
      */
     public void createCourse(String CourseName) {
-        Course temp =  new Course(CourseName, this);
-        CourseList.getInstance().addCourse(temp);
+        CourseList.getInstance().addCourse(new Course(CourseName, this));
     }
 
     
