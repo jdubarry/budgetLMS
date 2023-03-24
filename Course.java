@@ -23,6 +23,8 @@ public class Course {
         this.courseName = courseName;
         this.author = author;
         this.courseID = UUID.randomUUID();
+        this.modules = new ArrayList<Module>();
+        this.comments = new ArrayList<Comment>();
     }
 
     /**
@@ -35,6 +37,8 @@ public class Course {
         this.courseName = courseName;
         this.author = author;
         this.courseID = courseID;
+        this.modules = new ArrayList<Module>();
+        this.comments = new ArrayList<Comment>();
     }
 
     /**
@@ -158,4 +162,18 @@ public class Course {
     public void setIsPrivate(Boolean isPrivate) {
         this.isPrivate = isPrivate;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " courseName='" + getCourseName() + "'" +
+            ", courseID='" + getCourseID() + "'" +
+            ", author='" + getAuthor() + "'" +
+            ", modules='" + getModules() + "'" +
+            ", comments='" + getComments() + "'" +
+            ", isPrivate='" + getIsPrivate() + "'" +
+            "}";
+    }
+
 }

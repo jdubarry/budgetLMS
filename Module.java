@@ -15,6 +15,8 @@ public class Module {
      */
     public Module(String moduleName) {
         this.moduleName = moduleName;
+        this.lessons = new ArrayList<Lesson>();
+        this.quiz = new Quiz();
     }
 
     /**

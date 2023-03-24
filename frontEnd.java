@@ -8,6 +8,14 @@ import javax.management.modelmbean.ModelMBean;
 public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    static LMSApplication lmsApplication;
+
+    public static void main(String args[]) {
+        lmsApplication = LMSApplication.getInstance();
+
+        lmsApplication.loadJSONS();
+        lmsApplication.printData();
+    }
 
     public void printMainMenu(){
         System.out.println("********** Main Menu **********\n" +
@@ -19,14 +27,15 @@ public class frontEnd {
 
             while(validChoice){
                 option = keyboard.nextInt();
+                keyboard.nextLine();
                 switch (option) {
                     case 1:
                         validChoice = true;
-                        this.printLoginMenu();
+                        printLoginMenu();
                         break;
                     case 2:
                         validChoice = true;
-                        this.printSignupMenu();
+                        printSignUpOptions();
                         break;
                     default:
                         System.out.println("Invalid choice. Try again.");
@@ -55,14 +64,16 @@ public class frontEnd {
         "2. Author\n" +
         "3. Go back\n");
 
-        int option;
+        int option = 0;
         boolean validChoice = true;
 
         while(validChoice)
+            option = keyboard.nextInt();
+            keyboard.nextLine();
             switch(option){
                 case 1:
                     validChoice = false;
-                    this.printUserSignUpOptions();
+                    this.printUserSignupMenu();
                     break;
                 case 2:
                     validChoice = false;
@@ -75,7 +86,7 @@ public class frontEnd {
      * Returns an array of in the order of firstName, lastName, username, email, phoneNumber, birthday, password.
      * @return
      */
-    public String[] printUserSignupMenu(){
+    public void printUserSignupMenu(){
         String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
 
         System.out.println("First name: ");

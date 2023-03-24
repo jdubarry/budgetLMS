@@ -250,4 +250,20 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
+            ", userName='" + getUserName() + "'" +
+            ", userID='" + getUserID() + "'" +
+            ", dateOfBirth='" + getDateOfBirth() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", emailAddress='" + getEmailAddress() + "'" +
+            ", courseProgress='" + getCourseProgress() + "'" +
+            ", password='" + getPassword() + "'" +
+            "}";
+    }
+    
 }

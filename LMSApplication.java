@@ -7,11 +7,19 @@ public class LMSApplication {
     private User currentUser;
     private UserList userList;
     private CourseList courseList;
+    private static LMSApplication lmsApplication;
 
-    public LMSApplication() {
+    private LMSApplication() {
         this.currentUser = null;
         this.userList = UserList.getInstance();
         this.courseList = CourseList.getInstance();
+    }
+
+    public static LMSApplication getInstance() {
+        if(lmsApplication == null) {
+            lmsApplication = new LMSApplication();
+        }
+        return lmsApplication;
     }
     /**
      * This is the login the user is going to input
@@ -66,5 +74,19 @@ public class LMSApplication {
         courseList.readCoursesJSON();
         userList.readUsersCoursesJSON();
         userList.readAuthorsCoursesJSON();
+    }
+
+    /*
+     * JORDAN'S VERY IMPORTANT DEBUGGING METHOD DO NOT TOUCH
+     */
+    public void printData() {
+        System.out.println("ALL OF THE USERS");
+        System.out.println(userList.usersToString());
+        System.out.println();
+        System.out.println("ALL OF THE AUTHORS");
+        System.out.println(userList.authorsToString());
+        System.out.println();
+        System.out.println("ALL OF THE COURSES");
+        System.out.println(courseList.toString());
     }
 }

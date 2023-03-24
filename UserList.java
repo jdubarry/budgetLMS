@@ -6,19 +6,25 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class UserList {
+    private static UserList userList;
     private ArrayList<User> users;
     private ArrayList<Author> authors;
 
     /**
      * This is going to keep a private list of all users
      */
-    private UserList() {}
+    private UserList() {
+        this.users = new ArrayList<User>();
+        this.authors = new ArrayList<Author>();
+    }
 
     /**
      * This is going to return a UserList
      */
     public static UserList getInstance() {
-        UserList userList = new UserList();
+        if(userList == null) {
+            userList = new UserList();
+        }
         return userList;
     }
 
@@ -119,23 +125,70 @@ public class UserList {
         this.users = DataLoader.loadUsers();
     }
 
+    /**
+     * This is going to read in the authors from the json file
+     */
     public void readAuthorsJson() {
         this.authors = DataLoader.loadAuthors();
     }
 
-    public void readUsersCoursesJSON() {
+    /**
+     * This is going to read in the users courses and get their progress
+     */
+     public void readUsersCoursesJSON() {
         this.users = DataLoader.loadUsersCourseProgress(getInstance());
     }
 
+    /**
+     * This is going to read in the authors courses and get their progress
+     */
     public void readAuthorsCoursesJSON() {
         this.authors = DataLoader.loadAuthorsCourseProgress(getInstance());
     }
 
+    /**
+     * This is going to get the users from the list of users
+     * @return the users
+     */
     public ArrayList<User> getUsers() {
         return this.users;
     }
 
+    /**
+     * This is going to get the authors from the list of the authors
+     * @return this is going to return the authors
+     */
     public ArrayList<Author> getAuthors() {
         return this.authors;
+    }
+
+    /**
+     * This is going to check if there are users
+     * @return the users or no user depending on which 
+     */
+    public String usersToString() {
+        if(this.users.isEmpty()) {
+            return "NO USERS";
+        }
+        String ret = "";
+        for(User user : users) {
+            ret += user.toString() + '\n';
+        }
+        return ret;
+    }
+
+    /**
+     * This is going to check if there are authors
+     * @return the authors or no author depending on which
+     */
+    public String authorsToString() {
+        if(this.authors.isEmpty()) {
+            return "NO AUTHORS";
+        }
+        String ret = "";
+        for(Author author : authors) {
+            ret += author.toString() + '\n';
+        }
+        return ret;
     }
 }
