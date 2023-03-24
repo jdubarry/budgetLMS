@@ -25,7 +25,7 @@ public class Author extends User{
      * This is going to add in the course
      */
     public void addCourse(Course course) {
-        
+       // courses.add(course);
     }  
     
     /**

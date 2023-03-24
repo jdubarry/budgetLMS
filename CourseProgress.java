@@ -9,11 +9,20 @@ public class CourseProgress {
     private Course course;
     private ArrayList<Double> grades;
 
+    /**
+     * This is going to get the course progress and set it
+     * @param course the courses being taken
+     */
     public CourseProgress(Course course) {
         this.course = course;
         this.grades = new ArrayList<Double>();
     }
 
+    /**
+     * This is going to get the course progress and set up the courses and grades
+     * @param course this is the course information
+     * @param grades this is the grade list
+     */
     public CourseProgress(Course course, ArrayList<Double> grades) {
         this.course = course;
         this.grades = grades;
