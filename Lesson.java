@@ -34,7 +34,7 @@ public class Lesson {
      * This is going to allow the user to view other comments
      */
     public void viewComments() {
-        for(Comment x: comments){ 
+        for(Comment x: comments) { 
             x.toString();
         }
     }
@@ -44,7 +44,7 @@ public class Lesson {
      * @param commentIndex This is the position at which the comment is in the index
      */
     public void viewCommentReplies(int commentIndex) {
-        
+
     }
 
     /**

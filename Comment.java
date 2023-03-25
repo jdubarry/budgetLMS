@@ -23,16 +23,20 @@ public class Comment {
      * This is going to allow authors to reply to comments
      * @param replyComment The comment content that is used for the reply
      */
+    //Check this
     public void reply(Comment replyComment) {
-        
+        replies.add(replyComment);
     }
 
     /**
      * This is going to allow the author to view replies to comments
      */
-    public void viewReplies() {
-
-    }
+   //Double check this
+     public void viewReplies() {
+            for(Comment x: replies) {
+                System.out.println(x.getReplies() + "\n");
+            }
+        }
     
     /**
      * This is going to pull the authors name of the comment
