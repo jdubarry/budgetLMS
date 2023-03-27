@@ -44,6 +44,14 @@ public class LMSApplication {
         }
     }
 
+    public User getCurrentUser(){
+        return this.currentUser;
+    }
+
+    public void setCurrentUser(User user){
+        this.currentUser = user;
+    }
+
     /**
      * This is going to log out the users
      * @param user the user information, password, username

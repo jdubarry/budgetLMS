@@ -17,6 +17,7 @@ public class Comment {
     public Comment(String authorName, String commentContent) {
         this.authorName = authorName;
         this.commentContent = commentContent;
+        replies = new ArrayList<Comment>();
     }
 
     /**
