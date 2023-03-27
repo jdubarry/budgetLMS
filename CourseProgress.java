@@ -35,10 +35,18 @@ public class CourseProgress {
         grades.add(grade);
     }
 
+    /**
+     * This will get the course being called
+     * @return the course being called
+     */
     public Course getCourse() {
         return this.course;
     }
 
+    /**
+     * This will get the grades from the array list of grades
+     * @return the grades are returned
+     */
     public ArrayList<Double> getGrades() {
         return this.grades;
     }
