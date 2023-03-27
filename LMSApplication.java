@@ -25,8 +25,16 @@ public class LMSApplication {
      * This is the login the user is going to input
      * @param user the user information, password, username
      */
-    public void login(User user) {
-        
+    public boolean login(String username, String password) {
+        User tempUser = userList.getUserByName(username);
+
+        if(tempUser.verifyLogin(username, password)){
+            currentUser = tempUser;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

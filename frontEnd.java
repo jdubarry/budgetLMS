@@ -3,8 +3,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.management.modelmbean.ModelMBean;
-
 public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -15,6 +13,10 @@ public class frontEnd {
 
         lmsApplication.loadJSONS();
         lmsApplication.printData();
+
+        new frontEnd().printMainMenu();
+
+        
     }
 
     public void printMainMenu(){
@@ -22,40 +24,44 @@ public class frontEnd {
             "1. Login\n" +
             "2. Sign up.\n");
 
-            int option;
-            boolean validChoice = true;
+            int option = 0;
+        boolean validChoice = true;
 
-            while(validChoice){
-                option = keyboard.nextInt();
-                keyboard.nextLine();
-                switch (option) {
-                    case 1:
-                        validChoice = true;
-                        printLoginMenu();
-                        break;
-                    case 2:
-                        validChoice = true;
-                        printSignUpOptions();
-                        break;
-                    default:
-                        System.out.println("Invalid choice. Try again.");
-                        break;
-                }
+        while(validChoice){
+            option = keyboard.nextInt();
+            keyboard.nextLine();
+            switch(option){
+                case 1:
+                    validChoice = false;
+                    this.printLoginMenu();
+                    
+                    break;
+                case 2:
+                    validChoice = false;
+                    this.printSignUpOptions();
+                    break;
+
             }
+        }
     }
     
     public void printLoginMenu(){
         String username;
         String password;
 
-        System.out.println("********** Login Menu **********" +
+        System.out.println("********** Login Menu **********\n" +
             "Username: ");
         username = keyboard.nextLine();;
 
         System.out.println("Password: ");
         password = keyboard.nextLine();
 
-        
+        if(lmsApplication.login(username, password)){
+            System.out.println("Login Successful.");
+        } else {
+            System.out.println("Invalid credentials, try again");
+            printLoginMenu();
+        }
     }
 
     public void printSignUpOptions(){
@@ -82,10 +88,7 @@ public class frontEnd {
 
             }
     }
-    /**
-     * Returns an array of in the order of firstName, lastName, username, email, phoneNumber, birthday, password.
-     * @return
-     */
+     
     public void printUserSignupMenu(){
         String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
 
@@ -349,4 +352,5 @@ public class frontEnd {
     public int printViewCourseGrades(){
         return 0;
     }
+
 }
