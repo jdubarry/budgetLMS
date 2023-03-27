@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * This is going to be the main page for the program of the LMS application
  * @author word.exe
@@ -35,6 +37,10 @@ public class LMSApplication {
     public boolean login(String username, String password) {
         User tempUser = userList.getUserByName(username);
 
+        if(tempUser == null){
+            return false;
+        }
+
         if(tempUser.verifyLogin(username, password)){
             currentUser = tempUser;
             return true;
@@ -52,12 +58,22 @@ public class LMSApplication {
         this.currentUser = user;
     }
 
+    public ArrayList<Course> getCourseList(){
+        return this.courseList.getCourses();
+    }
+
     /**
      * This is going to log out the users
      * @param user the user information, password, username
      */
-    public void logout(User user) {
-
+    public boolean logout() {
+        if(currentUser == null){
+            return false;
+        } else {
+            currentUser = null;
+            return true;
+        }
+        
     }
 
     /**
@@ -74,7 +90,7 @@ public class LMSApplication {
      * @return will return the course the user is currently in 
      */
     public Course currentCourse() {
-        return null;
+        return this.currentCourse();
     }
 
     /**
