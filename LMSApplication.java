@@ -9,12 +9,19 @@ public class LMSApplication {
     private CourseList courseList;
     private static LMSApplication lmsApplication;
 
+    /**
+     * This is going to get the instances when user list and course list are being used
+     */
     private LMSApplication() {
         this.currentUser = null;
         this.userList = UserList.getInstance();
         this.courseList = CourseList.getInstance();
     }
 
+    /**
+     * This is going to get the new instance of when LMSApplication is used
+     * @return the instance of lms application is returned
+     */
     public static LMSApplication getInstance() {
         if(lmsApplication == null) {
             lmsApplication = new LMSApplication();
@@ -68,6 +75,9 @@ public class LMSApplication {
 
     }
 
+    /**
+     * This is going to load in the json files
+     */
     public void loadJSONS() {
         userList.readUsersJSON();
         userList.readAuthorsJson();

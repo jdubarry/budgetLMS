@@ -10,7 +10,9 @@ public class Quiz {
     private ArrayList<Question> questions;
     private int answersCorrect = 0;
 
-
+    /**
+     * This is going to create an array list of the questions
+     */
     public Quiz() {
         this.questions = new ArrayList<Question>();
     }

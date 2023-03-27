@@ -108,6 +108,9 @@ public class CourseList {
         return this.courses;
     }
 
+    /**
+     * This is a string to tell whether or not there are courses or if it is an empty string
+     */
     public String toString() {
         if(this.courses.isEmpty()) {
             return "NO COURSES";
