@@ -465,7 +465,7 @@ public class frontEnd {
     }
 
     public String printCreateComment(){
-        System.out.println("********** Add a Comment **********\n" +
+        System.out.println("******** Add a Comment ********\n" +
         "Add your comment here: ");
 
         String comment = keyboard.nextLine();
