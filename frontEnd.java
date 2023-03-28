@@ -42,6 +42,7 @@ public class frontEnd {
                 case 3:
                     validChoice = false;
                     System.out.println("ur mom lol");
+                    lmsApplication.saveAll();
                     break;
 
             }
