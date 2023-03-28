@@ -129,6 +129,7 @@ public class frontEnd {
 
         User newUser = new User(firstName, lastName, username, password, dob, phoneNumber, email);
         lmsApplication.setCurrentUser(newUser);
+        UserList.getInstance().addUser(newUser);
         lmsApplication.saveAll();
         
         System.out.println("Logged in to " + lmsApplication.getCurrentUser().getUserName());

@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Date;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import org.json.simple.JSONArray;
@@ -270,9 +269,9 @@ public class DataLoader {
         
         JSONObject comment =  (JSONObject) comm;
     
-        UUID userID = UUID.fromString(comment.get("userid").toString());
+        String user = (String) comment.get("user");
         String commentContent = (String) comment.get("commentContent");
-        Comment ret = new Comment(UserList.getInstance().getUserByID(userID).getUserName(), commentContent);
+        Comment ret = new Comment(user, commentContent);
     
         JSONArray comments = (JSONArray) comment.get("replies");
     

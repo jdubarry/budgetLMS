@@ -1,16 +1,1 @@
-[
-  {
-  	"id":"bc6bed30-0ca0-4411-9a3b-81e005c2e029",
-  	"firstName":"Jorge",
-  	"lastName":"Strawberry",
-    "email":"jStraw@gmail.com",
-    "phone":"803-564-3344",
-    "dateOfBirth": "03/02/2003",
-    "userName": "jStraw44",
-    "password": "animeIsBad44",
-    "courses": [{ 
-              "courseID": "e9ddfa73-0616-4cdb-80a4-1800b99425a8",
-              "grades": ["87.0"]
-    }]
-  }
-]
+[{"firstName":"Jorge","lastName":"Strawberry","courses":[],"password":"animeIsBad44","phone":"803-564-3344","dateOfBirth":"03\/02\/2003","id":"bc6bed30-0ca0-4411-9a3b-81e005c2e029","userName":"jStraw44","email":"jStraw@gmail.com"}]
