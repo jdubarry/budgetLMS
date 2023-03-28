@@ -12,5 +12,19 @@
               "courseID": "e9ddfa73-0616-4cdb-80a4-1800b99425a8",
               "grades": ["90.0"]
     }]
+  },
+  {
+  "id":"e9ddfa73-0616-4cdb-80a4-1800b99425a7",
+  	"firstName":"Michael",
+  	"lastName":"TestUser",
+    "email":"mcluver@email.sc.edu",
+    "phone":"803-565-4433",
+    "dateOfBirth": "11/21/2002",
+    "userName": "test",
+    "password": "test",
+    "courses": [{ 
+              "courseID": "e9ddfa73-0616-4cdb-80a4-1800b99425a8",
+              "grades": ["90.0"]
+    }]
   }
 ]

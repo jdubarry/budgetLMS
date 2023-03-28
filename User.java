@@ -81,15 +81,19 @@ public class User {
      * This is going to allow the user to view the classes
      */
     public void viewCourses() {
-
+        int count = 0;
+        for(CourseProgress x: courseProgress) {
+            System.out.println(count + " " + x.getCourse().getCourseName() + "\n");
+            count++;
+        }
     }
 
     /**
      * This is going to allow the user to select the course they want to complete
      * @param courseIndex this is the index of all of the courses
      */
-    public void selectCourse(int courseIndex) {
-
+    public Course selectCourse(int courseIndex) {
+        return courseProgress.get(courseIndex).getCourse();
     }
 
     /**
@@ -98,16 +102,10 @@ public class User {
      * @param password the password the user created
      * @return this is going to return true is the user login is valid and false if not valid
      */
-    public boolean verifyLogin(String userName, String password) {
-       return false;
+    public boolean verifyLogin(String username, String passWord) {
+        return (this.userName.equals(username) && this.password.equals(passWord));
     }
 
-    /**
-     * This is going to create an age restriction to users if they are below 11
-     */
-    private void addAgeRestriction() {
-        
-    }
 
     /**
      * This is going to get the users first name

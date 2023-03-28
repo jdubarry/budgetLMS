@@ -18,6 +18,10 @@ public class Question {
         this.answerChoices = new ArrayList<String>();
     }
 
+    /**
+     * This is going to get a question 
+     * @return the question title is returned with a new line
+     */
     public String getQuestion() {
         return questionTitle + "\n";
     }

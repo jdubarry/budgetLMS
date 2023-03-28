@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * This is going to be the main page for the program of the LMS application
  * @author word.exe
@@ -9,12 +11,19 @@ public class LMSApplication {
     private CourseList courseList;
     private static LMSApplication lmsApplication;
 
+    /**
+     * This is going to get the instances when user list and course list are being used
+     */
     private LMSApplication() {
         this.currentUser = null;
         this.userList = UserList.getInstance();
         this.courseList = CourseList.getInstance();
     }
 
+    /**
+     * This is going to get the new instance of when LMSApplication is used
+     * @return the instance of lms application is returned
+     */
     public static LMSApplication getInstance() {
         if(lmsApplication == null) {
             lmsApplication = new LMSApplication();
@@ -25,16 +34,46 @@ public class LMSApplication {
      * This is the login the user is going to input
      * @param user the user information, password, username
      */
-    public void login(User user) {
-        
+    public boolean login(String username, String password) {
+        User tempUser = userList.getUserByName(username);
+
+        if(tempUser == null){
+            return false;
+        }
+
+        if(tempUser.verifyLogin(username, password)){
+            currentUser = tempUser;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public User getCurrentUser(){
+        return this.currentUser;
+    }
+
+    public void setCurrentUser(User user){
+        this.currentUser = user;
+    }
+
+    public ArrayList<Course> getCourseList(){
+        return this.courseList.getCourses();
     }
 
     /**
      * This is going to log out the users
      * @param user the user information, password, username
      */
-    public void logout(User user) {
-
+    public boolean logout() {
+        if(currentUser == null){
+            return false;
+        } else {
+            currentUser = null;
+            return true;
+        }
+        
     }
 
     /**
@@ -51,7 +90,7 @@ public class LMSApplication {
      * @return will return the course the user is currently in 
      */
     public Course currentCourse() {
-        return null;
+        return this.currentCourse();
     }
 
     /**
@@ -68,6 +107,9 @@ public class LMSApplication {
 
     }
 
+    /**
+     * This is going to load in the json files
+     */
     public void loadJSONS() {
         userList.readUsersJSON();
         userList.readAuthorsJson();

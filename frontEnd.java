@@ -1,9 +1,8 @@
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
-
-import javax.management.modelmbean.ModelMBean;
 
 public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
@@ -15,47 +14,59 @@ public class frontEnd {
 
         lmsApplication.loadJSONS();
         lmsApplication.printData();
+
+        new frontEnd().printMainMenu();
     }
 
     public void printMainMenu(){
         System.out.println("********** Main Menu **********\n" +
             "1. Login\n" +
-            "2. Sign up.\n");
+            "2. Sign up.\n" +
+            "3. Terminate program");
 
-            int option;
-            boolean validChoice = true;
+            int option = 0;
+        boolean validChoice = true;
 
-            while(validChoice){
-                option = keyboard.nextInt();
-                keyboard.nextLine();
-                switch (option) {
-                    case 1:
-                        validChoice = true;
-                        printLoginMenu();
-                        break;
-                    case 2:
-                        validChoice = true;
-                        printSignUpOptions();
-                        break;
-                    default:
-                        System.out.println("Invalid choice. Try again.");
-                        break;
-                }
+        while(validChoice){
+            option = keyboard.nextInt();
+            keyboard.nextLine();
+            switch(option){
+                case 1:
+                    validChoice = false;
+                    this.printLoginMenu();
+                    
+                    break;
+                case 2:
+                    validChoice = false;
+                    this.printSignUpOptions();
+                    break;
+                case 3:
+                    validChoice = false;
+                    System.out.println("ur mom lol");
+                    break;
+
             }
+        }
     }
     
     public void printLoginMenu(){
         String username;
         String password;
 
-        System.out.println("********** Login Menu **********" +
+        System.out.println("\n********** Login Menu **********\n" +
             "Username: ");
         username = keyboard.nextLine();;
 
         System.out.println("Password: ");
         password = keyboard.nextLine();
 
-        
+        if(lmsApplication.login(username, password)){
+            System.out.println("Login Successful.");
+            printUserMenu();
+        } else {
+            System.out.println("Invalid credentials, try again");
+            printLoginMenu();
+        }
     }
 
     public void printSignUpOptions(){
@@ -67,7 +78,7 @@ public class frontEnd {
         int option = 0;
         boolean validChoice = true;
 
-        while(validChoice)
+        while(validChoice){
             option = keyboard.nextInt();
             keyboard.nextLine();
             switch(option){
@@ -79,13 +90,14 @@ public class frontEnd {
                     validChoice = false;
                     this.printAuthorSignupMenu();
                     break;
-
+                case 3:
+                    validChoice = false;
+                    this.printLoginMenu();
+                    break;
             }
+        }
     }
-    /**
-     * Returns an array of in the order of firstName, lastName, username, email, phoneNumber, birthday, password.
-     * @return
-     */
+     
     public void printUserSignupMenu(){
         String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
 
@@ -117,12 +129,13 @@ public class frontEnd {
         password = keyboard.nextLine();
 
         User newUser = new User(firstName, lastName, username, password, dob, phoneNumber, email);
+        lmsApplication.setCurrentUser(newUser);
+        
+        System.out.println("Logged in to" + lmsApplication.getCurrentUser().getUserName());
+
+        this.printUserMenu();
     }
 
-    /**
-     * Current has blank UUID issues 
-     * Are users supposed to make their own UUID?
-     */
     public void printAuthorSignupMenu(){
         String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
 
@@ -155,133 +168,243 @@ public class frontEnd {
 
         Author newAuthor = new Author(firstName, lastName, username, password, null, dob, phoneNumber, email);
 
+        lmsApplication.setCurrentUser(newAuthor);
 
-        System.out.println("**************************************************"+
-                           "*             Submitted for review               *"+
-                           "**************************************************");
+
+        System.out.println("**************************************************\n"+
+                           "*             Submitted for review               *\n"+
+                           "**************************************************\n");
     }
 
-    public int printUserMenu(){
+    public void printUserMenu(){
+        System.out.println("\n********** User Menu **********");
         System.out.println("1. View My Courses\n" +
         "2. Browse Courses\n" +
         "3. General Settings\n" +
         "4. Logout");
 
-        return keyboard.nextInt();
+        int option = 0;
+        boolean validChoice = true;
+
+        while(validChoice){
+            option = keyboard.nextInt();
+            keyboard.nextLine();
+            switch(option){
+                case 1:
+                    validChoice = false;
+                    this.printAllCourses();
+                    break;
+                case 2:
+                    validChoice = false;
+                    this.printAllCourses();
+                    break;
+                case 3:
+                    validChoice= false;
+                    this.printGeneralSettings();
+                    break;
+                case 4:
+                    validChoice = false;
+                    lmsApplication.logout();
+                    System.out.println("Logout successful.");
+                    printMainMenu();
+            }
+        }
     }
 
-    public int printGeneralSettings(){
-        System.out.println("1. Change password\n" +
+    public void printGeneralSettings(){
+        System.out.println("\n********** General Settings **********");
+        System.out.println("1. Change Password\n" +
         "2. Change Email\n" +
-        "3. Change phone number\n");
+        "3. Change Phone Number");
 
-        return keyboard.nextInt();
+        int option = 0;
+        boolean validChoice = true;
+
+        while(validChoice){
+            option = keyboard.nextInt();
+            keyboard.nextLine();
+            switch(option){
+                case 1:
+                    validChoice = false;
+                    this.printChangePassword();
+                    break;
+                case 2:
+                    validChoice = false;
+                    this.printChangeEmail();
+                    break;
+                case 3:
+                    validChoice = false;
+                    this.printChangePhoneNumber();
+                    break;
+            }
+        }
     }
 
-    public String printChangeEmail(String currentEmail){
+    public void printChangeEmail(){
         System.out.println("********** Change Email **********\n"+
-        "Current Email: " + currentEmail + "\n" +
+        "Current Email: " + lmsApplication.getCurrentUser().getEmailAddress() + "\n" +
         "New Email: ");
 
-        String ret = keyboard.nextLine();
+        lmsApplication.getCurrentUser().setEmailAddress(keyboard.nextLine());
 
-        System.out.println("**************************************************"+
-                           "*                New Email Set!                  *" +
-                           "**************************************************");
+        System.out.println("**************************************************\n"+
+                           "*                New Email Set!                  *\n" +
+                           "**************************************************\n");
 
-        return ret;
+        printGeneralSettings();
     }
 
-    public String printChangePassword(String currentPassword){
+    public void printChangePassword(){
         System.out.println("********** Change Password **********\n"+
-        "Current Password: " + currentPassword + "\n" +
+        "Current Password: " + lmsApplication.getCurrentUser().getPassword() + "\n" +
         "New Password: ");
 
-        String ret = keyboard.nextLine();
+        lmsApplication.getCurrentUser().setPassword(keyboard.nextLine());
 
-        System.out.println("**************************************************"+
-                           "*              New Password Set!                 *" +
-                           "**************************************************");
+        System.out.println("**************************************************\n"+
+                           "*              New Password Set!                 *\n" +
+                           "**************************************************\n");
 
-        return ret;
+        printGeneralSettings();
     }
 
-    public String printChangePhoneNumber(String currentPhoneNumber){
-        System.out.println("********** Change Password **********\n"+
-        "Current Phone Number: " + currentPhoneNumber + "\n" +
+    public void printChangePhoneNumber(){
+        System.out.println("********** Change Phone Number **********\n"+
+        "Current Phone Number: " + lmsApplication.getCurrentUser().getPhoneNumber() + "\n" +
         "New Phone Number: ");
 
-        String ret = keyboard.nextLine();
+        lmsApplication.getCurrentUser().setPhoneNumber(keyboard.nextLine());
 
-        System.out.println("**************************************************"+
-                           "*            New Phone Number Set!               *" +
-                           "**************************************************");
+        System.out.println("**************************************************\n"+
+                           "*            New Phone Number Set!               *\n" +
+                           "**************************************************\n");
 
-        return ret;
+        printGeneralSettings();
     }
 
-    public int printAllCourses(String[] courseNames){
-        System.out.println("**********          Course Menu           **********\n" +
+    public void printAllCourses(){
+        System.out.println("\n**********          Course Menu           **********\n" +
                            "********** Choose a course to get started **********");
 
-        for(int i = 0; i < courseNames.length; i++){
-            System.out.println((i+1) + courseNames[i]);
+        ArrayList<Course> courses = lmsApplication.getCourseList();
+
+        int i = 0;
+        for(; i < courses.size(); i++){
+            System.out.println((i+1) + ". " + courses.get(i).getCourseName() + " by " + courses.get(i).getAuthor().getFirstName() + " " + courses.get(i).getAuthor().getLastName());
+        }
+        i++;
+        System.out.println(i + ". Go back");
+
+
+        int option = keyboard.nextInt();
+        keyboard.nextLine();
+        if(option == i){
+            printUserMenu();
+        } else if(option > i){
+            System.out.println("Invalid option, try again");
+            printAllCourses();
+        } else {
+            lmsApplication.getCurrentUser().addCourse(lmsApplication.getCourseList().get(option - 1));
+            printCourseContent(lmsApplication.getCourseList().get(option - 1));
         }
 
-        return keyboard.nextInt();
     }
 
-    public int printCourseContent(String courseName, String[] modules){
-        System.out.println("******** " + courseName + "********\n" +
-        "******** Choose a Module ********");
+    public void printCourseContent(Course course){
+        System.out.println("\n******** " + course.getCourseName() + " ********\n" +
+        "******** Choose a Module ********\n");
 
-        int i;
-        for(i = 0; i < modules.length; i++){
-            System.out.print((i+1) + modules[i]);
+        int i = 0; 
+        for(;i <  course.getModules().size(); i++){
+            System.out.println((i+1) + ". " + course.getModules().get(i).getModuleName());
         }
 
         System.out.println((i+1) + ". Comments\n" +
         (i+2) + ". Go Back\n");
 
-        return keyboard.nextInt();
+        int option = keyboard.nextInt();
+        keyboard.nextLine();
+
+        if(option > i){
+            if(option == i+1){
+                System.out.println("ATTEMPTED LOAD COMMENTS");
+            } else if(option == i+2){
+                printAllCourses();
+            }
+        } else {
+            printModuleContent(course, course.getModules().get(option - 1));
+        }
     }
 
-    public int printModuleContent(String moduleName, String[] lessons){
-        System.out.println("******** Module 1: " + moduleName + "********\n" +
+    public void printModuleContent(Course course, Module module){
+        System.out.println("DEBUG");
+        System.out.println("******** Module 1: " + module.getModuleName() + " ********\n" +
         "******** Choose a Lesson ********");
 
-        int i;
-        for(i = 0; i < lessons.length; i++){
-            System.out.print((i+1) + lessons[i]);
+        ArrayList<Lesson> lessons = module.getLessons();
+        for(int i = 0;i < module.getLessons().size(); i++){
+            System.out.println((i+1) + ". " + lessons.get(i).getLessonTitle());
         }
 
-        System.out.println((i+1) + ". Comments\n" +
-        (i+2) + ". Go Back\n");
+        System.out.println((lessons.size()+1) + ". Comments\n" +
+        (lessons.size()+2) + ". Go Back");
 
-        return keyboard.nextInt();
+        int option = keyboard.nextInt();
+        keyboard.nextLine();
+
+        if(option > lessons.size()){
+            if(option == lessons.size()+1){
+                System.out.println("ATTEMPTED LOAD COMMENTS");
+            } else if(option == lessons.size()+2){
+                printCourseContent(course);
+            }
+        }
     }
 
-    public int printLesson(String lessonContent){
-        return 0;
+    public void printLesson(){
+        System.out.println("DEBUG");
     }
 
-    public int printQuiz(){
-        return 0;
+    public void printQuiz(){
+        System.out.println("DEBUG");
+
     }
 
-    public int printCommentsMenu(){
+    public void printCommentsMenu(ArrayList<Comment> comments){
         System.out.println("1. Add a Comment\n" +
         "2. View Comments\n" +
         "3. View replies\n" +
         "4. Go Back\n");
 
-        return keyboard.nextInt();
+        boolean validChoice = true;
+        int option = 0;;
+
+        while(validChoice)
+            option = keyboard.nextInt();
+            keyboard.nextLine();
+            switch(option){
+                case 1:
+                    validChoice = false;
+                    this.printAllCourses();
+                    break;
+                case 2:
+                    validChoice = false;
+                    this.printGeneralSettings();
+                    break;
+                case 3:
+                    validChoice = false;
+                    boolean logoutSuccessful = lmsApplication.logout();
+                    if(logoutSuccessful){
+                        System.out.println("Log out successful");
+                    } else {
+                        System.out.println("Logout failed");
+                    }
+                    System.out.println("DEBUG: LOGOUT");
+                    this.printMainMenu();
+                    break;
+            }
     }
 
-    /**
-     * Code needs to be added to actually send the comment somewhere
-     * @return
-     */
     public String printCreateComment(){
         System.out.println("********** Add a Comment **********\n" +
         "Add your comment here: ");
@@ -349,4 +472,5 @@ public class frontEnd {
     public int printViewCourseGrades(){
         return 0;
     }
+
 }

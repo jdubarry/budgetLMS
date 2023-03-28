@@ -9,10 +9,17 @@ public class CourseList {
     private static CourseList courseList;
     private ArrayList<Course> courses;
 
+    /**
+     * This is going to get the arraylist for course and set it to courses
+     */
     private CourseList() {
         this.courses = new ArrayList<Course>();
     }
 
+    /**
+     * This is going to get the instance of when the course list is used
+     * @return the course list is returned
+     */
     public static CourseList getInstance() {
         if(courseList == null) {
             courseList = new CourseList();
@@ -93,11 +100,17 @@ public class CourseList {
         DataWriter.writeCourses(courses);
     }
 
-
+    /**
+     * This is going to get the courses based on the list of courses
+     * @return the course
+     */
     public ArrayList<Course> getCourses() {
         return this.courses;
     }
 
+    /**
+     * This is a string to tell whether or not there are courses or if it is an empty string
+     */
     public String toString() {
         if(this.courses.isEmpty()) {
             return "NO COURSES";

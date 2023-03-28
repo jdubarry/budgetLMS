@@ -18,9 +18,15 @@ public class Lesson {
         comments = new ArrayList<Comment>();
     }
 
+    /**
+     * This is going to add commment with specific name and content
+     * @param authorName the name of the author of the comment
+     * @param commentContent the content in the comment
+     */
     public void addComment(String authorName, String commentContent) {
         comments.add(new Comment(authorName, commentContent ));
     }
+
     /**
      * This is going to allow users to add comments on the bottom of lessons
      * @param authorName This is going to show the name of the commenter
@@ -34,7 +40,7 @@ public class Lesson {
      * This is going to allow the user to view other comments
      */
     public void viewComments() {
-        for(Comment x: comments){ 
+        for(Comment x: comments) { 
             x.toString();
         }
     }
@@ -44,7 +50,7 @@ public class Lesson {
      * @param commentIndex This is the position at which the comment is in the index
      */
     public void viewCommentReplies(int commentIndex) {
-        
+
     }
 
     /**
