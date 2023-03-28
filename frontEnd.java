@@ -366,9 +366,10 @@ public class frontEnd {
                 System.out.println("ATTEMPTED LOAD COMMENTS");
             } else if(option == lessons.size()+3){
                 printCourseContent(course);
-            } else {
-                printLesson(course, module, lessons.get(option - 1), option);
-            }
+            } 
+        } else {
+            System.out.println("DEBUG");
+            printLesson(course, module, lessons.get(option - 1), option);
         }
     }
 
@@ -419,7 +420,8 @@ public class frontEnd {
         printModuleContent(course, module);
     }
 
-    public void printCommentsMenu(ArrayList<Comment> comments){
+    /* 
+    public void CourseCommentsMenu(Course course, ArrayList<Comment> comments){
         System.out.println("1. Add a Comment\n" +
         "2. View Comments\n" +
         "3. View replies\n" +
@@ -434,11 +436,11 @@ public class frontEnd {
             switch(option){
                 case 1:
                     validChoice = false;
-                    this.printAllCourses();
+                    System.out.println("Add comment called");
                     break;
                 case 2:
                     validChoice = false;
-                    this.GeneralSettings();
+                    System.out.println("View Comments called")
                     break;
                 case 3:
                     validChoice = false;
@@ -452,8 +454,15 @@ public class frontEnd {
                     break;
             }
     }
+    */
 
+    public void CourseViewComment(){
+        
+    }
 
+    public void LessonViewComment(){
+
+    }
 
     public String printCreateComment(){
         System.out.println("********** Add a Comment **********\n" +
@@ -467,10 +476,7 @@ public class frontEnd {
         return null;
     }
 
-    public int printViewComment(){
-        return 0;
-    }
-
+    
     public String printReplyComment(){
         return null;
     }
