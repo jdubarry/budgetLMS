@@ -224,7 +224,7 @@ public class DataLoader {
                     {
                         JSONObject question =  (JSONObject) q;
 
-                        String questionTitle = (String) question.get("lessonTitle");
+                        String questionTitle = (String) question.get("questionTitle");
                         Question questionToAdd = new Question(questionTitle);
 
                         JSONArray answerChoices = (JSONArray) question.get("answerChoices");
