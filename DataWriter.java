@@ -8,7 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * Jordan's super swaggin Data Writer class
+ * Jordan's super swaggin Data Writer class 100
  */
 public class DataWriter {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
