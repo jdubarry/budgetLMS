@@ -37,5 +37,4 @@ public class Author extends User{
         CourseList.getInstance().addCourse(new Course(CourseName, this));
     }
 
-    
 }

@@ -131,7 +131,7 @@ public class FrontEnd {
         User newUser = new User(firstName, lastName, username, password, dob, phoneNumber, email);
         lmsApplication.setCurrentUser(newUser);
         
-        System.out.println("Logged in to" + lmsApplication.getCurrentUser().getUserName());
+        System.out.println("Logged in to " + lmsApplication.getCurrentUser().getUserName());
 
         this.UserMenu();
     }
