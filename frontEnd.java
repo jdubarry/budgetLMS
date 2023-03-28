@@ -215,7 +215,8 @@ public class frontEnd {
         System.out.println("\n********** General Settings **********");
         System.out.println("1. Change Password\n" +
         "2. Change Email\n" +
-        "3. Change Phone Number");
+        "3. Change Phone Number\n" +
+        "4. Go Back");
 
         int option = 0;
         boolean validChoice = true;
@@ -235,6 +236,10 @@ public class frontEnd {
                 case 3:
                     validChoice = false;
                     this.ChangePhoneNumber();
+                    break;
+                case 4:
+                    validChoice = false;
+                    this.UserMenu();
                     break;
             }
         }
