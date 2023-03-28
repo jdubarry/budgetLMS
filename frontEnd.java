@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class FrontEnd {
+public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     static LMSApplication lmsApplication;
@@ -15,7 +15,7 @@ public class FrontEnd {
         lmsApplication.loadJSONS();
         lmsApplication.printData();
 
-        new FrontEnd().MainMenu();
+        new frontEnd().MainMenu();
     }
 
     public void MainMenu(){
