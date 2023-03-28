@@ -94,7 +94,7 @@ public class DataWriter {
                     for (Lesson lesson : module.getLessons()) {
                         JSONObject lessonToAdd = new JSONObject();
                         lessonToAdd.put("lessonName", lesson.getLessonTitle());
-                        lessonToAdd.put("lessonContent", lesson.getLessonTitle());
+                        lessonToAdd.put("lessonContent", lesson.getLessonContent());
                         JSONArray comments = new JSONArray();
                         for (Comment comment: lesson.getComments()) {
                             JSONObject commentToAdd = writeComment(comment);

@@ -201,7 +201,7 @@ public class DataLoader {
                     {
                         JSONObject lesson =  (JSONObject) l;
 
-                        String lessonTitle = (String) lesson.get("lessonTitle");
+                        String lessonTitle = (String) lesson.get("lessonName");
                         Lesson lessonToAdd = new Lesson(lessonTitle);
 
                         lessonToAdd.setLessonContent((String) lesson.get("lessonContent"));
