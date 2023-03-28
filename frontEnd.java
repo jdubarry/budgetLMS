@@ -22,7 +22,7 @@ public class frontEnd {
         System.out.println("********** Main Menu **********\n" +
             "1. Login\n" +
             "2. Sign up.\n" +
-            "3. Terminate program\n");
+            "3. Terminate program");
 
             int option = 0;
         boolean validChoice = true;
@@ -53,7 +53,7 @@ public class frontEnd {
         String username;
         String password;
 
-        System.out.println("********** Login Menu **********\n" +
+        System.out.println("\n********** Login Menu **********\n" +
             "Username: ");
         username = keyboard.nextLine();;
 
@@ -177,7 +177,8 @@ public class frontEnd {
     }
 
     public void printUserMenu(){
-        System.out.println("1\n1. View My Courses\n" +
+        System.out.println("\n********** User Menu **********");
+        System.out.println("1. View My Courses\n" +
         "2. Browse Courses\n" +
         "3. General Settings\n" +
         "4. Logout");
@@ -211,9 +212,10 @@ public class frontEnd {
     }
 
     public void printGeneralSettings(){
-        System.out.println("1. Change password\n" +
+        System.out.println("\n********** General Settings **********");
+        System.out.println("1. Change Password\n" +
         "2. Change Email\n" +
-        "3. Change phone number\n");
+        "3. Change Phone Number");
 
         int option = 0;
         boolean validChoice = true;
@@ -239,7 +241,6 @@ public class frontEnd {
     }
 
     public void printChangeEmail(){
-        System.out.println("DEBUG: CHANGEEMAIL");
         System.out.println("********** Change Email **********\n"+
         "Current Email: " + lmsApplication.getCurrentUser().getEmailAddress() + "\n" +
         "New Email: ");
@@ -254,7 +255,6 @@ public class frontEnd {
     }
 
     public void printChangePassword(){
-        System.out.println("DEBUG: CHANGEPASSWORD");
         System.out.println("********** Change Password **********\n"+
         "Current Password: " + lmsApplication.getCurrentUser().getPassword() + "\n" +
         "New Password: ");
@@ -269,7 +269,7 @@ public class frontEnd {
     }
 
     public void printChangePhoneNumber(){
-        System.out.println("********** Change Password **********\n"+
+        System.out.println("********** Change Phone Number **********\n"+
         "Current Phone Number: " + lmsApplication.getCurrentUser().getPhoneNumber() + "\n" +
         "New Phone Number: ");
 
@@ -283,8 +283,7 @@ public class frontEnd {
     }
 
     public void printAllCourses(){
-        System.out.println("DEBUG: PRINTCOURSES");
-        System.out.println("**********          Course Menu           **********\n" +
+        System.out.println("\n**********          Course Menu           **********\n" +
                            "********** Choose a course to get started **********");
 
         ArrayList<Course> courses = lmsApplication.getCourseList();
@@ -295,32 +294,71 @@ public class frontEnd {
         }
         i++;
         System.out.println(i + ". Go back");
+
+
+        int option = keyboard.nextInt();
+        keyboard.nextLine();
+        if(option == i){
+            printUserMenu();
+        } else if(option > i){
+            System.out.println("Invalid option, try again");
+            printAllCourses();
+        } else {
+            lmsApplication.getCurrentUser().addCourse(lmsApplication.getCourseList().get(option - 1));
+            printCourseContent(lmsApplication.getCourseList().get(option - 1));
+        }
+
     }
 
-    public void printCourseContent(){
-        System.out.println("DEBUG: COURSECONTENT");
-        System.out.println("******** " + "courseName" + "********\n" +
-        "******** Choose a Module ********");
+    public void printCourseContent(Course course){
+        System.out.println("\n******** " + course.getCourseName() + " ********\n" +
+        "******** Choose a Module ********\n");
 
         int i = 0; 
+        for(;i <  course.getModules().size(); i++){
+            System.out.println((i+1) + ". " + course.getModules().get(i).getModuleName());
+        }
 
         System.out.println((i+1) + ". Comments\n" +
         (i+2) + ". Go Back\n");
 
-        
+        int option = keyboard.nextInt();
+        keyboard.nextLine();
+
+        if(option > i){
+            if(option == i+1){
+                System.out.println("ATTEMPTED LOAD COMMENTS");
+            } else if(option == i+2){
+                printAllCourses();
+            }
+        } else {
+            printModuleContent(course, course.getModules().get(option - 1));
+        }
     }
 
-    public int printModuleContent(){
+    public void printModuleContent(Course course, Module module){
         System.out.println("DEBUG");
-        System.out.println("******** Module 1: " + "moduleName" + "********\n" +
+        System.out.println("******** Module 1: " + module.getModuleName() + " ********\n" +
         "******** Choose a Lesson ********");
 
-        int i = 0;
+        ArrayList<Lesson> lessons = module.getLessons();
+        for(int i = 0;i < module.getLessons().size(); i++){
+            System.out.println((i+1) + ". " + lessons.get(i).getLessonTitle());
+        }
 
-        System.out.println((i+1) + ". Comments\n" +
-        (i+2) + ". Go Back\n");
+        System.out.println((lessons.size()+1) + ". Comments\n" +
+        (lessons.size()+2) + ". Go Back");
 
-        return keyboard.nextInt();
+        int option = keyboard.nextInt();
+        keyboard.nextLine();
+
+        if(option > lessons.size()){
+            if(option == lessons.size()+1){
+                System.out.println("ATTEMPTED LOAD COMMENTS");
+            } else if(option == lessons.size()+2){
+                printCourseContent(course);
+            }
+        }
     }
 
     public void printLesson(){
@@ -332,7 +370,7 @@ public class frontEnd {
 
     }
 
-    public void printCommentsMenu(){
+    public void printCommentsMenu(ArrayList<Comment> comments){
         System.out.println("1. Add a Comment\n" +
         "2. View Comments\n" +
         "3. View replies\n" +
@@ -367,10 +405,6 @@ public class frontEnd {
             }
     }
 
-    /**
-     * Code needs to be added to actually send the comment somewhere
-     * @return
-     */
     public String printCreateComment(){
         System.out.println("********** Add a Comment **********\n" +
         "Add your comment here: ");
