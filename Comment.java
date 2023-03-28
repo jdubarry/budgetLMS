@@ -24,7 +24,6 @@ public class Comment {
      * This is going to allow authors to reply to comments
      * @param replyComment The comment content that is used for the reply
      */
-    //Check this
     public void reply(Comment replyComment) {
         replies.add(replyComment);
     }
@@ -32,7 +31,6 @@ public class Comment {
     /**
      * This is going to allow the author to view replies to comments
      */
-   //Double check this
      public void viewReplies() {
             for(Comment x: replies) {
                 System.out.println(x.getReplies() + "\n");
