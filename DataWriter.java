@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,19 +11,20 @@ import org.json.simple.JSONObject;
  * Jordan's super swaggin Data Writer class
  */
 public class DataWriter {
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     public static void writeUsers(ArrayList<User> users) {
         try {     
             JSONArray allUsers = new JSONArray();
             for(User user : users) {
                 JSONObject userToAdd = new JSONObject();
-                userToAdd.put("id", user.getUserID());
+                userToAdd.put("id", user.getUserID().toString());
                 userToAdd.put("firstName", user.getFirstName());
                 userToAdd.put("lastName", user.getLastName());
                 userToAdd.put("email", user.getEmailAddress());
                 userToAdd.put("phone", user.getPhoneNumber());
-                userToAdd.put("dateOfBirth", user.getDateOfBirth());
-                userToAdd.put("username", user.getUserName());
+                userToAdd.put("dateOfBirth", dateFormat.format(user.getDateOfBirth()));
+                userToAdd.put("userName", user.getUserName());
                 userToAdd.put("password", user.getPassword());
                 JSONArray courses = new JSONArray();
                 for (CourseProgress course : user.getCourseProgress()) {
@@ -48,13 +50,13 @@ public class DataWriter {
             JSONArray allAuthors = new JSONArray();
             for(Author author : authors) {
                 JSONObject authorToAdd = new JSONObject();
-                authorToAdd.put("id", author.getUserID());
+                authorToAdd.put("id", author.getUserID().toString());
                 authorToAdd.put("firstName", author.getFirstName());
                 authorToAdd.put("lastName", author.getLastName());
                 authorToAdd.put("email", author.getEmailAddress());
                 authorToAdd.put("phone", author.getPhoneNumber());
-                authorToAdd.put("dateOfBirth", author.getDateOfBirth());
-                authorToAdd.put("username", author.getUserName());
+                authorToAdd.put("dateOfBirth", dateFormat.format(author.getDateOfBirth()));
+                authorToAdd.put("userName", author.getUserName());
                 authorToAdd.put("password", author.getPassword());
                 JSONArray courses = new JSONArray();
                 for (CourseProgress course : author.getCourseProgress()) {
@@ -80,9 +82,9 @@ public class DataWriter {
             JSONArray allCourses = new JSONArray();
             for(Course course : courses) {
                 JSONObject courseToAdd = new JSONObject();
-                courseToAdd.put("id", course.getCourseID());
+                courseToAdd.put("id", course.getCourseID().toString());
                 courseToAdd.put("courseName", course.getCourseName());
-                courseToAdd.put("authorID", course.getAuthor().getUserID());
+                courseToAdd.put("authorID", course.getAuthor().getUserID().toString());
 
                 JSONArray modules = new JSONArray();
                 for (Module module : course.getModules()) {
@@ -130,7 +132,7 @@ public class DataWriter {
         
         JSONObject comment =  new JSONObject();
     
-        comment.put("userid", comm.getAuthorName());
+        comment.put("user", comm.getAuthorName());
         comment.put("commentContent", comm.getCommentContent());
         JSONArray replies = new JSONArray();
         for (Comment c: comm.getReplies()) {
@@ -156,7 +158,7 @@ public class DataWriter {
                 answerChoices.add(a);        
             }
             question.put("answerChoices", answerChoices);
-            question.put("correctAnswer", q.getCorrectAnswer());
+            question.put("correctAnswer", String.valueOf(q.getCorrectAnswer()));
             questions.add(question);
         }
         ret.put("questions", questions);
