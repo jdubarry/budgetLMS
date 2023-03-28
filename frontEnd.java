@@ -8,7 +8,6 @@ public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     static LMSApplication lmsApplication;
-
     public static void main(String args[]) {
         lmsApplication = LMSApplication.getInstance();
 
@@ -130,6 +129,7 @@ public class frontEnd {
 
         User newUser = new User(firstName, lastName, username, password, dob, phoneNumber, email);
         lmsApplication.setCurrentUser(newUser);
+        lmsApplication.saveAll();
         
         System.out.println("Logged in to " + lmsApplication.getCurrentUser().getUserName());
 

@@ -131,4 +131,18 @@ public class LMSApplication {
         System.out.println("ALL OF THE COURSES");
         System.out.println(courseList.toString());
     }
+
+    private void saveUsers() {
+        userList.saveUsers();
+        userList.saveAuthors();
+    }
+
+    private void saveCourses() {
+        courseList.save();
+    }
+
+    public void saveAll() {
+        saveUsers();
+        saveCourses();
+    }
 }
