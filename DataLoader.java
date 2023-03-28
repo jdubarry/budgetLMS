@@ -113,7 +113,7 @@ public class DataLoader {
                 String password = (String) json.get("password");
                 Date dateOfBirth = null;
                 try {
-                    dateOfBirth = dateFormat.parse((String) json.get("DateOfBirth"));
+                    dateOfBirth = dateFormat.parse((String) json.get("dateOfBirth"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -4,6 +4,7 @@
  * @author word.exe
  */
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class User {
 
@@ -32,6 +33,7 @@ public class User {
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
+        this.userID = UUID.randomUUID();
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class FrontEnd {
+public class frontEnd {
     Scanner keyboard = new Scanner(System.in);
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     static LMSApplication lmsApplication;
@@ -15,7 +15,7 @@ public class FrontEnd {
         lmsApplication.loadJSONS();
         lmsApplication.printData();
 
-        new FrontEnd().MainMenu();
+        new frontEnd().MainMenu();
     }
 
     public void MainMenu(){
@@ -215,7 +215,8 @@ public class FrontEnd {
         System.out.println("\n********** General Settings **********");
         System.out.println("1. Change Password\n" +
         "2. Change Email\n" +
-        "3. Change Phone Number");
+        "3. Change Phone Number\n" +
+        "4. Go Back");
 
         int option = 0;
         boolean validChoice = true;
@@ -235,6 +236,10 @@ public class FrontEnd {
                 case 3:
                     validChoice = false;
                     this.ChangePhoneNumber();
+                    break;
+                case 4:
+                    validChoice = false;
+                    this.UserMenu();
                     break;
             }
         }
