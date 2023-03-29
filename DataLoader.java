@@ -75,7 +75,7 @@ public class DataLoader {
 
                         for (Object g : grades)
                         {
-                            gradesToAdd.add(Double.parseDouble((String) g));
+                            gradesToAdd.add((Double) g); //DONT SCREW THIS UP JORDAN
                         }
                     coursesToAdd.add(new CourseProgress(CourseList.getInstance().getCourseByID(courseID), gradesToAdd));
                 }

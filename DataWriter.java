@@ -29,8 +29,9 @@ public class DataWriter {
                 JSONArray courses = new JSONArray();
                 for (CourseProgress course : user.getCourseProgress()) {
                     JSONObject courseToAdd = new JSONObject();
-                    courseToAdd.put("moduleName", course.getCourse().getCourseID());
+                    courseToAdd.put("courseID", course.getCourse().getCourseID().toString());
                     courseToAdd.put("grades", course.getGrades());
+                    courses.add(courseToAdd);
                 }
                 userToAdd.put("courses", courses);
 
@@ -61,8 +62,9 @@ public class DataWriter {
                 JSONArray courses = new JSONArray();
                 for (CourseProgress course : author.getCourseProgress()) {
                     JSONObject courseToAdd = new JSONObject();
-                    courseToAdd.put("moduleName", course.getCourse().getCourseID());
+                    courseToAdd.put("courseID", course.getCourse().getCourseID().toString());
                     courseToAdd.put("grades", course.getGrades());
+                    courses.add(courseToAdd);
                 }
                 authorToAdd.put("courses", courses);
 
