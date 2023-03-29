@@ -12,7 +12,7 @@ public class frontEnd {
         lmsApplication = LMSApplication.getInstance();
 
         lmsApplication.loadJSONS();
-        lmsApplication.printData();
+        //lmsApplication.printData();
 
         new frontEnd().MainMenu();
     }
@@ -23,29 +23,20 @@ public class frontEnd {
             "2. Sign up\n" +
             "3. Quit program");
 
-            int option = 0;
-        boolean validChoice = true;
+        int option = getChoice(3);
 
-        while(validChoice){
-            option = keyboard.nextInt();
-            keyboard.nextLine();
-            switch(option){
-                case 1:
-                    validChoice = false;
-                    this.LoginMenu();
-                    
-                    break;
-                case 2:
-                    validChoice = false;
-                    this.SignUpOptions();
-                    break;
-                case 3:
-                    validChoice = false;
-                    System.out.println("ur mom lol");
-                    lmsApplication.saveAll();
-                    break;
-
-            }
+        switch(option){
+            case 1:
+                this.LoginMenu();
+                break;
+            case 2:
+                this.SignUpOptions();
+                break;
+            case 3:
+                System.out.print("Saving data...");
+                lmsApplication.saveAll();
+                System.out.println("Saved. Quitting program now.");
+                break;
         }
     }
     
@@ -65,37 +56,28 @@ public class frontEnd {
             UserMenu();
         } else {
             System.out.println("Invalid credentials, try again");
-            LoginMenu();
+            MainMenu();
         }
     }
 
     public void SignUpOptions(){
-        System.out.println("********** Sign Up **********\n" +
+        System.out.println("\n********** Sign Up **********\n" +
         "1. User\n" +
         "2. Author\n" +
         "3. Go back\n");
 
-        int option = 0;
-        boolean validChoice = true;
-
-        while(validChoice){
-            option = keyboard.nextInt();
-            keyboard.nextLine();
-            switch(option){
-                case 1:
-                    validChoice = false;
-                    this.UserSignUpMenu();
-                    break;
-                case 2:
-                    validChoice = false;
-                    this.AuthorSignupMenu();
-                    break;
-                case 3:
-                    validChoice = false;
-                    this.LoginMenu();
-                    break;
+        int option = getChoice(3);
+        switch(option){
+            case 1:
+                this.UserSignUpMenu();
+                break;
+            case 2:
+                this.AuthorSignupMenu();
+                break;
+            case 3:
+                this.LoginMenu();
+                break;
             }
-        }
     }
      
     public void UserSignUpMenu(){
@@ -171,6 +153,7 @@ public class frontEnd {
         Author newAuthor = new Author(firstName, lastName, username, password, null, dob, phoneNumber, email);
 
         lmsApplication.setCurrentUser(newAuthor);
+        lmsApplication.saveAll();
 
 
         System.out.println("**************************************************\n"+
@@ -180,7 +163,7 @@ public class frontEnd {
 
     public void UserMenu(){
         System.out.println("\n********** User Menu **********");
-        System.out.println("1. View My Courses\n" +
+        System.out.println("1. View My Course Progress\n" +
         "2. Browse Courses\n" +
         "3. General Settings\n" +
         "4. Logout");
@@ -194,7 +177,7 @@ public class frontEnd {
             switch(option){
                 case 1:
                     validChoice = false;
-                    this.printAllCourses();
+                    this.printCourseProgess();
                     break;
                 case 2:
                     validChoice = false;
@@ -210,6 +193,22 @@ public class frontEnd {
                     System.out.println("Logout successful.");
                     MainMenu();
             }
+        }
+    }
+
+    public void printCourseProgess(){
+        System.out.println("********** Course Progress **********");
+        ArrayList<CourseProgress> progress = lmsApplication.getCurrentUser().getCourseProgress();
+
+        for(CourseProgress x: progress){
+            System.out.println("Course Name: " + x.getCourse().getCourseName() + "  Overall Average: " + x.getCourseAverage());
+        }
+
+        System.out.println("\n1. Go back");
+
+        int option = getChoice(1);
+        if(option == 1){
+            UserMenu();
         }
     }
 
@@ -253,6 +252,7 @@ public class frontEnd {
         "New Email: ");
 
         lmsApplication.getCurrentUser().setEmailAddress(keyboard.nextLine());
+        lmsApplication.saveAll();
 
         System.out.println("**************************************************\n"+
                            "*                New Email Set!                  *\n" +
@@ -267,6 +267,7 @@ public class frontEnd {
         "New Password: ");
 
         lmsApplication.getCurrentUser().setPassword(keyboard.nextLine());
+        lmsApplication.saveAll();
 
         System.out.println("**************************************************\n"+
                            "*              New Password Set!                 *\n" +
@@ -281,6 +282,7 @@ public class frontEnd {
         "New Phone Number: ");
 
         lmsApplication.getCurrentUser().setPhoneNumber(keyboard.nextLine());
+        lmsApplication.saveAll();
 
         System.out.println("**************************************************\n"+
                            "*            New Phone Number Set!               *\n" +
@@ -334,7 +336,7 @@ public class frontEnd {
 
         if(option > i){
             if(option == i+1){
-                System.out.println("ATTEMPTED LOAD COMMENTS");
+                CourseViewComment(course);
             } else if(option == i+2){
                 printAllCourses();
             }
@@ -385,7 +387,7 @@ public class frontEnd {
 
         switch(option){
             case 1: 
-                System.out.println("DEBUG");
+                LessonViewComment(course, module, lesson, lessonIndex);
                 break;
             case 2:
                 printModuleContent(course, module);
@@ -421,113 +423,287 @@ public class frontEnd {
         printModuleContent(course, module);
     }
 
-    /* 
-    public void CourseCommentsMenu(Course course, ArrayList<Comment> comments){
-        System.out.println("1. Add a Comment\n" +
-        "2. View Comments\n" +
-        "3. View replies\n" +
-        "4. Go Back\n");
+    public void CourseViewComment(Course course){
+        System.out.println("\n********* " + course.getCourseName() + ": comments **********");
+        System.out.println("***** Select a comment to navigate or add a new comment *****");
+        ArrayList<Comment> comments = course.getComments();
 
-        boolean validChoice = true;
-        int option = 0;;
+        int count = 1;
+        for(Comment c: comments){
+            System.out.println(count + ". " + c.getAuthorName() + " commented: " + c.getCommentContent());
+            count++;
+        }
 
-        while(validChoice)
-            option = keyboard.nextInt();
-            keyboard.nextLine();
-            switch(option){
-                case 1:
-                    validChoice = false;
-                    System.out.println("Add comment called");
-                    break;
-                case 2:
-                    validChoice = false;
-                    System.out.println("View Comments called")
-                    break;
-                case 3:
-                    validChoice = false;
-                    boolean logoutSuccessful = lmsApplication.logout();
-                    if(logoutSuccessful){
-                        System.out.println("Log out successful");
-                    } else {
-                        System.out.println("Logout failed");
-                    }
-                    this.MainMenu();
-                    break;
-            }
-    }
-    */
+        System.out.println(count + ". Add a comment");
+        count ++;
+        System.out.println(count + ". Go back");
 
-    public void CourseViewComment(){
-        
-    }
+        int option = getChoice(comments.size() + 2);
 
-    public void LessonViewComment(){
+        if(option == comments.size() + 1){
+            Comment newComment = new Comment(lmsApplication.getCurrentUser().getFirstName(), CreateReply());
+            course.addComment(newComment);
+            lmsApplication.saveAll();
+            CourseViewComment(course);
+        } else if(option == comments.size() + 2){
+            printCourseContent(course);
+        } else {
+            CourseViewComment(course, comments.get(option - 1));
+        }
 
     }
 
-    public String printCreateComment(){
+    public void CourseViewComment(Course course, Comment currentComment){
+        System.out.println("\n********* " + course.getCourseName() + ": comments **********");
+        System.out.println("***** Select a reply to navigate or add a new reply to the parent comment *****\n");
+        System.out.println("Parent comment: " + currentComment.getAuthorName() + " commented " + currentComment.getCommentContent() + "\n");
+        ArrayList<Comment> replies =  currentComment.getReplies();
+
+        int count = 1;
+        for(Comment c: replies){
+            System.out.println(count + ". " + c.getAuthorName() + " replied: " + c.getCommentContent());
+            count++;
+        }
+
+        System.out.println(count + ". Add a reply to the parent comment");
+        count ++;
+        System.out.println(count + ". Go back to all comments");
+
+        int option = getChoice(replies.size() + 2);
+
+        if(option == replies.size() + 1){
+            Comment reply = new Comment(lmsApplication.getCurrentUser().getFirstName(), CreateReply());
+            currentComment.reply(reply);
+            lmsApplication.saveAll();
+            CourseViewComment(course, currentComment);
+        } else if(option == replies.size() + 2){
+            printCourseContent(course);
+        } else {
+            CourseViewComment(course, replies.get(option - 1));
+        }
+    }
+
+    public void LessonViewComment(Course course, Module module, Lesson lesson, int index){
+        System.out.println("\n********* " + lesson.getLessonTitle() + ": comments **********");
+        System.out.println("***** Select a comment to navigate or add a new comment *****");
+        ArrayList<Comment> comments = lesson.getComments();
+
+        int count = 1;
+        for(Comment c: comments){
+            System.out.println(count + ". " + c.getAuthorName() + " commented: " + c.getCommentContent());
+            count++;
+        }
+
+        System.out.println(count + ". Add a comment");
+        count ++;
+        System.out.println(count + ". Go back");
+
+        int option = getChoice(comments.size() + 2);
+
+        if(option == comments.size() + 1){
+            Comment newComment = new Comment(lmsApplication.getCurrentUser().getFirstName(), CreateReply());
+            lesson.addComment(newComment);
+            lmsApplication.saveAll();
+            LessonViewComment(course, module, lesson, index);
+        } else if(option == comments.size() + 2){
+            printLesson(course, module, lesson, index);
+        } else {
+            LessonViewComment(course, module, lesson, index, comments.get(option - 1));
+        }
+    }
+
+    public void LessonViewComment(Course course, Module module, Lesson lesson, int index, Comment currentComment){
+        System.out.println("\n********* " + lesson.getLessonTitle() + ": comments **********");
+        System.out.println("***** Select a reply to navigate or add a new reply to the parent comment *****\n");
+        System.out.println("Parent comment: " + currentComment.getAuthorName() + " commented " + currentComment.getCommentContent() + "\n");
+        ArrayList<Comment> replies =  currentComment.getReplies();
+
+        int count = 1;
+        for(Comment c: replies){
+            System.out.println(count + ". " + c.getAuthorName() + " replied: " + c.getCommentContent());
+            count++;
+        }
+
+        System.out.println(count + ". Add a reply to the parent comment");
+        count ++;
+        System.out.println(count + ". Go back to all comments");
+
+        int option = getChoice(replies.size() + 2);
+
+        if(option == replies.size() + 1){
+            Comment reply = new Comment(lmsApplication.getCurrentUser().getFirstName(), CreateReply());
+            currentComment.reply(reply);
+            lmsApplication.saveAll();
+            LessonViewComment(course, module, lesson, index, currentComment);
+        } else if(option == replies.size() + 2){
+            LessonViewComment(course, module, lesson, index);
+        } else {
+            LessonViewComment(course, module, lesson, index, replies.get(option - 1));
+        }
+    }
+
+    public String CreateComment(){
         System.out.println("******** Add a Comment ********\n" +
         "Add your comment here: ");
 
         String comment = keyboard.nextLine();
 
-        System.out.println("\n1. Post comment\n" +
-        "2. Go Back\n");
-
-        return null;
+        System.out.println("Comment added!");
+        return comment;
     }
 
+    public String CreateReply(){
+        System.out.println("******** Add a Reply ********\n" +
+        "Add your comment here: ");
+
+        String comment = keyboard.nextLine();
+
+        System.out.println("Reply added!");
+        return comment;
+    }
     
-    public String printReplyComment(){
-        return null;
+
+    public void AuthorMenu(){
+        System.out.println("********** Author Menu **********");
+        System.out.println("1. Create a course\n" + 
+            "2. View my created courses\n" +
+            "3. View my course progress\n" +
+            "4. Browse courses\n" +
+            "5. General settings\n" +
+            "6. Log out\n");
+
+        int option = getChoice(6);
+
+        switch(option){
+            case 1:
+                System.out.print("Please enter a name for your course: ");
+                String courseName = keyboard.nextLine();
+                Course newCourse = new Course(courseName, null);
+                createCourse(newCourse);
+                break;
+            case 2:
+                break;
+            case 3:
+                printCourseProgess();
+                break;
+            case 4:
+                printAllCourses();
+                break;
+            case 5:
+                GeneralSettings();
+                break;
+            case 6:
+                lmsApplication.logout();
+                System.out.println("Logout successful.");
+                MainMenu();
+                break;
+        }
     }
 
-    public int printViewReplies(){
-        return 0;
-    }
 
-    public int AuthorMenu(){
-        return 0;
+    public void createCourse(Course course){
+        System.out.println("********* " + course.getCourseName() + " *********");
+        System.out.println("Select a module to work on or publish this course");
+
+        ArrayList<Module> modules = course.getModules();
+
+        int count = 0;
+        for(Module x: modules){
+            System.out.println(count + ". " + x.getModuleName());
+            count++;
+        }
+        if(modules.size() == 0){
+            System.out.println("No modules in this course.");
+            count++;
+        }
+
+        System.out.println(count +". Add module");
+        count++;
+        System.out.println(count + ". Publish course");
+
+        int option = getChoice(count);
+
+        if(option == modules.size() + 1){
+            course.addModule(printCreateModule());
+        } else if(option == modules.size() + 2){
+            //Publish it!!
+        } else {
+            //Edit module
+        }
+
     }
 
     public Module printCreateModule(){
-        return null;
+        System.out.println("Please enter a name for your module");
+
+        return new Module(keyboard.nextLine());
     }
 
     public Lesson printCreateLesson(){
-        return null;
+        System.out.println("Please enter a name for your lesson");
+        String lessonName = keyboard.nextLine();
+
+        System.out.println("Please enter the lesson content");
+        String lessonContent = keyboard.nextLine();
+
+        Lesson newLesson = new Lesson(lessonName);
+        newLesson.setLessonContent(lessonContent);
+
+        return newLesson;
     }
 
     public Quiz printCreateQuiz(){
         return null;
     }
 
+    public Course printEditCourse(){
+        return null;
+    }
+
+    public Module printEditModule(){
+        return null;
+    }
+
+    public Lesson printEditLesson(){
+        return null;
+    }
+
+    public Quiz printEditQuiz(){
+        return null;
+    }
+
+    public int printViewGrades(){
+        return 0;
+    }
+
     public int printViewCreatedCourses(){
         return 0;
     }
 
-    public int printEditCourse(){
-        return 0;
-    }
+    private int getChoice(int maxIndex){
+        if(maxIndex < 1){
+            System.out.println("INVALID MAXINDEX");
+            return (-1);
+        }
 
-    public int printEditCourseTitle(){
-        return 0;
-    }
+        int option = 0;
+        boolean validChoice = true;
+        while(validChoice){
+            try {
+                option = keyboard.nextInt();
+                keyboard.nextLine();
+            } catch (Exception e){
+                System.out.println("Please enter a valid integer.");
+                continue;
+            }
 
-    public int printEditCourseModule(){
-        return 0;
-    }
-
-    public int printEditCourseLesson(){
-        return 0;
-    }
-
-    public int printEditCourseQuiz(){
-        return 0;
-    }
-
-    public int printViewCourseGrades(){
-        return 0;
+            if(option > 0 && option <= maxIndex){
+                return option;
+            } else {
+                System.out.println("Please enter a value not greater than " + maxIndex);
+            }
+        }
+        return(-1);
     }
 
 }
