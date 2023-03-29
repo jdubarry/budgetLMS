@@ -42,6 +42,15 @@ public class UserList {
         }
         return null;        
     }
+
+    public Author geAuthorByName(String keyword){
+        for(Author author: authors){
+            if(author.getUserName().equals(keyword)){
+                return author;
+            }
+        }
+        return null;
+    }
     
 
     /**

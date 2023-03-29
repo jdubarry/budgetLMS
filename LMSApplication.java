@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class LMSApplication {
     private User currentUser;
+    private Author authorPermissions;
     private UserList userList;
     private CourseList courseList;
     private static LMSApplication lmsApplication;
@@ -38,20 +39,32 @@ public class LMSApplication {
         User tempUser = userList.getUserByName(username);
 
         if(tempUser == null){
-            return false;
-        }
-
-        if(tempUser.verifyLogin(username, password)){
+            Author tempAuthor = userList.geAuthorByName(username);
+            if(tempAuthor == null){
+                return false;
+            } else{
+                if(tempAuthor.verifyLogin(username, password)){
+                    currentUser = tempAuthor;
+                    authorPermissions = tempAuthor;
+                    return true;
+                }
+            }
+        } else if(tempUser.verifyLogin(username, password)){
             currentUser = tempUser;
             return true;
         }
-        else{
-            return false;
-        }
+        
+        return false;
+
+        
     }
 
     public User getCurrentUser(){
         return this.currentUser;
+    }
+
+    public Author getAuthorPermissions(){
+        return this.authorPermissions;
     }
 
     public void setCurrentUser(User user){
