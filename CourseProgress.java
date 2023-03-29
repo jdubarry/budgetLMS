@@ -51,4 +51,13 @@ public class CourseProgress {
         return this.grades;
     }
 
+    public Double getCourseAverage(){
+
+        Double total = 0.0;
+        for(Double x: this.grades){
+            total += x;
+        }
+        Double count = (double)this.grades.size();
+        return total / count;
+    }
 }
