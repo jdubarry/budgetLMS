@@ -252,6 +252,7 @@ public class frontEnd {
         "New Email: ");
 
         lmsApplication.getCurrentUser().setEmailAddress(keyboard.nextLine());
+        lmsApplication.saveAll();
 
         System.out.println("**************************************************\n"+
                            "*                New Email Set!                  *\n" +
@@ -266,6 +267,7 @@ public class frontEnd {
         "New Password: ");
 
         lmsApplication.getCurrentUser().setPassword(keyboard.nextLine());
+        lmsApplication.saveAll();
 
         System.out.println("**************************************************\n"+
                            "*              New Password Set!                 *\n" +
@@ -280,6 +282,7 @@ public class frontEnd {
         "New Phone Number: ");
 
         lmsApplication.getCurrentUser().setPhoneNumber(keyboard.nextLine());
+        lmsApplication.saveAll();
 
         System.out.println("**************************************************\n"+
                            "*            New Phone Number Set!               *\n" +
@@ -573,10 +576,10 @@ public class frontEnd {
 
         switch(option){
             case 1:
-            System.out.print("Please enter a name for your course: ");
-            String courseName = keyboard.nextLine();
-            Course newCourse = new Course(courseName, null);
-            createCourse(newCourse);
+                System.out.print("Please enter a name for your course: ");
+                String courseName = keyboard.nextLine();
+                Course newCourse = new Course(courseName, null);
+                createCourse(newCourse);
                 break;
             case 2:
                 break;
@@ -629,7 +632,6 @@ public class frontEnd {
         }
 
     }
-
 
     public Module printCreateModule(){
         System.out.println("Please enter a name for your module");
