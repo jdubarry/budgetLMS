@@ -895,10 +895,23 @@ public class frontEnd {
         } 
 
         System.out.println(count + ". Go back");
+        count++;
+        System.out.println(". Delete a course");
 
        int option = getChoice(count);
        if(option == myCourses.size() + 1){
             AuthorMenu();
+       } else if(option == myCourses.size() + 2){
+            System.out.print("Which course would you like to delete? (Enter an integer)");
+            int getDeleteCourse = getChoice(myCourses.size());
+
+            int pos = 0;
+            for(Course x: CourseList.getInstance().getCourses()){
+                if(x.getCourseID().equals(myCourses.get(getDeleteCourse - 1).getCourseID())){
+                    CourseList.getInstance().getCourses().remove(pos);
+                }
+                pos++;
+            }
        } else {
         editCourse(myCourses.get(option - 1));
        }
