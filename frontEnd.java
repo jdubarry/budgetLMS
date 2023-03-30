@@ -736,10 +736,12 @@ public class frontEnd {
         for(Course x: allCourses){
             if(x.getCourseID().equals(course.getCourseID())){
                 CourseList.getInstance().getCourses().set(pos, course);
+                return;
             }
             pos++;
         }
 
+        allCourses.add(course);
     }
 
     public void editModule(Course course, Module module){
