@@ -896,7 +896,7 @@ public class frontEnd {
 
         System.out.println(count + ". Go back");
         count++;
-        System.out.println(". Delete a course");
+        System.out.println(count + ". Delete a course");
 
        int option = getChoice(count);
        if(option == myCourses.size() + 1){
@@ -906,10 +906,13 @@ public class frontEnd {
             int getDeleteCourse = getChoice(myCourses.size());
 
             int pos = 0;
+            
             for(Course x: CourseList.getInstance().getCourses()){
                 if(x.getCourseID().equals(myCourses.get(getDeleteCourse - 1).getCourseID())){
+                    System.out.println("DEBUG");
                     CourseList.getInstance().getCourses().remove(pos);
                     System.out.println("Course deleted");
+                    break;
                 }
                 pos++;
             }
