@@ -909,9 +909,11 @@ public class frontEnd {
             for(Course x: CourseList.getInstance().getCourses()){
                 if(x.getCourseID().equals(myCourses.get(getDeleteCourse - 1).getCourseID())){
                     CourseList.getInstance().getCourses().remove(pos);
+                    System.out.println("Course deleted");
                 }
                 pos++;
             }
+            ViewCreatedCourses();
        } else {
         editCourse(myCourses.get(option - 1));
        }
