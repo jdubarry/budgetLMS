@@ -247,7 +247,12 @@ public class frontEnd {
         ArrayList<CourseProgress> progress = lmsApplication.getCurrentUser().getCourseProgress();
 
         for(CourseProgress x: progress){
-            System.out.println("Course Name: " + x.getCourse().getCourseName() + "  Overall Average: " + x.getCourseAverage());
+            System.out.print("Course Name: " + x.getCourse().getCourseName());
+            int count = 0;
+            for(Double y: x.getGrades()){
+                System.out.print(" Module " + (count + 1) + ": " + y);
+            }
+            System.out.println();
         }
 
         System.out.println("\n1. Go back");
@@ -484,12 +489,14 @@ public class frontEnd {
             keyboard.nextLine();
 
             if(option == q.getCorrectAnswer()){
-                System.out.println("You got it right!!");
+                System.out.println("You got it right!!\n");
                 correct = correct + 1.0;
             } else {
-                System.out.println("Incorrect answer");
+                System.out.println("Incorrect answer\n");
             }
         }
+
+        System.out.println("Quiz over. You scored " + (int) correct + " out of " + (int) totalQuestions);
 
         double finalScore = 100.0*(correct/totalQuestions);
         lmsApplication.saveGrades(course, finalScore);
