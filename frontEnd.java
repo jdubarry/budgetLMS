@@ -491,7 +491,8 @@ public class frontEnd {
             }
         }
 
-        lmsApplication.saveGrades(course, correct/totalQuestions);
+        double finalScore = 100.0*(correct/totalQuestions);
+        lmsApplication.saveGrades(course, finalScore);
         lmsApplication.saveAll();
 
         printModuleContent(course, module);
