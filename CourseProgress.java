@@ -2,6 +2,7 @@
  * This is going to show the user their course progress
  * @author word.exe
  */
+import java.io.*;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -59,5 +60,21 @@ public class CourseProgress {
         }
         Double count = (double)this.grades.size();
         return total / count;
+    }
+
+    public void printCertificate() {
+        if(getCourseAverage()>=80 && grades.size()==course.getModules().size()) {
+            try {
+                File file = new File(course.getCourseName()+"_certificate");
+                FileWriter writer = new FileWriter(file);
+                writer.write("This is proof that you have completed the " + course.getCourseName() + " course from Online Coding");
+                writer.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            System.out.println("You have not yet completed the course");
+        }
     }
 }

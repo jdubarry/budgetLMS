@@ -120,6 +120,18 @@ public class LMSApplication {
         progress.add(newCP);
     }
 
+    public void printCourseCertificate(Course course) {
+        ArrayList<CourseProgress> progress = currentUser.getCourseProgress();
+
+        for(CourseProgress x: progress){
+            if(x.getCourse().equals(course)){
+                x.printCertificate();
+                return;
+            }
+        }
+        System.out.println("You haven't taken any quizzes yet");
+    }
+
     /**
      * This is going to allow a user to take a quiz
      */
