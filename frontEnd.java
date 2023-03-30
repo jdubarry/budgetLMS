@@ -439,7 +439,7 @@ public class frontEnd {
 
         System.out.println(lesson.getLessonContent());
 
-        System.out.println("\n1. Comments\n2. Go Back");
+        System.out.println("\n1. Comments\n2. Write lesson to a file\n3. Go Back");
         int option = keyboard.nextInt();
         keyboard.nextLine();
 
@@ -448,9 +448,18 @@ public class frontEnd {
                 LessonViewComment(course, module, lesson, lessonIndex);
                 break;
             case 2:
+                writeLessonToFile(lesson);
+                printLesson(course, module, lesson, lessonIndex);
+                break;
+            case 3:
                 printModuleContent(course, module);
                 break;
         }
+    }
+
+    // Writes lesson to a file
+    private static void writeLessonToFile(Lesson lesson){
+        lesson.writeToFile();
     }
 
     public void printQuiz(Course course, Module module){
