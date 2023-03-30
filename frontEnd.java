@@ -459,6 +459,9 @@ public class frontEnd {
 
         System.out.println("********** Quiz **********");
 
+        double correct = 0.0;
+        double totalQuestions = (double) module.getQuiz().getQuestions().size();
+
         for(Question q: questions){
             System.out.println(q.getQuestionTitle());
 
@@ -472,9 +475,10 @@ public class frontEnd {
             keyboard.nextLine();
 
             if(option == q.getCorrectAnswer()){
-                System.out.println("You got it right!! woop woop");
+                System.out.println("You got it right!!");
+                correct = correct + 1.0;
             } else {
-                System.out.println("wrong lol, dumbass");
+                System.out.println("Incorrect answer");
             }
         }
 
@@ -814,7 +818,7 @@ public class frontEnd {
         System.out.println("1. Question title: " + question.getQuestionTitle());
         int count = 2;
         for(String x: question.getAnswerChoices()){
-            System.out.println(count + ". Answer choice" + x);
+            System.out.println(count + ". Answer choice: " + x);
             count++;
         }
         System.out.println(count + ". Correct answer: " + question.getCorrectAnswer());
@@ -837,6 +841,11 @@ public class frontEnd {
             System.out.print("Please enter a new answer choice: ");
             question.addAnswer(keyboard.nextLine());
             System.out.println();
+            editQuestion(course, module, quiz, question);
+        } else {
+            System.out.print("Please enter a new answer choice: ");
+            String newChoice = keyboard.nextLine();
+            question.getAnswerChoices().set(option - 2, newChoice);
             editQuestion(course, module, quiz, question);
         }
     }
