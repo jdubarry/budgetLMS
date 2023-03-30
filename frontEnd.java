@@ -750,7 +750,7 @@ public class frontEnd {
             pos++;
         }
 
-        allCourses.add(course);
+        CourseList.getInstance().getCourses().add(course);
     }
 
     public void editModule(Course course, Module module){
