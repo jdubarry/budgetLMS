@@ -106,11 +106,18 @@ public class LMSApplication {
         return this.currentCourse();
     }
 
-    /**
-     * This is going to allow an author to make a course
-     */
-    public void makeCourse() {
+    public void saveGrades(Course course, Double grade) {
+        ArrayList<CourseProgress> progress = currentUser.getCourseProgress();
 
+        for(CourseProgress x: progress){
+            if(x.getCourse().equals(course)){
+                x.updateCourseProgress(grade);
+                return;
+            }
+        } 
+        CourseProgress newCP = new CourseProgress(course);
+        newCP.updateCourseProgress(grade);
+        progress.add(newCP);
     }
 
     /**
