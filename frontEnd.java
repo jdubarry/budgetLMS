@@ -457,6 +457,7 @@ public class frontEnd {
         }
     }
 
+    // Writes lesson to a file
     private static void writeLessonToFile(Lesson lesson){
         lesson.writeToFile();
     }
