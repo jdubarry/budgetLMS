@@ -439,7 +439,7 @@ public class frontEnd {
 
         System.out.println(lesson.getLessonContent());
 
-        System.out.println("\n1. Comments\n2. Go Back");
+        System.out.println("\n1. Comments\n2. Write lesson to a file\n3. Go Back");
         int option = keyboard.nextInt();
         keyboard.nextLine();
 
@@ -448,9 +448,18 @@ public class frontEnd {
                 LessonViewComment(course, module, lesson, lessonIndex);
                 break;
             case 2:
+                writeLessonToFile(lesson);
+                printLesson(course, module, lesson, lessonIndex);
+                break;
+            case 3:
                 printModuleContent(course, module);
                 break;
         }
+    }
+
+    // Writes lesson to a file
+    private static void writeLessonToFile(Lesson lesson){
+        lesson.writeToFile();
     }
 
     public void printQuiz(Course course, Module module){
@@ -481,6 +490,9 @@ public class frontEnd {
                 System.out.println("Incorrect answer");
             }
         }
+
+        lmsApplication.saveGrades(course, correct/totalQuestions);
+        lmsApplication.saveAll();
 
         printModuleContent(course, module);
     }
@@ -717,14 +729,28 @@ public class frontEnd {
             editCourse(course);
         } else if(option == course.getModules().size() + 3){
             System.out.print("Publishing course...");
-            CourseList.getInstance().addCourse(course);
+            publishCourse(course);
             lmsApplication.saveAll();
             System.out.println("published. Returning to main menu");
             AuthorMenu();
         } else {
             editModule(course, course.getModules().get(option - 2));
         }
+    }
 
+    private void publishCourse(Course course){
+        ArrayList<Course> allCourses = CourseList.getInstance().getCourses();
+
+        int pos = 0;
+        for(Course x: allCourses){
+            if(x.getCourseID().equals(course.getCourseID())){
+                CourseList.getInstance().getCourses().set(pos, course);
+                return;
+            }
+            pos++;
+        }
+
+        allCourses.add(course);
     }
 
     public void editModule(Course course, Module module){
