@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,7 +54,11 @@ public class frontEnd {
 
         if(lmsApplication.login(username, password)){
             System.out.println("Login Successful.");
-            UserMenu();
+            if(lmsApplication.getCurrentUser() instanceof Author){
+                AuthorMenu();
+            } else {
+                UserMenu();
+            }
         } else {
             System.out.println("Invalid credentials, try again");
             MainMenu();
@@ -64,7 +69,7 @@ public class frontEnd {
         System.out.println("\n********** Sign Up **********\n" +
         "1. User\n" +
         "2. Author\n" +
-        "3. Go back\n");
+        "3. Go back");
 
         int option = getChoice(3);
         switch(option){
@@ -81,6 +86,7 @@ public class frontEnd {
     }
      
     public void UserSignUpMenu(){
+        System.out.println("\n********** User Signup **********");
         String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
 
         System.out.println("First name: ");
@@ -121,6 +127,7 @@ public class frontEnd {
     }
 
     public void AuthorSignupMenu(){
+        System.out.println("\n********** Author Signup **********");
         String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
 
         System.out.println("First name: ");
@@ -150,15 +157,16 @@ public class frontEnd {
         System.out.println("password: ");
         password = keyboard.nextLine();
 
-        Author newAuthor = new Author(firstName, lastName, username, password, null, dob, phoneNumber, email);
+        Author newAuthor = new Author(firstName, lastName, username, password, dob, phoneNumber, email);
 
         lmsApplication.setCurrentUser(newAuthor);
+        UserList.getInstance().addAuthor(newAuthor);
         lmsApplication.saveAll();
-
-
         System.out.println("**************************************************\n"+
                            "*             Submitted for review               *\n"+
                            "**************************************************\n");
+
+        AuthorMenu();
     }
 
     public void UserMenu(){
@@ -196,6 +204,44 @@ public class frontEnd {
         }
     }
 
+    public void AuthorMenu(){
+        System.out.println("\n********** Author Menu **********");
+        System.out.println("1. Create a course\n" + 
+            "2. View my created courses\n" +
+            "3. View my course progress\n" +
+            "4. Browse courses\n" +
+            "5. General settings\n" +
+            "6. Log out\n");
+
+        int option = getChoice(6);
+
+        switch(option){
+            case 1:
+                System.out.print("Please enter a name for your course: ");
+                String courseName = keyboard.nextLine();
+                Course newCourse = new Course(courseName, lmsApplication.getAuthorPermissions());
+                createCourse(newCourse);
+                break;
+            case 2:
+                ViewCreatedCourses();
+                break;
+            case 3:
+                printCourseProgess();
+                break;
+            case 4:
+                printAllCourses();
+                break;
+            case 5:
+                GeneralSettings();
+                break;
+            case 6:
+                lmsApplication.logout();
+                System.out.println("Logout successful.");
+                MainMenu();
+                break;
+        }
+    }
+
     public void printCourseProgess(){
         System.out.println("********** Course Progress **********");
         ArrayList<CourseProgress> progress = lmsApplication.getCurrentUser().getCourseProgress();
@@ -208,7 +254,11 @@ public class frontEnd {
 
         int option = getChoice(1);
         if(option == 1){
-            UserMenu();
+            if(lmsApplication.getCurrentUser() instanceof Author){
+                AuthorMenu();
+            } else {
+                UserMenu();
+            }
         }
     }
 
@@ -240,7 +290,11 @@ public class frontEnd {
                     break;
                 case 4:
                     validChoice = false;
-                    this.UserMenu();
+                    if(lmsApplication.getCurrentUser() instanceof Author){
+                        AuthorMenu();
+                    } else {
+                        UserMenu();
+                    }
                     break;
             }
         }
@@ -308,7 +362,11 @@ public class frontEnd {
         int option = keyboard.nextInt();
         keyboard.nextLine();
         if(option == i){
-            UserMenu();
+            if(lmsApplication.getCurrentUser() instanceof Author){
+                AuthorMenu();
+            } else {
+                UserMenu();
+            }
         } else if(option > i){
             System.out.println("Invalid option, try again");
             printAllCourses();
@@ -561,59 +619,81 @@ public class frontEnd {
         System.out.println("Reply added!");
         return comment;
     }
-    
-
-    public void AuthorMenu(){
-        System.out.println("********** Author Menu **********");
-        System.out.println("1. Create a course\n" + 
-            "2. View my created courses\n" +
-            "3. View my course progress\n" +
-            "4. Browse courses\n" +
-            "5. General settings\n" +
-            "6. Log out\n");
-
-        int option = getChoice(6);
-
-        switch(option){
-            case 1:
-                System.out.print("Please enter a name for your course: ");
-                String courseName = keyboard.nextLine();
-                Course newCourse = new Course(courseName, null);
-                createCourse(newCourse);
-                break;
-            case 2:
-                break;
-            case 3:
-                printCourseProgess();
-                break;
-            case 4:
-                printAllCourses();
-                break;
-            case 5:
-                GeneralSettings();
-                break;
-            case 6:
-                lmsApplication.logout();
-                System.out.println("Logout successful.");
-                MainMenu();
-                break;
-        }
-    }
 
 
     public void createCourse(Course course){
-        System.out.println("********* " + course.getCourseName() + " *********");
-        System.out.println("Select a module to work on or publish this course");
+        System.out.println("\n********* " + course.getCourseName() + " *********");
+        System.out.println("********** First time set up **********");
 
-        ArrayList<Module> modules = course.getModules();
+        createModule(course);
 
-        int count = 0;
-        for(Module x: modules){
-            System.out.println(count + ". " + x.getModuleName());
-            count++;
-        }
-        if(modules.size() == 0){
-            System.out.println("No modules in this course.");
+        System.out.println("********** First time set up complete **********");
+
+        editCourse(course);
+    }
+
+    public void createModule(Course course){
+        System.out.println("***** New module set up *****");
+        System.out.print("Please enter a name for your module: ");
+
+        Module module = new Module(keyboard.nextLine());
+        System.out.println();
+        course.addModule(module);
+
+        createLesson(course, module);
+
+        createQuiz(course, module);
+    }
+
+    public void createLesson(Course course, Module module){
+        System.out.println("***** New lesson set up *****");
+        System.out.print("Please enter a name for your lesson: ");
+        String lessonName = keyboard.nextLine();
+        System.out.println();
+
+        System.out.print("Please enter the lesson content: ");
+        String lessonContent = keyboard.nextLine();
+        System.out.println();
+
+        Lesson newLesson = new Lesson(lessonName);
+        newLesson.setLessonContent(lessonContent);
+
+        module.addLesson(newLesson);
+    }
+
+    public void createQuiz(Course course, Module module){
+        System.out.println("***** New quiz set up *****");
+        createQuestion(course, module, module.getQuiz());
+    }
+
+    public void createQuestion(Course course, Module module, Quiz quiz){
+        System.out.println("Each quiz needs at least 1 question, and each question needs at least 3 answer choices");
+        
+        System.out.print("Please enter a question: ");
+        Question questionOne = new Question(keyboard.nextLine());
+        System.out.print("\nPlease enter answer choice 1: ");
+        questionOne.addAnswer(keyboard.nextLine());
+        System.out.print("\nPlease enter choice 2: ");
+        questionOne.addAnswer(keyboard.nextLine());
+        System.out.print("\nPlease enter choice 3: ");
+        questionOne.addAnswer(keyboard.nextLine());
+
+        System.out.print("Whats the correct answer? (Enter an integer) ");
+        int correctAnswer = getChoice(3);
+        System.out.println();
+        questionOne.setCorrectAnswer(correctAnswer);
+
+        quiz.addQuestion(questionOne);
+    }
+
+    public void editCourse(Course course){
+        System.out.println("\n***** Editing Course: " + course.getCourseName() + " *****");
+        System.out.println("Please choose an option to edit");
+
+        System.out.println("1. Course name: " + course.getCourseName());
+        int count = 2;
+        for(Module x: course.getModules()){
+            System.out.println(count + ". Module: " + x.getModuleName());
             count++;
         }
 
@@ -621,63 +701,172 @@ public class frontEnd {
         count++;
         System.out.println(count + ". Publish course");
 
-        int option = getChoice(count);
+        int option = getChoice(course.getModules().size() + 3);
 
-        if(option == modules.size() + 1){
-            course.addModule(printCreateModule());
-        } else if(option == modules.size() + 2){
-            //Publish it!!
+        if(option == 1){
+            System.out.print("Please enter a new course title: ");
+            course.setCourseName(keyboard.nextLine());
+            System.out.println();
+            editCourse(course);
+        } else if(option == course.getModules().size() + 2){
+            createModule(course);
+            editCourse(course);
+        } else if(option == course.getModules().size() + 3){
+            System.out.print("Publishing course...");
+            CourseList.getInstance().addCourse(course);
+            lmsApplication.saveAll();
+            System.out.println("published. Returning to main menu");
+            AuthorMenu();
         } else {
-            //Edit module
+            editModule(course, course.getModules().get(option - 2));
         }
 
     }
 
-    public Module printCreateModule(){
-        System.out.println("Please enter a name for your module");
+    public void editModule(Course course, Module module){
+        System.out.println("\n********** Edit Module:" + module.getModuleName() + " *********");
+        System.out.println("***** Choose a lesson to edit or other options *****");
 
-        return new Module(keyboard.nextLine());
+        
+        int count = 1;
+        for(Lesson x: module.getLessons()){
+            System.out.println(count + ". " + x.getLessonTitle());
+            count++;
+        }
+
+        System.out.println(count + ". Edit Quiz");
+        count++;
+        System.out.println(count + ". Add lesson.");
+        count++;
+        System.out.println(count + ". Edit Module name");
+        count++;
+        System.out.println(count + ". Return to edit course");
+
+        int option = getChoice(module.getLessons().size() + 4);
+
+        if(option == module.getLessons().size() + 1){
+            editQuiz(course, module, module.getQuiz());
+        } else if(option == module.getLessons().size() + 2){
+            createLesson(course, module);
+            editModule(course, module);
+        } else if(option == module.getLessons().size() + 3){
+            System.out.print("Please enter a new name for this module");
+            module.setModuleName(keyboard.nextLine());
+            System.out.println("Name changed!");
+            editModule(course, module);
+        } else if(option == module.getLessons().size() + 4){
+            editCourse(course);
+        } else {
+            editLesson(course, module,module.getLessons().get(option - 1));
+        }
     }
 
-    public Lesson printCreateLesson(){
-        System.out.println("Please enter a name for your lesson");
-        String lessonName = keyboard.nextLine();
+    public void editLesson(Course course, Module module, Lesson lesson){
+        System.out.println("***** Edit Lesson" + lesson.getLessonTitle() + " *****");
+        System.out.println("1. Edit lesson name\n" +
+            "2. Edit lesson content\n" +
+            "3. Go back\n");
 
-        System.out.println("Please enter the lesson content");
-        String lessonContent = keyboard.nextLine();
-
-        Lesson newLesson = new Lesson(lessonName);
-        newLesson.setLessonContent(lessonContent);
-
-        return newLesson;
+        int option = getChoice(2);
+        switch(option){
+            case 1:
+                System.out.println("Please enter a new course name:");
+                lesson.setLessonTitle(keyboard.nextLine());
+                break;
+            case 2:
+                System.out.println("Please enter new course content");
+                lesson.setLessonContent(keyboard.nextLine());
+                break;
+            case 3:
+                editModule(course, module);
+        }
     }
 
-    public Quiz printCreateQuiz(){
-        return null;
+    public void editQuiz(Course course, Module module, Quiz quiz){
+        System.out.println("***** Editing Quiz in: " + module.getModuleName() + " *****");
+
+        int count = 1;
+        for(Question x: quiz.getQuestions()){
+            System.out.println(count + ". " + x.getQuestionTitle());
+            count++;
+        }
+
+        System.out.println(count + ". Add question");
+        count++;
+        System.out.println(count + ". Go back to module");
+
+        int option = getChoice(quiz.getQuestions().size() + 2);
+
+        if(option == quiz.getQuestions().size() + 1){
+            createQuestion(course, module, quiz);
+            editQuiz(course, module, quiz);
+        } else if(option == quiz.getQuestions().size() + 2){
+            editModule(course, module);
+        } else {
+            editQuestion(course, module, quiz, quiz.getQuestions().get(option - 1));
+        }
     }
 
-    public Course printEditCourse(){
-        return null;
+    public void editQuestion(Course course, Module module, Quiz quiz, Question question){
+        System.out.println("***** Edit Question *****");
+        System.out.println("Please select and item to edit");
+
+        System.out.println("1. Question title: " + question.getQuestionTitle());
+        int count = 2;
+        for(String x: question.getAnswerChoices()){
+            System.out.println(count + ". Answer choice" + x);
+            count++;
+        }
+        System.out.println(count + ". Correct answer: " + question.getCorrectAnswer());
+        count++;
+        System.out.println(count + ". Add a new answer choice");
+
+        int option = getChoice(question.getAnswerChoices().size() + 2);
+
+        if(option == 1){
+            System.out.print("Please enter a new title:");
+            question.setQuestionTitle(keyboard.nextLine());
+            System.out.println();
+            editQuestion(course, module, quiz, question);
+        } else if(option == question.getAnswerChoices().size() + 1){
+            System.out.print("Please enter a new answer index less than" + question.getAnswerChoices().size());
+            int newAnswerIndex = getChoice(question.getAnswerChoices().size());
+            question.setCorrectAnswer(newAnswerIndex);
+            editQuestion(course, module, quiz, question);
+        } else if(option == question.getAnswerChoices().size() + 2){
+            System.out.print("Please enter a new answer choice: ");
+            question.addAnswer(keyboard.nextLine());
+            System.out.println();
+            editQuestion(course, module, quiz, question);
+        }
     }
 
-    public Module printEditModule(){
-        return null;
-    }
+    public void ViewCreatedCourses(){
+        System.out.println("\n***** Courses made by me *****");
+        System.out.println("***** Select a course to edit or go back *****");
 
-    public Lesson printEditLesson(){
-        return null;
-    }
+        ArrayList<Course> myCourses = new ArrayList<>();
 
-    public Quiz printEditQuiz(){
-        return null;
-    }
+        int count = 1;
+        for(Course x: CourseList.getInstance().getCourses()){
+            if(x.getAuthor().getUserID().equals(lmsApplication.getCurrentUser().getUserID())){
+                myCourses.add(x);
+                System.out.println(count + ". " + x.getCourseName());
+                count++;
+            }
+        }
+        if(myCourses.size() == 0){
+            System.out.println("You have not created any courses");
+        } 
 
-    public int printViewGrades(){
-        return 0;
-    }
+        System.out.println(count + ". Go back");
 
-    public int printViewCreatedCourses(){
-        return 0;
+       int option = getChoice(count);
+       if(option == myCourses.size() + 1){
+            AuthorMenu();
+       } else {
+        editCourse(myCourses.get(option - 1));
+       }
     }
 
     private int getChoice(int maxIndex){
@@ -690,8 +879,8 @@ public class frontEnd {
         boolean validChoice = true;
         while(validChoice){
             try {
-                option = keyboard.nextInt();
-                keyboard.nextLine();
+                String input = keyboard.nextLine();
+                option = Integer.parseInt(input);
             } catch (Exception e){
                 System.out.println("Please enter a valid integer.");
                 continue;
