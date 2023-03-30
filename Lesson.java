@@ -2,6 +2,7 @@
  * This is going to set up the lessons used in the modules
  * @author word.exe
  */
+import java.io.*;
 import java.util.ArrayList;
 
 public class Lesson {
@@ -51,6 +52,17 @@ public class Lesson {
      */
     public void viewCommentReplies(int commentIndex) {
 
+    }
+
+    public void writeToFile() {
+        try {
+            File file = new File(lessonTitle);
+            FileWriter writer = new FileWriter(file);
+            writer.write(lessonContent);
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
