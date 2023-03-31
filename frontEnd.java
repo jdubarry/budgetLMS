@@ -743,7 +743,7 @@ public class frontEnd {
         count++;
         System.out.println(count + ". Publish course");
 
-        int option = getChoice(course.getModules().size() + 3);
+        int option = getChoice(course.getModules().size() + 4);
 
         if(option == 1){
             System.out.print("Please enter a new course title: ");
@@ -823,7 +823,7 @@ public class frontEnd {
             "2. Edit lesson content\n" +
             "3. Go back\n");
 
-        int option = getChoice(2);
+        int option = getChoice(3);
         switch(option){
             case 1:
                 System.out.println("Please enter a new course name:");
