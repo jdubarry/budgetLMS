@@ -251,19 +251,37 @@ public class frontEnd {
             int count = 0;
             for(Double y: x.getGrades()){
                 System.out.print(" Module " + (count + 1) + ": " + y);
+                count++;
             }
             System.out.println();
         }
 
-        System.out.println("\n1. Go back");
+        System.out.println("\n1. Go back\n2. Print certificate for a course");
 
-        int option = getChoice(1);
+        int option = getChoice(2);
         if(option == 1){
             if(lmsApplication.getCurrentUser() instanceof Author){
                 AuthorMenu();
             } else {
                 UserMenu();
             }
+        }
+        if(option == 2){
+            System.out.println("Enter which number course you would like to print");
+            int count = 1;
+            for(CourseProgress x: progress) {
+                System.out.println(count+". "+"Course Name: " + x.getCourse().getCourseName());
+                count++;
+            }
+            option = getChoice(10000); //Arbitrary large number for choices
+            count = 1;
+            for(CourseProgress x: progress) {
+                if(count==option) {
+                    lmsApplication.printCourseCertificate(x.getCourse());
+                }
+                count++;
+            }
+            printCourseProgess();
         }
     }
 
