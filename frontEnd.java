@@ -18,6 +18,9 @@ public class frontEnd {
         new frontEnd().MainMenu();
     }
 
+    /**
+     * prints main menu options
+     */
     public void MainMenu(){
         System.out.println("\n********** Main Menu **********\n" +
             "1. Login\n" +
@@ -41,6 +44,9 @@ public class frontEnd {
         }
     }
     
+    /**
+     * prints a menu that returns login options
+     */
     public void LoginMenu(){
         String username;
         String password;
@@ -65,6 +71,9 @@ public class frontEnd {
         }
     }
 
+   /**
+    * prints a menu that returns sign up options  
+    */ 
     public void SignUpOptions(){
         System.out.println("\n********** Sign Up **********\n" +
         "1. User\n" +
@@ -85,6 +94,9 @@ public class frontEnd {
             }
     }
      
+    /**
+     * prints a menu that returns a user sign up menu
+     */
     public void UserSignUpMenu(){
         System.out.println("\n********** User Signup **********");
         String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
@@ -126,6 +138,9 @@ public class frontEnd {
         this.UserMenu();
     }
 
+    /**
+     * prints a menu that returns an author sign up menu
+     */
     public void AuthorSignupMenu(){
         System.out.println("\n********** Author Signup **********");
         String firstName, lastName, username, email, phoneNumber, dateOfBirth, password;
@@ -169,6 +184,9 @@ public class frontEnd {
         AuthorMenu();
     }
 
+    /**
+     * prints a menu with options for a user
+     */
     public void UserMenu(){
         System.out.println("\n********** User Menu **********");
         System.out.println("1. View My Course Progress\n" +
@@ -204,6 +222,9 @@ public class frontEnd {
         }
     }
 
+    /**
+     * prints a menu with options for an author
+     */
     public void AuthorMenu(){
         System.out.println("\n********** Author Menu **********");
         System.out.println("1. Create a course\n" + 
@@ -242,6 +263,9 @@ public class frontEnd {
         }
     }
 
+    /**
+     * prints the course progress of a user to the console
+     */
     public void printCourseProgess(){
         System.out.println("********** Course Progress **********");
         ArrayList<CourseProgress> progress = lmsApplication.getCurrentUser().getCourseProgress();
@@ -284,7 +308,9 @@ public class frontEnd {
             printCourseProgess();
         }
     }
-
+    /**
+     * prints a menu with settings options
+     */
     public void GeneralSettings(){
         System.out.println("\n********** General Settings **********");
         System.out.println("1. Change Password\n" +
@@ -323,6 +349,9 @@ public class frontEnd {
         }
     }
 
+    /**
+     * prints a menu that an email has been changed
+     */
     public void ChangeEmail(){
         System.out.println("********** Change Email **********\n"+
         "Current Email: " + lmsApplication.getCurrentUser().getEmailAddress() + "\n" +
@@ -337,7 +366,9 @@ public class frontEnd {
 
         GeneralSettings();
     }
-
+    /**
+     * prints a menu that a password has been changed
+     */
     public void ChangePassword(){
         System.out.println("********** Change Password **********\n"+
         "Current Password: " + lmsApplication.getCurrentUser().getPassword() + "\n" +
@@ -353,6 +384,9 @@ public class frontEnd {
         GeneralSettings();
     }
 
+    /**
+     * prints a menu that a password has been changed
+     */
     public void ChangePhoneNumber(){
         System.out.println("********** Change Phone Number **********\n"+
         "Current Phone Number: " + lmsApplication.getCurrentUser().getPhoneNumber() + "\n" +
@@ -368,6 +402,9 @@ public class frontEnd {
         GeneralSettings();
     }
 
+    /**
+     * prints a list of all the courses in the LMS
+     */
     public void printAllCourses(){
         System.out.println("\n**********          Course Menu           **********\n" +
                            "********** Choose a course to get started **********");
@@ -400,6 +437,10 @@ public class frontEnd {
 
     }
 
+    /**
+     * prints a menu with options for a user selected course
+     * @param course
+     */
     public void printCourseContent(Course course){
         System.out.println("\n******** " + course.getCourseName() + " ********\n" +
         "******** Choose a Module ********");
@@ -426,6 +467,11 @@ public class frontEnd {
         }
     }
 
+    /**
+     * prints a menu with options for a user selected module
+     * @param course
+     * @param module
+     */
     public void printModuleContent(Course course, Module module){
         System.out.println("\n******** Module 1: " + module.getModuleName() + " ********\n" +
         "******** Choose a Lesson ********");
@@ -457,6 +503,13 @@ public class frontEnd {
         }
     }
 
+    /**
+     * prints a menu with options for a user selected lesson
+     * @param course
+     * @param module
+     * @param lesson
+     * @param lessonIndex
+     */
     public void printLesson(Course course, Module module, Lesson lesson, int lessonIndex){
         System.out.println("********* Lesson " + lessonIndex + ": " + lesson.getLessonTitle() + " *********");
 
@@ -485,6 +538,11 @@ public class frontEnd {
         lesson.writeToFile();
     }
 
+    /**
+     * prints a user selected quiz
+     * @param course
+     * @param module
+     */
     public void printQuiz(Course course, Module module){
         Quiz quiz = module.getQuiz();
         ArrayList<Question> questions = quiz.getQuestions();
@@ -523,6 +581,10 @@ public class frontEnd {
         printModuleContent(course, module);
     }
 
+    /**
+     * prints a list of comments for the course 
+     * @param course
+     */
     public void CourseViewComment(Course course){
         System.out.println("\n********* " + course.getCourseName() + ": comments **********");
         System.out.println("***** Select a comment to navigate or add a new comment *****");
@@ -553,6 +615,11 @@ public class frontEnd {
 
     }
 
+    /**
+     * prints a list of comments for the course
+     * @param course
+     * @param currentComment
+     */
     public void CourseViewComment(Course course, Comment currentComment){
         System.out.println("\n********* " + course.getCourseName() + ": comments **********");
         System.out.println("***** Select a reply to navigate or add a new reply to the parent comment *****\n");
@@ -583,6 +650,13 @@ public class frontEnd {
         }
     }
 
+    /**
+     * prints a list of comments for lessons
+     * @param course
+     * @param module
+     * @param lesson
+     * @param index
+     */
     public void LessonViewComment(Course course, Module module, Lesson lesson, int index){
         System.out.println("\n********* " + lesson.getLessonTitle() + ": comments **********");
         System.out.println("***** Select a comment to navigate or add a new comment *****");
@@ -612,6 +686,14 @@ public class frontEnd {
         }
     }
 
+    /**
+     * prints a list of comments for lessons
+     * @param course
+     * @param module
+     * @param lesson
+     * @param index
+     * @param currentComment
+     */
     public void LessonViewComment(Course course, Module module, Lesson lesson, int index, Comment currentComment){
         System.out.println("\n********* " + lesson.getLessonTitle() + ": comments **********");
         System.out.println("***** Select a reply to navigate or add a new reply to the parent comment *****\n");
@@ -642,6 +724,10 @@ public class frontEnd {
         }
     }
 
+    /**
+     * a method that returns a comment
+     * @return a string representation of a comment
+     */
     public String CreateComment(){
         System.out.println("******** Add a Comment ********\n" +
         "Add your comment here: ");
@@ -652,6 +738,10 @@ public class frontEnd {
         return comment;
     }
 
+    /**
+     * a method that returns a reply
+     * @return a string representation of a reply
+     */
     public String CreateReply(){
         System.out.println("******** Add a Reply ********\n" +
         "Add your comment here: ");
@@ -662,7 +752,9 @@ public class frontEnd {
         return comment;
     }
 
-
+    /**
+     * a method that creates a course
+     */
     public void createCourse(Course course){
         System.out.println("\n********* " + course.getCourseName() + " *********");
         System.out.println("********** First time set up **********");
@@ -674,6 +766,10 @@ public class frontEnd {
         editCourse(course);
     }
 
+    /**
+     * a method that creates a module
+     * @param course
+     */
     public void createModule(Course course){
         System.out.println("***** New module set up *****");
         System.out.print("Please enter a name for your module: ");
@@ -687,6 +783,11 @@ public class frontEnd {
         createQuiz(course, module);
     }
 
+    /**
+     * a method that creates a lesson
+     * @param course
+     * @param module
+     */
     public void createLesson(Course course, Module module){
         System.out.println("***** New lesson set up *****");
         System.out.print("Please enter a name for your lesson: ");
@@ -703,11 +804,22 @@ public class frontEnd {
         module.addLesson(newLesson);
     }
 
+    /**
+     * a method that creates a quiz
+     * @param course
+     * @param module
+     */
     public void createQuiz(Course course, Module module){
         System.out.println("***** New quiz set up *****");
         createQuestion(course, module, module.getQuiz());
     }
 
+    /**
+     * a method that creates a question
+     * @param course
+     * @param module
+     * @param quiz
+     */
     public void createQuestion(Course course, Module module, Quiz quiz){
         System.out.println("Each quiz needs at least 1 question, and each question needs at least 3 answer choices");
         
@@ -728,6 +840,9 @@ public class frontEnd {
         quiz.addQuestion(questionOne);
     }
 
+    /**
+     * a method that allows authors to edit courses
+     */
     public void editCourse(Course course){
         System.out.println("\n***** Editing Course: " + course.getCourseName() + " *****");
         System.out.println("Please choose an option to edit");
@@ -779,6 +894,11 @@ public class frontEnd {
         CourseList.getInstance().getCourses().add(course);
     }
 
+    /**
+     * a method that allows authors to edit modules
+     * @param course
+     * @param module
+     */
     public void editModule(Course course, Module module){
         System.out.println("\n********** Edit Module:" + module.getModuleName() + " *********");
         System.out.println("***** Choose a lesson to edit or other options *****");
@@ -817,6 +937,12 @@ public class frontEnd {
         }
     }
 
+    /**
+     * a method that allows authors to edit a lesson
+     * @param course
+     * @param module
+     * @param lesson
+     */
     public void editLesson(Course course, Module module, Lesson lesson){
         System.out.println("***** Edit Lesson" + lesson.getLessonTitle() + " *****");
         System.out.println("1. Edit lesson name\n" +
@@ -838,6 +964,9 @@ public class frontEnd {
         }
     }
 
+    /**
+     * a method that allows users to edit a quiz
+     */
     public void editQuiz(Course course, Module module, Quiz quiz){
         System.out.println("***** Editing Quiz in: " + module.getModuleName() + " *****");
 
@@ -863,6 +992,13 @@ public class frontEnd {
         }
     }
 
+    /**
+     * a method that allows users to edit questions
+     * @param course
+     * @param module
+     * @param quiz
+     * @param question
+     */
     public void editQuestion(Course course, Module module, Quiz quiz, Question question){
         System.out.println("***** Edit Question *****");
         System.out.println("Please select and item to edit");
@@ -902,6 +1038,9 @@ public class frontEnd {
         }
     }
 
+    /**
+     * prints a list of author created courses
+     */
     public void ViewCreatedCourses(){
         System.out.println("\n***** Courses made by me *****");
         System.out.println("***** Select a course to edit or go back *****");
@@ -948,6 +1087,11 @@ public class frontEnd {
        }
     }
 
+    /**
+     * a method that gets choices for user interface
+     * @param maxIndex
+     * @return an integer that represents the user choice
+     */
     private int getChoice(int maxIndex){
         if(maxIndex < 1){
             System.out.println("INVALID MAXINDEX");
