@@ -1,1 +1,0 @@
-A for loop is used for iterating over a sequence. This is used more for iterator method. This is also found in the other object-oriented programming languages. You can also loop through strings. The way to terminate a loop is going to be called a break statement. This break statement will stop the loop before it loops through all of the items. 
