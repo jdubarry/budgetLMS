@@ -13,6 +13,10 @@ import org.json.simple.JSONObject;
 public class DataWriter {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
+    /**
+     * Writes all users to users.json
+     * @param users List of users to write
+     */
     public static void writeUsers(ArrayList<User> users) {
         try {     
             JSONArray allUsers = new JSONArray();
@@ -46,6 +50,10 @@ public class DataWriter {
         }
     }
 
+    /**
+     * Writes all authors to authors.json
+     * @param authors List of authors to write
+     */
     public static void writeAuthors(ArrayList<Author> authors) {
         try {     
             JSONArray allAuthors = new JSONArray();
@@ -79,6 +87,10 @@ public class DataWriter {
         }
     }
 
+    /**
+     * Writes all courses to courses.json
+     * @param courses List of courses to write
+     */
     public static void writeCourses(ArrayList<Course> courses) {
         try {     
             JSONArray allCourses = new JSONArray();
@@ -127,6 +139,12 @@ public class DataWriter {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Used to write comments recursively
+     * @param comm Comment to write
+     * @return JSON representation of comm
+     */
     private static JSONObject writeComment(Comment comm) {
         if(comm == null) {
             return null;
@@ -144,6 +162,12 @@ public class DataWriter {
         comment.put("replies", replies);
         return comment;
     }
+
+    /**
+     * Writes a quiz to a json format
+     * @param quiz Quiz to write
+     * @return JSON representation of a quiz
+     */
     private static JSONObject writeQuiz(Quiz quiz) {
         if(quiz == null) {
             return null;

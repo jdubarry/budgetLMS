@@ -14,6 +14,10 @@ import org.json.simple.parser.ParseException;
  */
 public class DataLoader {
 
+    /**
+     * Loads in list of users from the users.json file. Dooes not load in courseProgress
+     * @return ArrayList of users in the json file
+     */
     public static ArrayList<User> loadUsers() {
         JSONParser parser = new JSONParser();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -51,6 +55,11 @@ public class DataLoader {
         return users;
     }
 
+    /**
+     * Loads in courseProgress for all users
+     * @param users list of users to load CourseProgress for
+     * @return ArrayList of users with their associated courseProgress in the json file
+     */
     public static ArrayList<User> loadUsersCourseProgress(UserList users) {
         JSONParser parser = new JSONParser();
 
@@ -92,6 +101,10 @@ public class DataLoader {
         return null;
     }
 
+    /**
+     * Loads in list of authors from the authors.json file. Dooes not load in courseProgress
+     * @return ArrayList of authors in the json file
+     */
     public static ArrayList<Author> loadAuthors() {
         JSONParser parser = new JSONParser();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -129,6 +142,11 @@ public class DataLoader {
         return authors;
     }
 
+    /**
+     * Loads in courseProgress for all authors
+     * @param users list of authors to load CourseProgress for
+     * @return ArrayList of Authors with their associated courseProgress in the json file
+     */
     public static ArrayList<Author> loadAuthorsCourseProgress(UserList authors) {
         JSONParser parser = new JSONParser();
 
@@ -170,6 +188,10 @@ public class DataLoader {
         return null;
     }
 
+    /**
+     * Loads in all courses from the courses.json file
+     * @return ArrayList of courses from the json file
+     */
     public static ArrayList<Course> loadCourses() {
         JSONParser parser = new JSONParser();
         ArrayList<Course> courses = new ArrayList<Course>();
@@ -262,6 +284,10 @@ public class DataLoader {
         }
         return courses;
     }
+
+    /**
+     * Used for loading in comments recursively
+     */
     private static Comment parseComment(Object comm) {
         if(comm == null) {
             return null;

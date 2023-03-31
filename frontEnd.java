@@ -756,6 +756,7 @@ public class frontEnd {
         } else if(option == course.getModules().size() + 3){
             System.out.print("Publishing course...");
             publishCourse(course);
+            
             lmsApplication.saveAll();
             System.out.println("published. Returning to main menu");
             AuthorMenu();
