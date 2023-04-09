@@ -57,12 +57,12 @@ public class CourseListTester {
     }
 
     public void testGetCourseByName() {
-        assertEquals("java for geniuses", CourseList.getInstance().getCourseByName("java for geniuses").getCourseName());
+        assertEquals("mikes course", CourseList.getInstance().getCourseByName("mikes course").getCourseName());
     }
 
 
     public void testSearchCoursesByName() {
-        assertEquals("python", CourseList.getInstance().SearchCoursesByName("py").get(0).getCourseName());
+        assertEquals("mikes course", CourseList.getInstance().SearchCoursesByName("mikes").get(0).getCourseName());
     }
 
     public void testSave() {
