@@ -71,7 +71,8 @@ public class CourseList {
     }
 
     /**
-     * This is going to add in the courses
+     * This is going to add in thnulle courses
+     * 
      * @param course the course being used
      */
     public void addCourse(Course course) {
