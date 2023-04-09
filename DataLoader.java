@@ -15,7 +15,7 @@ import org.json.simple.parser.ParseException;
 public class DataLoader {
 
     /**
-     * Loads in list of users from the users.json file. Dooes not load in courseProgress
+     * Loads in list of users from the users.json file. Does not load in courseProgress
      * @return ArrayList of users in the json file
      */
     public static ArrayList<User> loadUsers() {
