@@ -1,17 +1,11 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayNameGenerator.Simple;
-
 import java.util.Date;
-import java.util.UUID;
-
-import javax.xml.crypto.Data;
 
 public class UserListTest {
     
@@ -40,6 +34,7 @@ public class UserListTest {
 
         DataWriter.writeUsers(userList);
         DataWriter.writeAuthors(authorList);
+        
     }
 
     @AfterEach
